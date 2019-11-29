@@ -29,6 +29,13 @@ module.exports = {
     {
       resolve: 'gatsby-source-contentful',
       options: contentfulConfig,
+    },
+    {
+        resolve: 'gatsby-plugin-purgecss',
+        options: {
+            printRejected: true,
+            tailwind: true
+        }
     }
   ],
 }
