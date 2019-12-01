@@ -11,5 +11,6 @@ export default () => (
         <Link to="/about">about max</Link>
       </li>
     </ul>
+    <hr />
   </nav>
 )

@@ -11,6 +11,7 @@ const ArtboardTemplate = ({ data }) => {
         <Layout>
           <div className="">
             <Helmet title={artboard.title} />
+            <h1 className="">{artboard.title}</h1>
             <div className="">
               <Img
                 className=""
@@ -19,7 +20,6 @@ const ArtboardTemplate = ({ data }) => {
               />
             </div>
             <div className="">
-              <h1 className="">{artboard.title}</h1>
               <p className="">
                 {artboard.publishDate}
               </p>

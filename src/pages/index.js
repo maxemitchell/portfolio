@@ -1,5 +1,5 @@
 import React from 'react'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import Helmet from 'react-helmet'
 import Layout from '../components/layout'
 
@@ -13,14 +13,13 @@ const Index = ({ data }) => {
           <Helmet title={siteTitle} />
           <div className="">
             <h2 className="">Recent artboards</h2>
-            <ul className="">
               {artboards.map(({ node: artboard }) => {
                 return (
-                  <li key={artboard.slug}>{artboard.title}
-                  </li>
+                    <Link to={`/artboards/${artboard.slug}/`}>
+                        <h3>{artboard.title}</h3>
+                    </Link>
                 )
               })}
-            </ul>
           </div>
         </div>
       </Layout>
