@@ -1,29 +1,22 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import get from 'lodash/get'
 import Helmet from 'react-helmet'
-import Hero from '../components/hero'
 import Layout from '../components/layout'
-import ArticlePreview from '../components/article-preview'
 
-class RootIndex extends React.Component {
-  render() {
-    const siteTitle = get(this, 'props.data.site.siteMetadata.title')
-    const posts = get(this, 'props.data.allContentfulBlogPost.edges')
-    const [author] = get(this, 'props.data.allContentfulPerson.edges')
+const Index = ({ data }) => {
+    const siteTitle =  data.site.siteMetadata.title
+    const artboards = data.allContentfulArtboard.edges
 
     return (
-      <Layout location={this.props.location}>
-        <div style={{ background: '#fff' }}>
+      <Layout>
+        <div className="">
           <Helmet title={siteTitle} />
-          <Hero data={author.node} />
-          <div className="wrapper">
-            <h2 className="section-headline">Recent articles</h2>
-            <ul className="article-list">
-              {posts.map(({ node }) => {
+          <div className="">
+            <h2 className="">Recent artboards</h2>
+            <ul className="">
+              {artboards.map(({ node: artboard }) => {
                 return (
-                  <li key={node.slug}>
-                    <ArticlePreview article={node} />
+                  <li key={artboard.slug}>{artboard.title}
                   </li>
                 )
               })}
@@ -32,26 +25,24 @@ class RootIndex extends React.Component {
         </div>
       </Layout>
     )
-  }
 }
 
-export default RootIndex
+export default Index
 
-export const pageQuery = graphql`
-  query HomeQuery {
+export const query = graphql`
+  query Index {
     site {
       siteMetadata {
         title
       }
     }
-    allContentfulBlogPost(sort: { fields: [publishDate], order: DESC }) {
+    allContentfulArtboard(sort: { fields: [artboardDate], order: DESC }) {
       edges {
         node {
           title
           slug
-          publishDate(formatString: "MMMM Do, YYYY")
-          tags
-          heroImage {
+          artboardDate(formatString: "MMMM Do, YYYY")
+          artboard {
             fluid(maxWidth: 350, maxHeight: 196, resizingBehavior: SCALE) {
               ...GatsbyContentfulFluid_tracedSVG
             }
@@ -59,29 +50,6 @@ export const pageQuery = graphql`
           description {
             childMarkdownRemark {
               html
-            }
-          }
-        }
-      }
-    }
-    allContentfulPerson(
-      filter: { contentful_id: { eq: "15jwOBqpxqSAOy2eOO4S0m" } }
-    ) {
-      edges {
-        node {
-          name
-          shortBio {
-            shortBio
-          }
-          title
-          heroImage: image {
-            fluid(
-              maxWidth: 1180
-              maxHeight: 480
-              resizingBehavior: PAD
-              background: "rgb:000000"
-            ) {
-              ...GatsbyContentfulFluid_tracedSVG
             }
           }
         }

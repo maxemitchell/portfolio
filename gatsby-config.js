@@ -18,7 +18,7 @@ if (!spaceId || !accessToken) {
 
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Contentful starter',
+    title: 'maxemitchell portfolio',
   },
   plugins: [
     'gatsby-transformer-remark',
@@ -33,7 +33,8 @@ module.exports = {
     {
         resolve: 'gatsby-plugin-purgecss',
         options: {
-            printRejected: true,
+            printRejected: false,
+            develop: false,
             tailwind: true
         }
     }
