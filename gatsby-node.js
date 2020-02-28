@@ -7,9 +7,7 @@ exports.createPages = ({ graphql, actions }) => {
         graphql(
         `
           {
-            allContentfulArtboard(
-                sort: { fields: [artboardDate], order: DESC }
-            ) {
+            allContentfulArtboard {
               edges {
                 node {
                   title
@@ -40,5 +38,40 @@ exports.createPages = ({ graphql, actions }) => {
         })
     })
 
-    return Promise.all([loadArtboards])
+    const loadPhotoCollections = new Promise((resolve, reject) => {
+        graphql(
+        `
+          {
+            allContentfulPhotoCollection {
+              edges {
+                node {
+                  title
+                  slug
+                }
+              }
+            }
+          }
+        `
+        ).then(result => {
+            if (result.errors) {
+              console.log(result.errors)
+              reject(result.errors)
+            }
+
+            const photoCollections = result.data.allContentfulPhotoCollection.edges
+
+            photoCollections.forEach((photoCollection) => {
+              createPage({
+                path: `/photo_collections/${photoCollection.node.slug}/`,
+                component: path.resolve('./src/templates/photo_collection.js'),
+                context: {
+                  slug: photoCollection.node.slug
+                },
+              })
+            })
+            resolve()
+        })
+    })
+
+    return Promise.all([loadArtboards, loadPhotoCollections])
 }

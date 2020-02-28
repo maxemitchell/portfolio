@@ -6,6 +6,7 @@ import Layout from '../components/layout'
 const Index = ({ data }) => {
     const siteTitle =  data.site.siteMetadata.title
     const artboards = data.allContentfulArtboard.edges
+    const photoCollections = data.allContentfulPhotoCollection.edges
 
     return (
       <Layout>
@@ -17,6 +18,16 @@ const Index = ({ data }) => {
                 return (
                     <Link to={`/artboards/${artboard.slug}/`}>
                         <h3>{artboard.title}</h3>
+                    </Link>
+                )
+              })}
+          </div>
+          <div className="">
+            <h2 className="">Recent photo_collections</h2>
+              {photoCollections.map(({ node: photoCollection }) => {
+                return (
+                    <Link to={`/photo_collections/${photoCollection.slug}/`}>
+                        <h3>{photoCollection.title}</h3>
                     </Link>
                 )
               })}
@@ -53,6 +64,19 @@ export const query = graphql`
           }
         }
       }
+    }
+    allContentfulPhotoCollection(limit: 5){
+        edges {
+            node {
+                title
+                slug
+                description {
+                  childMarkdownRemark {
+                    html
+                  }
+                }
+            }
+        }
     }
   }
 `
