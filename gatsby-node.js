@@ -27,7 +27,7 @@ exports.createPages = ({ graphql, actions }) => {
 
             const artboards = result.data.allContentfulArtboard.edges
 
-            artboards.forEach((artboard, index) => {
+            artboards.forEach((artboard) => {
               createPage({
                 path: `/artboards/${artboard.node.slug}/`,
                 component: path.resolve('./src/templates/artboard.js'),
