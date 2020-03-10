@@ -9,16 +9,16 @@ const PhotoCollectionTemplate = ({ data }) => {
 
     return(
         <Layout>
-          <div className="">
             <Helmet title={photoCollection.title} />
             <h1 className="">{photoCollection.title}</h1>
-            <div className="">
-              {photoCollection.photos.map(({fluid: photo}) => {
+            <div className="p-1 md:p-2 lg:p-4 col-count-1 md:col-count-2 lg:col-count-3 xl:col-count-4 col-gap-sm md:col-gap-md lg:col-gap-lg">
+              {photoCollection.photos.map(({fluid: photo, id: id}) => {
                   return(
                       <Img
-                      className=""
-                      alt={photoCollection.title}
-                      fluid={photo}
+                          className="mb-1 inline-block w-full"
+                          alt={photoCollection.title}
+                          fluid={photo}
+                          key={id}
                       />
                   )
               })}
@@ -30,7 +30,6 @@ const PhotoCollectionTemplate = ({ data }) => {
                 }}
               />
             </div>
-          </div>
         </Layout>
     )
 
@@ -48,9 +47,10 @@ export const query = graphql`
         contentfulPhotoCollection(slug: { eq: $slug }) {
             title
             photos {
-                fluid(maxWidth: 400, background: "rgb:000000") {
+                fluid(maxHeight: 1080, background: "rgb:000000") {
                   ...GatsbyContentfulFluid_tracedSVG
                 }
+                id
             }
             description{
                 childMarkdownRemark{

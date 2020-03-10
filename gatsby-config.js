@@ -37,6 +37,18 @@ module.exports = {
             develop: false,
             tailwind: true
         }
+    },
+    {
+        resolve: 'gatsby-plugin-manifest',
+        options: {
+            name: 'maxemitchell',
+            short_name: 'maxemitchell',
+            start_url: '/',
+            background_color: '#FFFFFF',
+            theme_color: '#000000',
+            display: 'standalone',
+            icon: `src/images/icon.png`,
+        }
     }
   ],
 }
