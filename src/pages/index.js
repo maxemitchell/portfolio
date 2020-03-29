@@ -2,11 +2,13 @@ import React from 'react'
 import { graphql, Link } from 'gatsby'
 import Helmet from 'react-helmet'
 import Layout from '../components/layout'
+import Video from '../components/video'
 
 const Index = ({ data }) => {
     const siteTitle =  data.site.siteMetadata.title
     const artboards = data.allContentfulArtboard.edges
     const photoCollections = data.allContentfulPhotoCollection.edges
+    const youtubeVideos = data.allYoutubeVideo.edges
 
     return (
       <Layout>
@@ -30,6 +32,21 @@ const Index = ({ data }) => {
                         <h3>{photoCollection.title}</h3>
                     </Link>
                 )
+              })}
+          </div>
+          <div className="">
+              <h2 className="">Recent videos:</h2>
+              {youtubeVideos.map(({ node: youtubeVideo }) => {
+                  return (
+                      <div>
+                          <p>{youtubeVideo.title}</p>
+                          <Video
+                              videoSrcURL={'https://www.youtube.com/embed/' + youtubeVideo.videoId}
+                              videoTitle={youtubeVideo.title}
+                          />
+                          <p>{youtubeVideo.description}</p>
+                      </div>
+                  )
               })}
           </div>
         </div>
@@ -78,5 +95,19 @@ export const query = graphql`
             }
         }
     }
+    allYoutubeVideo {
+        edges {
+            node {
+                id
+                title
+                description
+                videoId
+                publishedAt
+                privacyStatus
+                channelTitle
+            }
+        }
+    }
+
   }
 `
