@@ -20,7 +20,7 @@ const Navigation = () => {
   return (
     <nav
       role="navigation"
-      className="flex items-start flex-wrap justify-center sm:justify-between w-full pt-2 text-md text-themeOffWhite bg-themePurple mb-4 pb-1 nav-border max-w-6xl mx-auto"
+      className="flex items-start flex-wrap justify-center sm:justify-between w-full pt-2 bg-themePurple mb-4 pb-1 nav-border max-w-6xl mx-auto"
     >
       <Link
         to="/"
