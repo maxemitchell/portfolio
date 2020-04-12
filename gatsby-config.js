@@ -8,7 +8,7 @@ const contentfulConfig = {
   host: process.env.CONTENTFUL_HOST
 }
 
-const youtubeAPIKey = process.env.YOUTUBE_API_KEY;
+const youtubeAPIKey = process.env.YOUTUBE_API_KEY
 
 const { spaceId, accessToken } = contentfulConfig
 
@@ -45,6 +45,13 @@ module.exports = {
     {
       resolve: 'gatsby-source-contentful',
       options: contentfulConfig,
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/images/`,
+      },
     },
     {
         resolve: 'gatsby-plugin-purgecss',

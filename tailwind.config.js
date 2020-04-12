@@ -1,3 +1,5 @@
+const plugin = require('tailwindcss/plugin')
+
 module.exports = {
   theme: {
     columnCount: [ 1, 2, 3, 4 ],
@@ -19,7 +21,14 @@ module.exports = {
     ],
     columnFill: [ 'auto', 'balance', 'balance-all' ],
     columnSpan: [ 'none', 'all' ],
-    extend: {}
+    extend: {
+        colors: {
+            'themePurple': '#342e37',
+            'themeBlue': '#0bbcd6',
+            'themeRed': '#e4572e',
+            'themeOffWhite': '#d6f8d6',
+        }
+    },
   },
   variants: {
     // For the photo gall
@@ -34,5 +43,52 @@ module.exports = {
   },
   plugins: [
       require('tailwindcss-multi-column')(),
+      plugin(function({ addUtilities }) {
+        const newUtilities = {
+          '.boxshadow-3d-right': {
+            backgroundColor:' #342e37',
+            border: '.1rem solid #d6f8d6',
+            boxShadow: '.3rem -.3rem 0 -.1rem #342e37, .3rem -.3rem #0bbcd6, .6rem -.6rem 0 -.1rem #342e37, .6rem -.6rem #e4572e',
+            transition: 'box-shadow .75s',
+            position: 'relative',
+            top: '0',
+            left: '0',
+            cursor: 'pointer',
+            textAlign: 'center',
+          },
+          '.boxshadow-3d-left': {
+            backgroundColor:' #342e37',
+            border: '.1rem solid #d6f8d6',
+            boxShadow: '-.3rem -.3rem 0 -.1rem #342e37, -.3rem -.3rem #0bbcd6, -.6rem -.6rem 0 -.1rem #342e37, -.6rem -.6rem #e4572e',
+            transition: 'box-shadow .75s',
+            position: 'relative',
+            top: '0',
+            left: '0',
+            cursor: 'pointer',
+            textAlign: 'center',
+          },
+          '.boxshadow-3d-collapse': {
+            boxShadow: '0 0 0 0 #342e37, 0 0 0 0 #0bbcd6, 0 0 0 0 #342e37, 0 0 0 0 #e4572e',
+          },
+          '.nav-border': {
+            boxShadow: '0 .3rem #342e37, 0 .3rem 0 .1rem #d6f8d6, -.3rem .6rem #342e37, -.3rem .6rem 0 .1rem #0bbcd6, -.6rem .9rem #342e37, -.6rem .9rem 0 .1rem #e4572e',
+          },
+          '.gradient': {
+            background: 'rgb(214,248,214)',
+            background: 'linear-gradient(45deg, rgba(214,248,214,1) 0%, rgba(11,188,214,1) 50%, rgba(228,87,46,1) 100%)',
+          },
+          '.last': {
+            marginRight: '0'
+          },
+          '.first': {
+            marginLeft: '0'
+          },
+          '.bottom': {
+            marginBottom: '0'
+          }
+        }
+
+        addUtilities(newUtilities, ['responsive', 'hover'])
+      })
   ]
 }
