@@ -34,8 +34,8 @@ const Navigation = () => {
       </Link>
 
       <div className="flex w-5/6 flex-no-wrap items-end justify-center sm:w-24 mt-3 sm:flex-wrap md:flex-no-wrap md:w-full md:items-end md:mt-0">
-        <NavItem to="/photos" className="first boxshadow-3d-right md:boxshadow-3d-left">photos</NavItem>
-        <NavItem to="/videos" className="boxshadow-3d-right md:boxshadow-3d-left">videos</NavItem>
+        <NavItem to="/photos" className="first boxshadow-3d-left">photos</NavItem>
+        <NavItem to="/videos" className="boxshadow-3d-left">videos</NavItem>
 
         <Link
           to="/"
@@ -48,8 +48,8 @@ const Navigation = () => {
           />
         </Link>
 
-        <NavItem to="/code" className="first boxshadow-3d-right">code</NavItem>
-        <NavItem to="/about" className="last boxshadow-3d-right sm:bottom sm:mr-5 md:last">about</NavItem>
+        <NavItem to="/code" className="first boxshadow-3d-left md:boxshadow-3d-right">code</NavItem>
+        <NavItem to="/about" className="last boxshadow-3d-left md:boxshadow-3d-right sm:bottom sm:mr-5 md:last">about</NavItem>
       </div>
     </nav>
   )
