@@ -57,7 +57,7 @@ module.exports = {
             textAlign: 'center',
           },
           '.boxshadow-3d-left': {
-            backgroundColor:' #342e37',
+            background:' #342e37',
             border: '.1rem solid #d6f8d6',
             boxShadow: '-.3rem -.3rem 0 -.1rem #342e37, -.3rem -.3rem #0bbcd6, -.6rem -.6rem 0 -.1rem #342e37, -.6rem -.6rem #e4572e',
             transition: 'box-shadow .75s',

@@ -14,6 +14,7 @@
     "gatsby-plugin-sharp": "^2.5.3",
     "gatsby-source-contentful": "^2.2.5",
     "gatsby-source-filesystem": "^2.2.2",
+    "gatsby-source-github-api": "^0.2.1",
     "gatsby-source-youtube-v2": "^1.0.1",
     "gatsby-transformer-remark": "^2.7.1",
     "gatsby-transformer-sharp": "^2.4.3",

@@ -9,7 +9,7 @@ const contentfulConfig = {
 }
 
 const youtubeAPIKey = process.env.YOUTUBE_API_KEY
-
+const githubAPIKey = process.env.GITHUB_API_KEY
 const { spaceId, accessToken } = contentfulConfig
 
 if (!spaceId || !accessToken) {
@@ -51,6 +51,34 @@ module.exports = {
       options: {
         name: `images`,
         path: `${__dirname}/src/images/`,
+      },
+    },
+    {
+      resolve: `gatsby-source-github-api`,
+      options: {
+        token: githubAPIKey,
+        graphQLQuery: `
+          query {
+            viewer {
+              repositories(first: 10) {
+                totalCount
+                nodes {
+                  name
+                  description
+                  url
+                  stargazers {
+                    totalCount
+                  }
+                  readme: object(expression:"master:README.md"){
+                    ... on Blob{
+                      text
+                    }
+                  }
+                }
+              }
+            }
+          }
+        `
       },
     },
     {
