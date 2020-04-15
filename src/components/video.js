@@ -7,8 +7,8 @@ const Video = ({ videoSrcURL, videoTitle }) => (
       title={videoTitle}
       allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
       frameBorder="0"
-      width="640"
-      height="360"
+      width="auto"
+      height="auto"
       webkitallowfullscreen="true"
       mozallowfullscreen="true"
       allowFullScreen

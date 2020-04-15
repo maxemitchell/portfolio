@@ -7,7 +7,6 @@ const Index = ({ data }) => {
   const siteTitle = data.site.siteMetadata.title
   const numRepos = data.githubData.data.viewer.repositories.totalCount;
   const githubRepos = data.githubData.data.viewer.repositories.nodes;
-  console.log(githubRepos);
 
   return (
     <Layout>

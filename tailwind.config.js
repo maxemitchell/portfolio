@@ -85,7 +85,21 @@ module.exports = {
           },
           '.bottom': {
             marginBottom: '0'
-          }
+          },
+          '.picture-border-1': {
+            border: '.5rem solid #d6f8d6',
+            boxShadow: ' -.2rem -.2rem #342e37, -.3rem -.3rem #0bbcd6, -.5rem -.5rem #342e37, -.6rem -.6rem #0bbcd6, .5rem .5rem #e4572e',
+            position: 'relative',
+            top: '0',
+            left: '0',
+          },
+          '.picture-border-2': {
+            border: '.5rem solid #d6f8d6',
+            boxShadow: ' .2rem .2rem #342e37, .3rem .3rem #0bbcd6, .5rem .5rem #342e37, .6rem .6rem #0bbcd6, -.5rem -.5rem #e4572e',
+            position: 'relative',
+            top: '0',
+            left: '0',
+          },
         }
 
         addUtilities(newUtilities, ['responsive', 'hover'])
