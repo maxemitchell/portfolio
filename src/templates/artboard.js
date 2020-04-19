@@ -60,7 +60,7 @@ export const query = graphql`
       title
       artboard {
         fluid(maxWidth: 1180, background: "rgb:000000") {
-          ...GatsbyContentfulFluid_tracedSVG
+          ...GatsbyContentfulFluid
         }
       }
       description {

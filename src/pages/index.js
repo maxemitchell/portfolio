@@ -97,12 +97,12 @@ export const query = graphql`
     # contentfulSiteData {
     #   featuredImage {
     #     fluid(maxHeight: 1500, background: "rgb:342e37") {
-    #       ...GatsbyContentfulFluid_tracedSVG
+    #       ...GatsbyContentfulFluid
     #     }
     #   }
     #   secondaryImage {
     #     fluid(maxHeight: 1500, background: "rgb:342e37") {
-    #       ...GatsbyContentfulFluid_tracedSVG
+    #       ...GatsbyContentfulFluid
     #     }
     #   }
     # }
@@ -114,7 +114,7 @@ export const query = graphql`
           artboardDate(formatString: "MMMM Do, YYYY")
           artboard {
             fluid(maxWidth: 350, maxHeight: 196, resizingBehavior: SCALE) {
-              ...GatsbyContentfulFluid_tracedSVG
+              ...GatsbyContentfulFluid
             }
           }
           description {
