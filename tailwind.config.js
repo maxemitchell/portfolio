@@ -27,6 +27,10 @@ module.exports = {
             'themeBlue': '#0bbcd6',
             'themeRed': '#e4572e',
             'themeOffWhite': '#d6f8d6',
+        },
+        fontFamily: {
+          'jura': ['Jura'],
+          'manrope': ['Manrope']
         }
     },
   },
@@ -99,6 +103,12 @@ module.exports = {
             position: 'relative',
             top: '0',
             left: '0',
+          },
+          '.textshadow-blue': {
+            textShadow: '0 0 .2rem #0bbcd6',
+          },
+          '.textshadow-red': {
+            textShadow: '0 0 .2rem #e4572e',
           },
         }
 

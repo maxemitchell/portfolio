@@ -12,6 +12,7 @@
     "gatsby-plugin-purgecss": "^4.0.1",
     "gatsby-plugin-react-helmet": "^3.2.1",
     "gatsby-plugin-sharp": "^2.5.3",
+    "gatsby-plugin-web-font-loader": "^1.0.4",
     "gatsby-source-contentful": "^2.2.5",
     "gatsby-source-filesystem": "^2.2.2",
     "gatsby-source-github-api": "^0.2.1",

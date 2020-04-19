@@ -82,6 +82,14 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-plugin-web-font-loader',
+      options: {
+        google: {
+          families: ['Jura', 'Manrope']
+        }
+      }
+    },
+    {
         resolve: 'gatsby-plugin-purgecss',
         options: {
             printRejected: false,
