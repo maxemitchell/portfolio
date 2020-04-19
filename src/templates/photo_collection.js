@@ -47,7 +47,7 @@ export const query = graphql`
       title
       photos {
         fluid(maxHeight: 1080, background: "rgb:000000") {
-          ...GatsbyContentfulFluid
+          ...GatsbyContentfulFluid_tracedSVG
         }
         id
       }
