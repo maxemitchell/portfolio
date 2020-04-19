@@ -3,12 +3,12 @@ import { graphql, Link } from 'gatsby'
 import Helmet from 'react-helmet'
 import Layout from '../components/layout'
 import Video from '../components/video'
-import Img from 'gatsby-image'
+// import Img from 'gatsby-image'
 
 const Index = ({ data }) => {
   const siteTitle = data.site.siteMetadata.title
-  const featuredImage = data.contentfulSiteData.featuredImage
-  const secondaryImage = data.contentfulSiteData.secondaryImage
+  // const featuredImage = data.contentfulSiteData.featuredImage
+  // const secondaryImage = data.contentfulSiteData.secondaryImage
   const artboards = data.allContentfulArtboard.edges
   const photoCollections = data.allContentfulPhotoCollection.edges
   const youtubeVideos = data.allYoutubeVideo.edges
@@ -18,7 +18,7 @@ const Index = ({ data }) => {
       <Helmet title={siteTitle} />
       <div className="w-full bg-themePurple max-w-6xl mx-auto">
 
-        <div className="mt-8 ml-8 flex flex-wrap">
+        {/* <div className="mt-8 ml-8 flex flex-wrap">
 
           <div className="w-full flex flex-no-wrap justify-around">
             <Img
@@ -41,7 +41,7 @@ const Index = ({ data }) => {
             />
           </div>
 
-        </div>
+        </div> */}
 
         <div className="">
           <h2 className="">Recent artboards</h2>
@@ -94,18 +94,18 @@ export const query = graphql`
         title
       }
     }
-    contentfulSiteData {
-      featuredImage {
-        fluid(maxHeight: 1500, background: "rgb:342e37") {
-          ...GatsbyContentfulFluid_tracedSVG
-        }
-      }
-      secondaryImage {
-        fluid(maxHeight: 1500, background: "rgb:342e37") {
-          ...GatsbyContentfulFluid_tracedSVG
-        }
-      }
-    }
+    # contentfulSiteData {
+    #   featuredImage {
+    #     fluid(maxHeight: 1500, background: "rgb:342e37") {
+    #       ...GatsbyContentfulFluid_tracedSVG
+    #     }
+    #   }
+    #   secondaryImage {
+    #     fluid(maxHeight: 1500, background: "rgb:342e37") {
+    #       ...GatsbyContentfulFluid_tracedSVG
+    #     }
+    #   }
+    # }
     allContentfulArtboard(sort: { fields: [artboardDate], order: DESC }, limit: 2) {
       edges {
         node {
