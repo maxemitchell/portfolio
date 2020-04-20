@@ -103,8 +103,8 @@ module.exports = {
             name: 'maxemitchell',
             short_name: 'maxemitchell',
             start_url: '/',
-            background_color: '#FFFFFF',
-            theme_color: '#000000',
+            background_color: '#342e37',
+            theme_color: '#342e37',
             display: 'standalone',
             icon: `src/images/icon.png`,
         }

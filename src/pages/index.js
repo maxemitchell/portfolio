@@ -1,8 +1,8 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
 import Helmet from 'react-helmet'
-import Layout from '../components/layout'
-import Video from '../components/video'
+import Layout from '../components/Layout'
+import Video from '../components/Video'
 // import Img from 'gatsby-image'
 
 const Index = ({ data }) => {

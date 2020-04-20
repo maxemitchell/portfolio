@@ -15,4 +15,5 @@ const Video = ({ videoSrcURL, videoTitle }) => (
     />
   </div>
 )
+
 export default Video
