@@ -1,3 +1,8 @@
 @tailwind base;
+
+body, html {
+  @apply bg-themePurple;
+}
+
 @tailwind components;
 @tailwind utilities;
