@@ -110,6 +110,9 @@ module.exports = {
           '.textshadow-red': {
             textShadow: '0 0 .2rem #e4572e',
           },
+          '.bg-blurred': {
+            backgroundColor: 'rgba(52, 46, 55, .8)'
+          },
         }
 
         addUtilities(newUtilities, ['responsive', 'hover'])

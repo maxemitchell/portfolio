@@ -3,7 +3,7 @@ import Navigation from './navigation'
 
 const Layout = ({ children }) => {
   return (
-    <div className='bg-themePurple text-themeOffWhite h-screen antialiased '>
+    <div className='bg-themePurple text-themeOffWhite h-full min-h-screen antialiased'>
       <Navigation />
       {children}
     </div>
