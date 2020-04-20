@@ -17,7 +17,6 @@ const Index = ({ data }) => {
     <Layout>
       <Helmet title={siteTitle} />
       <div className="w-full bg-themePurple max-w-6xl mx-auto">
-
         {/* <div className="mt-8 ml-8 flex flex-wrap">
 
           <div className="w-full flex flex-no-wrap justify-around">
@@ -106,22 +105,25 @@ export const query = graphql`
     #     }
     #   }
     # }
-    allContentfulArtboard(sort: { fields: [artboardDate], order: DESC }, limit: 2) {
+    allContentfulArtboard(
+      sort: { fields: [artboardDate], order: DESC }
+      limit: 2
+    ) {
       edges {
         node {
           title
           slug
-          artboardDate(formatString: "MMMM Do, YYYY")
-          artboard {
-            fluid(maxWidth: 350, maxHeight: 196, resizingBehavior: SCALE) {
-              ...GatsbyContentfulFluid
-            }
-          }
-          description {
-            childMarkdownRemark {
-              html
-            }
-          }
+          # artboardDate(formatString: "MMMM Do, YYYY")
+          # artboard {
+          #   fluid(maxWidth: 350, maxHeight: 196, resizingBehavior: SCALE) {
+          #     ...GatsbyContentfulFluid
+          #   }
+          # }
+          # description {
+          #   childMarkdownRemark {
+          #     html
+          #   }
+          # }
         }
       }
     }
@@ -130,15 +132,15 @@ export const query = graphql`
         node {
           title
           slug
-          description {
-            childMarkdownRemark {
-              html
-            }
-          }
+          # description {
+          #   childMarkdownRemark {
+          #     html
+          #   }
+          # }
         }
       }
     }
-    allYoutubeVideo (limit: 1){
+    allYoutubeVideo(limit: 1) {
       edges {
         node {
           id

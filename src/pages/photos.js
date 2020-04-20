@@ -47,24 +47,24 @@ export const query = graphql`
       }
     }
     allContentfulArtboard(
-        sort: { fields: [artboardDate], order: DESC },
-        limit: 5
-    ){
+      sort: { fields: [artboardDate], order: DESC }
+      limit: 5
+    ) {
       edges {
         node {
           title
           slug
-          artboardDate(formatString: "MMMM Do, YYYY")
-          artboard {
-            fluid(maxWidth: 350, maxHeight: 196, resizingBehavior: SCALE) {
-              ...GatsbyContentfulFluid
-            }
-          }
-          description {
-            childMarkdownRemark {
-              html
-            }
-          }
+          # artboardDate(formatString: "MMMM Do, YYYY")
+          # artboard {
+          #   fluid(maxWidth: 350, maxHeight: 196, resizingBehavior: SCALE) {
+          #     ...GatsbyContentfulFluid
+          #   }
+          # }
+          # description {
+          #   childMarkdownRemark {
+          #     html
+          #   }
+          # }
         }
       }
     }
@@ -73,11 +73,11 @@ export const query = graphql`
         node {
           title
           slug
-          description {
-            childMarkdownRemark {
-              html
-            }
-          }
+          # description {
+          #   childMarkdownRemark {
+          #     html
+          #   }
+          # }
         }
       }
     }

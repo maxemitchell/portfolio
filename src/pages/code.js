@@ -5,8 +5,8 @@ import Layout from '../components/Layout'
 
 const Index = ({ data }) => {
   const siteTitle = data.site.siteMetadata.title
-  const numRepos = data.githubData.data.viewer.repositories.totalCount;
-  const githubRepos = data.githubData.data.viewer.repositories.nodes;
+  const numRepos = data.githubData.data.viewer.repositories.totalCount
+  const githubRepos = data.githubData.data.viewer.repositories.nodes
 
   return (
     <Layout>
@@ -14,14 +14,12 @@ const Index = ({ data }) => {
         <Helmet title={siteTitle} />
         <div className="">
           <h2 className="">my {numRepos} github repos:</h2>
-          {githubRepos.map((repo) => {
+          {githubRepos.map(repo => {
             return (
               <div>
                 <h3>{repo.name}</h3>
                 Check it out <a href={repo.url}>here</a>
-                <p>
-                  {repo.readme.text}
-                </p>
+                <p>{repo.readme.text}</p>
               </div>
             )
           })}

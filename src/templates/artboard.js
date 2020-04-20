@@ -6,18 +6,20 @@ import Layout from '../components/Layout'
 
 const ArtboardTemplate = ({ data }) => {
   const artboard = data.contentfulArtboard
-  const descriptionTags = artboard.description.childMarkdownRemark.htmlAst.children
+  const descriptionTags =
+    artboard.description.childMarkdownRemark.htmlAst.children
 
   return (
     <Layout>
-      <Helmet
-        title={artboard.title}
-      />
+      <Helmet title={artboard.title} />
       <div className="flex flex-wrap w-full font-manrope text-themeOffWhite mx-auto justify-center xl:w-5/6">
-
         <div className="flex w-full justify-start ml-4 items-baseline mt-1">
-          <h1 className="text-3xl sm:text-4xl font-light textshadow-blue">{artboard.title}</h1>
-          <p className="text-md sm:text-lg font-thin textshadow-red">~{artboard.artboardDate}</p>
+          <h1 className="text-3xl sm:text-4xl font-light textshadow-blue">
+            {artboard.title}
+          </h1>
+          <p className="text-md sm:text-lg font-thin textshadow-red">
+            ~{artboard.artboardDate}
+          </p>
         </div>
 
         <Img
@@ -27,15 +29,21 @@ const ArtboardTemplate = ({ data }) => {
         />
         <div className="w-11/12 mt-6 text-left max-w-xl lg:max-w-2xl xl:max-w-5xl">
           {descriptionTags.map((item, key) => {
-            if(item.type === "element" && item.tagName === "h1"){
-              return(
-                <h1 className="text-2xl font-light text-center md:text-3xl" key={key}>
+            if (item.type === 'element' && item.tagName === 'h1') {
+              return (
+                <h1
+                  className="text-2xl font-light text-center md:text-3xl"
+                  key={key}
+                >
                   {item.children[0].value}
                 </h1>
               )
-            }else if(item.type === "element" && item.tagName === "p"){
-              return(
-                <p className="mt-3 text-md font-thin lg:text-lg lg:mb-5" key={key}>
+            } else if (item.type === 'element' && item.tagName === 'p') {
+              return (
+                <p
+                  className="mt-3 text-md font-thin lg:text-lg lg:mb-5"
+                  key={key}
+                >
                   {item.children[0].value}
                 </p>
               )
@@ -60,7 +68,7 @@ export const query = graphql`
       title
       artboard {
         fluid(maxWidth: 1920) {
-          ...GatsbyContentfulFluid
+          ...GatsbyContentfulFluid_tracedSVG
         }
       }
       description {
