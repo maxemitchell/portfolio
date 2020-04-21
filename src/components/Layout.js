@@ -4,7 +4,7 @@ import Helmet from 'react-helmet'
 
 const Layout = ({ children }) => {
   return (
-    <div className="bg-themePurple text-themeOffWhite h-full min-h-screen antialiased">
+    <div className="text-themeOffWhite h-full min-h-screen antialiased">
       <Navigation />
       {children}
     </div>

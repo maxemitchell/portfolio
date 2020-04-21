@@ -7,10 +7,12 @@ import NavItem from './NavItem'
 const Navigation = () => {
   const data = useStaticQuery(graphql`
     query {
-      logoHoriz: file(relativePath: { eq: "logo_horiz_crop.png" }) {
+      logoHoriz: file(relativePath: { eq: "logo_horiz_crop_transparent.png" }) {
         childImageSharp {
-          fluid {
-            ...GatsbyImageSharpFluid
+          fluid(
+            traceSVG: { background: "#342e37", color: "#0bbcd6" }
+          ) {
+            ...GatsbyImageSharpFluid_tracedSVG
           }
         }
       }
@@ -20,9 +22,9 @@ const Navigation = () => {
   return (
     <nav
       role="navigation"
-      className="flex items-start flex-wrap justify-center sm:justify-between w-full pt-2 bg-themePurple mb-4 pb-1 nav-border max-w-4xl mx-auto"
+      className="flex items-start flex-wrap justify-center w-full mb-3 pb-1 nav-border max-w-6xl mx-auto bg-themePurple"
     >
-      <Link to="/" className="mb-1 flex w-4/5 sm:ml-2 sm:mb-0 md:hidden">
+      <Link to="/" className="flex w-1/2 md:hidden mb-3 mt-1">
         <Img
           alt="Max Mitchell"
           fluid={data.logoHoriz.childImageSharp.fluid}
@@ -30,7 +32,7 @@ const Navigation = () => {
         />
       </Link>
 
-      <div className="flex w-5/6 flex-no-wrap items-end justify-center sm:w-24 mt-3 sm:flex-wrap md:flex-no-wrap md:w-full md:items-end md:mt-0">
+      <div className="flex w-11/12 flex-no-wrap items-end justify-around mt-2">
         <NavItem to="/photos" className="first boxshadow-3d-left">
           photos
         </NavItem>
@@ -38,7 +40,7 @@ const Navigation = () => {
           videos
         </NavItem>
 
-        <Link to="/" className="hidden md:flex md:w-1/3 md:max-w-lg md:mr-8">
+        <Link to="/" className="hidden md:flex md:w-4/12 md:mr-6">
           <Img
             alt="Max Mitchell"
             fluid={data.logoHoriz.childImageSharp.fluid}
@@ -54,7 +56,7 @@ const Navigation = () => {
         </NavItem>
         <NavItem
           to="/about"
-          className="last boxshadow-3d-left md:boxshadow-3d-right sm:bottom sm:mr-5 md:last"
+          className="last boxshadow-3d-left md:boxshadow-3d-right"
         >
           about
         </NavItem>

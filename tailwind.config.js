@@ -78,17 +78,18 @@ module.exports = {
             boxShadow: '0 .3rem #342e37, 0 .3rem 0 .1rem #d6f8d6, -.3rem .6rem #342e37, -.3rem .6rem 0 .1rem #0bbcd6, -.6rem .9rem #342e37, -.6rem .9rem 0 .1rem #e4572e',
           },
           '.gradient': {
-            background: 'rgb(214,248,214)',
-            background: 'linear-gradient(45deg, rgba(214,248,214,1) 0%, rgba(11,188,214,1) 50%, rgba(228,87,46,1) 100%)',
+            background: 'rgba(228,87,46,1)',
+            background: 'linear-gradient(315deg, rgba(11,188,214,1) 0%, rgba(52,46,55,1) 50%, rgba(228,87,46,1) 100%)',
+          },
+          '.gradient-banded': {
+            background: 'rgba(52,46,55,1)',
+            background: 'linear-gradient(315deg, rgba(11,188,214,1) 0%, rgba(52,46,55,1) 15%, rgba(52,46,55,1) 85%, rgba(228,87,46,1) 100%)'
           },
           '.last': {
             marginRight: '0'
           },
           '.first': {
             marginLeft: '0'
-          },
-          '.bottom': {
-            marginBottom: '0'
           },
           '.picture-border-1': {
             border: '.5rem solid #d6f8d6',
