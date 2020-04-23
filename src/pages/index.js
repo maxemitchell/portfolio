@@ -17,29 +17,39 @@ const Index = ({ data }) => {
     <Layout>
       <Helmet title={siteTitle} />
       <div className="w-full max-w-6xl mx-auto">
-        <div className="mt-8 ml-6 flex flex-wrap">
 
-          <div className="w-full flex flex-no-wrap justify-around">
-            <Img
-              className="w-3/5 mt-1 picture-border-1 md:w-4/5"
-              alt="Featured Image"
-              fluid={featuredImage.fluid}
-            />
+        <div className="flex w-full flex-no-wrap mt-8 justify-center">
+          <Img
+            className="picture-border-sm-1 ml-4 w-3/5 picture-border-1 max-w-xl"
+            alt="Featured Image"
+            fluid={secondaryImage.fluid}
+          />
 
-            <div className="w-2/5 text-center">
-              a work in progress :)
-            </div>
+          <div className="flex flex-wrap w-2/5 font-manrope px-3 sm:px-6 content-center max-w-lg">
+            <p className="w-full text-left text-4xl sm:text-5xl lg:text-6xl font-light">
+              hi!
+            </p>
+            <p className="w-full text-center text-2xl sm:text-3xl lg:text-5xl font-light">
+              I'm
+              <Link to="/about" className="inline text-themeBlue"> Max</Link>
+            </p>
+            <p className="w-full text-left md:text-center text-lg sm:text-xl lg:text-2xl font-light pt-3">
+              I study
+              <a href="https://ece.illinois.edu/" className="inline text-themeBlue"> computer engineering</a> at
+              <a href="https://illinois.edu/" className="inline text-themeRed"> UIUC</a>
+            </p>
+            <p className="w-full text-left md:text-center text-base sm:text-lg lg:text-xl font-light pt-4">
+              I also take
+              <Link to="/photos" className="inline text-themeBlue"> pictures</Link>, make
+              <Link to="/videos" className="inline text-themeBlue"> videos</Link>, and
+              <Link to="/code" className="inline text-themeBlue"> code</Link>
+            </p>
+            <p className="w-full text-center text-xl sm:text-2xl lg:text-3xl font-normal pt-6">
+              enjoy!
+              <p className="inline text-themeBlue"> :)</p>
+            </p>
           </div>
-
-          <div className="w-full flex flex-no-wrap justify-end">
-            <Img
-              className="w-1/2 mt-8 mr-4 picture-border-2 md:ml-8 md:w-1/3"
-              alt="Secondary Image"
-              fluid={secondaryImage.fluid}
-            />
-          </div>
-
-        </div>
+      </div>
 
         <div className="">
           <h2 className="">Recent artboards</h2>
@@ -94,12 +104,12 @@ export const query = graphql`
     }
     contentfulSiteData {
       featuredImage {
-        fluid(maxHeight: 1500, background: "rgb:342e37") {
+        fluid(maxHeight: 2000, background: "rgb:342e37") {
           ...GatsbyContentfulFluid_tracedSVG
         }
       }
       secondaryImage {
-        fluid(maxHeight: 1500, background: "rgb:342e37") {
+        fluid(maxHeight: 2000, background: "rgb:342e37") {
           ...GatsbyContentfulFluid_tracedSVG
         }
       }

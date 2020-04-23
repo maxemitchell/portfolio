@@ -54,7 +54,7 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-source-github-api`,
+      resolve: 'gatsby-source-github-api',
       options: {
         token: githubAPIKey,
         graphQLQuery: `
@@ -82,12 +82,12 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-web-font-loader',
+      resolve: 'gatsby-plugin-google-fonts',
       options: {
-        google: {
-          families: ['Jura', 'Manrope']
-        }
-      }
+        fonts: [
+          'Manrope\:200,300,400,500,600,700,800',
+        ],
+      },
     },
     {
         resolve: 'gatsby-plugin-purgecss',

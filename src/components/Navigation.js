@@ -33,10 +33,10 @@ const Navigation = () => {
       </Link>
 
       <div className="flex w-11/12 flex-no-wrap items-end justify-around mt-2">
-        <NavItem to="/photos" className="first boxshadow-3d-left">
+        <NavItem to="/photos/" className="first boxshadow-3d-left">
           photos
         </NavItem>
-        <NavItem to="/videos" className="boxshadow-3d-left">
+        <NavItem to="/videos/" className="boxshadow-3d-left">
           videos
         </NavItem>
 
@@ -49,13 +49,13 @@ const Navigation = () => {
         </Link>
 
         <NavItem
-          to="/code"
+          to="/code/"
           className="first boxshadow-3d-left md:boxshadow-3d-right"
         >
           code
         </NavItem>
         <NavItem
-          to="/about"
+          to="/about/"
           className="last boxshadow-3d-left md:boxshadow-3d-right"
         >
           about

@@ -29,7 +29,6 @@ module.exports = {
             'themeOffWhite': '#d6f8d6',
         },
         fontFamily: {
-          'jura': ['Jura'],
           'manrope': ['Manrope']
         }
     },
@@ -54,22 +53,12 @@ module.exports = {
             border: '.1rem solid #d6f8d6',
             boxShadow: '.3rem -.3rem 0 -.1rem #342e37, .3rem -.3rem #0bbcd6, .6rem -.6rem 0 -.1rem #342e37, .6rem -.6rem #e4572e',
             transition: 'box-shadow .75s',
-            position: 'relative',
-            top: '0',
-            left: '0',
-            cursor: 'pointer',
-            textAlign: 'center',
           },
           '.boxshadow-3d-left': {
             background:' #342e37',
             border: '.1rem solid #d6f8d6',
             boxShadow: '-.3rem -.3rem 0 -.1rem #342e37, -.3rem -.3rem #0bbcd6, -.6rem -.6rem 0 -.1rem #342e37, -.6rem -.6rem #e4572e',
             transition: 'box-shadow .75s',
-            position: 'relative',
-            top: '0',
-            left: '0',
-            cursor: 'pointer',
-            textAlign: 'center',
           },
           '.boxshadow-3d-collapse': {
             boxShadow: '0 0 0 0 #342e37, 0 0 0 0 #0bbcd6, 0 0 0 0 #342e37, 0 0 0 0 #e4572e',
@@ -93,17 +82,19 @@ module.exports = {
           },
           '.picture-border-1': {
             border: '.5rem solid #d6f8d6',
-            boxShadow: ' -.2rem -.2rem #342e37, -.3rem -.3rem #0bbcd6, -.5rem -.5rem #342e37, -.6rem -.6rem #0bbcd6, .5rem .5rem #e4572e',
-            position: 'relative',
-            top: '0',
-            left: '0',
+            boxShadow: '-.2rem -.2rem #342e37, -.3rem -.3rem #0bbcd6, -.5rem -.5rem #342e37, -.6rem -.6rem #0bbcd6, .5rem .5rem #e4572e',
           },
           '.picture-border-2': {
             border: '.5rem solid #d6f8d6',
-            boxShadow: ' .2rem .2rem #342e37, .3rem .3rem #0bbcd6, .5rem .5rem #342e37, .6rem .6rem #0bbcd6, -.5rem -.5rem #e4572e',
-            position: 'relative',
-            top: '0',
-            left: '0',
+            boxShadow: '.2rem .2rem #342e37, .3rem .3rem #0bbcd6, .5rem .5rem #342e37, .6rem .6rem #0bbcd6, -.5rem -.5rem #e4572e',
+          },
+          '.picture-border-sm-1': {
+            border: '.3rem solid #d6f8d6',
+            boxShadow: '.2rem .2rem #342e37, .3rem .3rem #0bbcd6, -.2rem -.2rem #342e37, -.3rem -.3rem #e4572e',
+          },
+          '.picture-border-sm-2': {
+            border: '.3rem solid #d6f8d6',
+            boxShadow: '.2rem .2rem #342e37, .3rem .3rem #e4572e, -.2rem -.2rem #342e37, -.3rem -.3rem #0bbcd6',
           },
           '.textshadow-blue': {
             textShadow: '0 0 .2rem #0bbcd6',
