@@ -52,7 +52,7 @@ const Index = ({ data }) => {
 
       <div className="flex w-full flex-wrap justify-center">
 
-        <h2 className="w-full text-left ml-4 mt-1 text-4xl sm:text-5xl lg:text-6xl font-light">
+        <h2 className="w-full text-center mt-2 text-4xl lg:text-5xl font-light">
           recent artboards
         </h2>
 
@@ -66,7 +66,7 @@ const Index = ({ data }) => {
                 {artboard.title}
               </h3>
               <Img
-                className="picture-border-sm-2 w-full picture-border-1 max-w-xl"
+                className="picture-border-sm-2 w-full picture-border-1"
                 alt="Featured Image"
                 fluid={artboard.artboard.fluid}
               />
@@ -77,14 +77,14 @@ const Index = ({ data }) => {
 
       <div className="flex w-full flex-wrap justify-center">
 
-        <h2 className="w-full text-left ml-4 mt-1 text-4xl sm:text-5xl lg:text-6xl font-light">
+        <h2 className="w-full text-center mt-1 text-4xl lg:text-5xl font-light">
           recent photo_collections
         </h2>
 
         {photoCollections.map(({ node: photoCollection }) => {
           return (
             <Link
-              className="w-full mx-4 mb-3"
+              className="w-full sm:w-2/5 mx-4 mb-3"
               to={`/photo_collections/${photoCollection.slug}/`}
             >
               <h3 className="w-full text-xl mb-1 font-medium text-themeBlue">
@@ -102,19 +102,19 @@ const Index = ({ data }) => {
 
       <div className="flex w-full flex-wrap justify-center">
 
-        <h2 className="w-full text-left ml-4 mt-1 text-4xl sm:text-5xl lg:text-6xl font-light">
+        <h2 className="w-full text-center mb-2 text-4xl lg:text-5xl font-light">
           recent video
         </h2>
 
         {youtubeVideos.map(({ node: youtubeVideo }) => {
           return (
-            <div className="w-full mx-4 mb-3">
+            <div className="w-full h-64 mx-4 mb-3 picture-border-sm-1">
               <Video
                 videoSrcURL={
                   'https://www.youtube.com/embed/' + youtubeVideo.videoId
                 }
                 videoTitle={youtubeVideo.title}
-                className="picture-border-sm-2 w-full picture-border-1 max-w-xl"
+                className="h-full w-full"
               />
             </div>
           )
