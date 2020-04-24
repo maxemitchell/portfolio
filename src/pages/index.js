@@ -7,8 +7,7 @@ import Img from 'gatsby-image'
 
 const Index = ({ data }) => {
   const siteTitle = data.site.siteMetadata.title
-  const featuredImage = data.contentfulSiteData.featuredImage
-  const secondaryImage = data.contentfulSiteData.secondaryImage
+  const profilePicture = data.contentfulSiteData.secondaryImage
   const artboards = data.allContentfulArtboard.edges
   const photoCollections = data.allContentfulPhotoCollection.edges
   const youtubeVideos = data.allYoutubeVideo.edges
@@ -20,9 +19,9 @@ const Index = ({ data }) => {
 
         <div className="flex w-full flex-no-wrap mt-8 justify-center">
           <Img
-            className="picture-border-sm-1 ml-4 w-3/5 picture-border-1 max-w-xl"
+            className="picture-border-sm-1 ml-4 w-3/5 max-w-xl"
             alt="Featured Image"
-            fluid={secondaryImage.fluid}
+            fluid={profilePicture.fluid}
           />
 
           <div className="flex flex-wrap w-2/5 font-manrope px-3 sm:px-6 content-center max-w-lg">
@@ -51,43 +50,77 @@ const Index = ({ data }) => {
           </div>
       </div>
 
-        <div className="">
-          <h2 className="">Recent artboards</h2>
-          {artboards.map(({ node: artboard }) => {
-            return (
-              <Link to={`/artboards/${artboard.slug}/`}>
-                <h3>{artboard.title}</h3>
-              </Link>
-            )
-          })}
-        </div>
-        <div className="">
-          <h2 className="">Recent photo_collections</h2>
-          {photoCollections.map(({ node: photoCollection }) => {
-            return (
-              <Link to={`/photo_collections/${photoCollection.slug}/`}>
-                <h3>{photoCollection.title}</h3>
-              </Link>
-            )
-          })}
-        </div>
-        <div className="w-full">
-          <h2 className="">Recent videos:</h2>
-          {youtubeVideos.map(({ node: youtubeVideo }) => {
-            return (
-              <div>
-                <p>{youtubeVideo.title}</p>
-                <Video
-                  videoSrcURL={
-                    'https://www.youtube.com/embed/' + youtubeVideo.videoId
-                  }
-                  videoTitle={youtubeVideo.title}
-                />
-                <p>{youtubeVideo.description}</p>
-              </div>
-            )
-          })}
-        </div>
+      <div className="flex w-full flex-wrap justify-center">
+
+        <h2 className="w-full text-left ml-4 mt-1 text-4xl sm:text-5xl lg:text-6xl font-light">
+          recent artboards
+        </h2>
+
+        {artboards.map(({ node: artboard }) => {
+          return (
+            <Link
+              className="w-full mx-4 mb-3"
+              to={`/artboards/${artboard.slug}/`}
+            >
+              <h3 className="w-full text-xl mb-1 font-medium text-themeBlue">
+                {artboard.title}
+              </h3>
+              <Img
+                className="picture-border-sm-2 w-full picture-border-1 max-w-xl"
+                alt="Featured Image"
+                fluid={artboard.artboard.fluid}
+              />
+            </Link>
+          )
+        })}
+      </div>
+
+      <div className="flex w-full flex-wrap justify-center">
+
+        <h2 className="w-full text-left ml-4 mt-1 text-4xl sm:text-5xl lg:text-6xl font-light">
+          recent photo_collections
+        </h2>
+
+        {photoCollections.map(({ node: photoCollection }) => {
+          return (
+            <Link
+              className="w-full mx-4 mb-3"
+              to={`/photo_collections/${photoCollection.slug}/`}
+            >
+              <h3 className="w-full text-xl mb-1 font-medium text-themeBlue">
+                {photoCollection.title}
+              </h3>
+              <Img
+                className="picture-border-sm-2 w-full picture-border-1 max-w-xl"
+                alt="Featured Image"
+                fluid={photoCollection.featuredImage.fluid}
+              />
+            </Link>
+          )
+        })}
+      </div>
+
+      <div className="flex w-full flex-wrap justify-center">
+
+        <h2 className="w-full text-left ml-4 mt-1 text-4xl sm:text-5xl lg:text-6xl font-light">
+          recent video
+        </h2>
+
+        {youtubeVideos.map(({ node: youtubeVideo }) => {
+          return (
+            <div className="w-full mx-4 mb-3">
+              <Video
+                videoSrcURL={
+                  'https://www.youtube.com/embed/' + youtubeVideo.videoId
+                }
+                videoTitle={youtubeVideo.title}
+                className="picture-border-sm-2 w-full picture-border-1 max-w-xl"
+              />
+            </div>
+          )
+        })}
+      </div>
+
       </div>
     </Layout>
   )
@@ -103,11 +136,6 @@ export const query = graphql`
       }
     }
     contentfulSiteData {
-      featuredImage {
-        fluid(maxHeight: 2000, background: "rgb:342e37") {
-          ...GatsbyContentfulFluid_tracedSVG
-        }
-      }
       secondaryImage {
         fluid(maxHeight: 2000, background: "rgb:342e37") {
           ...GatsbyContentfulFluid_tracedSVG
@@ -122,43 +150,33 @@ export const query = graphql`
         node {
           title
           slug
-          # artboardDate(formatString: "MMMM Do, YYYY")
-          # artboard {
-          #   fluid(maxWidth: 350, maxHeight: 196, resizingBehavior: SCALE) {
-          #     ...GatsbyContentfulFluid
-          #   }
-          # }
-          # description {
-          #   childMarkdownRemark {
-          #     html
-          #   }
-          # }
+          artboard {
+            fluid(maxHeight: 720) {
+              ...GatsbyContentfulFluid
+            }
+          }
         }
       }
     }
-    allContentfulPhotoCollection(limit: 4) {
+    allContentfulPhotoCollection(limit: 3) {
       edges {
         node {
           title
           slug
-          # description {
-          #   childMarkdownRemark {
-          #     html
-          #   }
-          # }
+          featuredImage {
+            fluid(maxHeight: 720) {
+              ...GatsbyContentfulFluid
+            }
+          }
         }
       }
     }
     allYoutubeVideo(limit: 1) {
       edges {
         node {
-          id
           title
           description
           videoId
-          publishedAt
-          privacyStatus
-          channelTitle
         }
       }
     }
