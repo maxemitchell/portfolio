@@ -137,13 +137,12 @@ export const query = graphql`
     }
     contentfulSiteData {
       secondaryImage {
-        fluid(maxHeight: 2000, background: "rgb:342e37") {
-          ...GatsbyContentfulFluid_tracedSVG
+        fluid(maxHeight: 2000) {
+          ...GatsbyContentfulFluid
         }
       }
     }
     allContentfulArtboard(
-      sort: { fields: [artboardDate], order: DESC }
       limit: 2
     ) {
       edges {
@@ -151,7 +150,7 @@ export const query = graphql`
           title
           slug
           artboard {
-            fluid(maxHeight: 720) {
+            fluid(maxWidth: 1200) {
               ...GatsbyContentfulFluid
             }
           }

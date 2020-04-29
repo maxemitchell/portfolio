@@ -125,8 +125,8 @@ export const query = graphql`
     contentfulPhotoCollection(slug: { eq: $slug }) {
       title
       photos {
-        fluid(maxWidth: 1080) {
-          ...GatsbyContentfulFluid_tracedSVG
+        fluid(maxHeight: 1200) {
+          ...GatsbyContentfulFluid
         }
         id
       }
