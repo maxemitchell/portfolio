@@ -137,7 +137,7 @@ export const query = graphql`
     }
     contentfulSiteData {
       secondaryImage {
-        fluid(maxHeight: 2000) {
+        fluid(maxHeight: 800) {
           ...GatsbyContentfulFluid
         }
       }
