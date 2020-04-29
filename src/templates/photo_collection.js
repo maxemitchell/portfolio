@@ -126,7 +126,7 @@ export const query = graphql`
       title
       photos {
         fluid(maxHeight: 1200) {
-          ...GatsbyContentfulFluid
+          ...GatsbyContentfulFluid_withWebp
         }
         id
       }
