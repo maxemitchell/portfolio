@@ -84,7 +84,7 @@ const Index = ({ data }) => {
         {photoCollections.map(({ node: photoCollection }) => {
           return (
             <Link
-              className="w-full sm:w-2/5 mx-4 mb-3"
+              className="w-5/12 md:w-2/5 mx-4 mb-3"
               to={`/photo_collections/${photoCollection.slug}/`}
             >
               <h3 className="w-full text-xl mb-1 font-medium text-themeBlue">

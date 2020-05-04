@@ -2,6 +2,7 @@ import React from 'react'
 import { graphql, Link } from 'gatsby'
 import Helmet from 'react-helmet'
 import Layout from '../components/Layout'
+import Img from 'gatsby-image'
 
 const Index = ({ data }) => {
   const siteTitle = data.site.siteMetadata.title
@@ -10,28 +11,59 @@ const Index = ({ data }) => {
 
   return (
     <Layout>
-      <div className="">
-        <Helmet title={siteTitle} />
-        <div className="">
-          <h2 className="">Recent artboards</h2>
-          {artboards.map(({ node: artboard }) => {
-            return (
-              <Link to={`/artboards/${artboard.slug}/`}>
-                <h3>{artboard.title}</h3>
-              </Link>
-            )
-          })}
-        </div>
-        <div className="">
-          <h2 className="">Recent photo_collections</h2>
+      <Helmet title={siteTitle} />
+      <div className="w-full max-w-6xl mx-auto">
+
+        <div className="flex w-full flex-wrap justify-center">
+
+          <h2 className="w-full text-center mt-1 text-4xl lg:text-5xl font-light">
+            recent photo_collections
+          </h2>
+
           {photoCollections.map(({ node: photoCollection }) => {
             return (
-              <Link to={`/photo_collections/${photoCollection.slug}/`}>
-                <h3>{photoCollection.title}</h3>
+              <Link
+                className="w-5/12 md:w-2/5 mx-4 mb-3"
+                to={`/photo_collections/${photoCollection.slug}/`}
+              >
+                <h3 className="w-full text-xl mb-1 font-medium text-themeBlue">
+                  {photoCollection.title}
+                </h3>
+                <Img
+                  className="picture-border-sm-2 w-full picture-border-1 max-w-xl"
+                  alt="Featured Image"
+                  fluid={photoCollection.featuredImage.fluid}
+                />
               </Link>
             )
           })}
         </div>
+
+        <div className="flex w-full flex-wrap justify-center">
+
+          <h2 className="w-full text-center mt-2 text-4xl lg:text-5xl font-light">
+            recent artboards
+          </h2>
+
+          {artboards.map(({ node: artboard }) => {
+            return (
+              <Link
+                className="w-full mx-4 mb-3"
+                to={`/artboards/${artboard.slug}/`}
+              >
+                <h3 className="w-full text-xl mb-1 font-medium text-themeBlue">
+                  {artboard.title}
+                </h3>
+                <Img
+                  className="picture-border-sm-2 w-full picture-border-1"
+                  alt="Featured Image"
+                  fluid={artboard.artboard.fluid}
+                />
+              </Link>
+            )
+          })}
+        </div>
+
       </div>
     </Layout>
   )
@@ -48,36 +80,32 @@ export const query = graphql`
     }
     allContentfulArtboard(
       sort: { fields: [artboardDate], order: DESC }
-      limit: 5
     ) {
       edges {
         node {
           title
           slug
-          # artboardDate(formatString: "MMMM Do, YYYY")
-          # artboard {
-          #   fluid(maxWidth: 350, maxHeight: 196, resizingBehavior: SCALE) {
-          #     ...GatsbyContentfulFluid
-          #   }
-          # }
-          # description {
-          #   childMarkdownRemark {
-          #     html
-          #   }
-          # }
+          artboard {
+            fluid(maxWidth: 1200, resizingBehavior: SCALE) {
+              ...GatsbyContentfulFluid_withWebp
+            }
+          }
+
         }
       }
     }
-    allContentfulPhotoCollection(limit: 5) {
+    allContentfulPhotoCollection(
+      sort: { fields: collectionDate, order: DESC }
+    ) {
       edges {
         node {
           title
           slug
-          # description {
-          #   childMarkdownRemark {
-          #     html
-          #   }
-          # }
+          featuredImage {
+            fluid(maxHeight: 720) {
+              ...GatsbyContentfulFluid_withWebp
+            }
+          }
         }
       }
     }
