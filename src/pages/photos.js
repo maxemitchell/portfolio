@@ -2,8 +2,9 @@ import React from 'react'
 import { graphql, Link } from 'gatsby'
 import Helmet from 'react-helmet'
 import Layout from '../components/Layout'
-import Img from 'gatsby-image'
 import Header from '../components/Header'
+import ArtboardPreview from '../components/ArtboardPreview'
+import PhotoCollectionPreview from '../components/PhotoCollectionPreview'
 
 const Index = ({ data }) => {
   const siteTitle = data.site.siteMetadata.title
@@ -15,7 +16,7 @@ const Index = ({ data }) => {
       <Helmet title={siteTitle} />
       <div className="w-full max-w-6xl mx-auto">
 
-        <div className="flex w-full flex-wrap justify-center pt-2">
+        <div className="flex w-full flex-wrap justify-center">
 
           <Header variant="3">
             recent photo collections
@@ -23,44 +24,28 @@ const Index = ({ data }) => {
 
           {photoCollections.map(({ node: photoCollection }) => {
             return (
-              <Link
-                className="w-5/12 md:w-2/5 mx-4 mb-3"
-                to={`/photo_collections/${photoCollection.slug}/`}
-              >
-                <h3 className="w-full text-xl mb-1 font-medium text-themeBlue">
-                  {photoCollection.title}
-                </h3>
-                <Img
-                  className="picture-border-sm-2 w-full picture-border-1 max-w-xl"
-                  alt="Featured Image"
-                  fluid={photoCollection.featuredImage.fluid}
-                />
-              </Link>
+              <PhotoCollectionPreview
+                slug={photoCollection.slug}
+                title={photoCollection.title}
+                fluid={photoCollection.featuredImage.fluid}
+              />
             )
           })}
         </div>
 
         <div className="flex w-full flex-wrap justify-center">
 
-          <Header variant="4">
+          <Header variant="3">
             recent artboards
           </Header>
 
           {artboards.map(({ node: artboard }) => {
             return (
-              <Link
-                className="w-full mx-4 mb-3"
-                to={`/artboards/${artboard.slug}/`}
-              >
-                <h3 className="w-full text-xl mb-1 font-medium text-themeBlue">
-                  {artboard.title}
-                </h3>
-                <Img
-                  className="picture-border-sm-2 w-full picture-border-1"
-                  alt="Featured Image"
-                  fluid={artboard.artboard.fluid}
-                />
-              </Link>
+              <ArtboardPreview
+                slug={artboard.slug}
+                title={artboard.title}
+                fluid={artboard.artboard.fluid}
+              />
             )
           })}
         </div>

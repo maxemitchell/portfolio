@@ -43,6 +43,7 @@ module.exports = {
     columnRuleStyle: ['responsive'],
     columnFill: ['responsive'],
     columnSpan: ['responsive'],
+    textColor: ['responsive', 'hover', 'group-hover']
   },
   plugins: [
       require('tailwindcss-multi-column')(),
@@ -52,13 +53,11 @@ module.exports = {
             background:' #342e37',
             border: '.1rem solid #d6f8d6',
             boxShadow: '.3rem -.3rem 0 -.1rem #342e37, .3rem -.3rem #0bbcd6, .6rem -.6rem 0 -.1rem #342e37, .6rem -.6rem #e4572e',
-            transition: 'box-shadow .75s',
           },
           '.boxshadow-3d-left': {
             background:' #342e37',
             border: '.1rem solid #d6f8d6',
             boxShadow: '-.3rem -.3rem 0 -.1rem #342e37, -.3rem -.3rem #0bbcd6, -.6rem -.6rem 0 -.1rem #342e37, -.6rem -.6rem #e4572e',
-            transition: 'box-shadow .75s',
           },
           '.boxshadow-3d-collapse': {
             boxShadow: '0 0 0 0 #342e37, 0 0 0 0 #0bbcd6, 0 0 0 0 #342e37, 0 0 0 0 #e4572e !important',
@@ -68,7 +67,7 @@ module.exports = {
           },
           '.gradient': {
             background: 'rgba(228,87,46,1)',
-            background: 'linear-gradient(315deg, rgba(11,188,214,1) 0%, rgba(52,46,55,1) 50%, rgba(228,87,46,1) 100%)',
+            background: 'linear-gradient(315deg, rgba(11,188,214,1) 0%, rgba(52,46,55,1) 50%, rgba(228,87,46,1) 100%) !important',
           },
           '.last': {
             marginRight: '0 !important'
@@ -107,23 +106,24 @@ module.exports = {
             boxShadow: '0 0 0 .3rem #342e37, 1.7rem -1.7rem 0 -.7rem #342e37, -1.7rem 1.7rem 0 -.7rem #342e37, -.6rem -.6rem #e4572e, .6rem .6rem #0bbcd6',
           },
           '.title-bg-2': {
-            background: 'rgba(52,46,55,1)',
-            background: 'linear-gradient(135deg, rgba(11,188,214,1) 5%, rgba(228,87,46,1) 95%)',
-            boxShadow: '0 0 0 .3rem #342e37, 1.7rem -1.7rem 0 -.7rem #342e37, -1.7rem 1.7rem 0 -.7rem #342e37, -.6rem -.6rem #e4572e, .6rem .6rem #0bbcd6',
+            background: '#342e37',
+            background: 'linear-gradient(315deg, rgba(11,188,214,1) 5%, rgba(228,87,46,1) 95%)',
+            boxShadow: '0 0 0 .3rem #342e37, 1.7rem -1.7rem 0 -.7rem #342e37, -1.7rem 1.7rem 0 -.7rem #342e37, -.6rem -.6rem #0bbcd6, .6rem .6rem #e4572e',
           },
-          '.title-bg-3': {
+          '.title-bg': {
             background: 'rgb(11,188,214',
-            background: 'linear-gradient(225deg, rgba(11,188,214,1) 0%, rgba(52,46,55,1) 10%, rgba(52,46,55,1) 90%, rgba(228,87,46,1) 100%)',
-            boxShadow: '0 0 0 .3rem #342e37, .6rem -.6rem #e4572e, -.6rem .6rem #0bbcd6',
+            background: 'linear-gradient(135deg, rgba(228,87,46,1) 0%, rgba(52,46,55,1) 20%, rgba(52,46,55,1) 80%, rgba(11,188,214,1) 100%)',
+            boxShadow: '0 0 0 .3rem #342e37, -.6rem -.6rem #0bbcd6, .6rem .6rem #e4572e',
           },
-          '.title-bg-4': {
-            background: 'rgb(11,188,214',
-            background: 'linear-gradient(315deg, rgba(228,87,46,1) 0%, rgba(52,46,55,1) 14%, rgba(52,46,55,1) 86%, rgba(11,188,214,1) 100%)',
-            boxShadow: '0 0 0 .3rem #342e37, -.6rem -.6rem #e4572e, .6rem .6rem #0bbcd6',
+          '.code-bg': {
+            boxShadow: '0 0 0 .3rem #342e37, -.6rem -.6rem #0bbcd6, .6rem .6rem #e4572e',
+          },
+          '.top-divider': {
+            boxShadow: '0 0 0 .3rem #342e37, -3rem 5rem #342e37, -.6rem -.6rem #0bbcd6'
           }
         }
 
-        addUtilities(newUtilities, ['responsive', 'hover'])
+        addUtilities(newUtilities, ['responsive', 'hover', 'group-hover'])
       })
   ]
 }

@@ -44,7 +44,7 @@ const PhotoCollectionTemplate = ({ data }) => {
                 <>
                   <div
                     onClick={e => handleClick(e, photo)}
-                    className="mb-2 md:mb-4 inline-block w-full cursor-pointer border-themeOffWhite border-2 "
+                    className="mb-2 md:mb-4 inline-block w-full cursor-pointer border-themeOffWhite border-2 hover:border-themeRed duration-500"
                   >
                     <Img
                       alt={photoCollection.title}
@@ -85,7 +85,7 @@ const PhotoCollectionTemplate = ({ data }) => {
               return (
                 <div
                   onClick={e => handleClick(e, photo)}
-                  className="mb-2 md:mb-4 inline-block w-full cursor-pointer border-themeOffWhite border-2"
+                  className="mb-2 md:mb-4 inline-block w-full cursor-pointer border-themeOffWhite border-2 hover:border-themeRed duration-500"
                 >
                   <Img
                     alt={photoCollection.title}

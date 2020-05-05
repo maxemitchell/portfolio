@@ -22,7 +22,7 @@ const Navigation = () => {
   return (
     <nav
       role="navigation"
-      className="flex items-start flex-wrap justify-center w-full mb-3 pb-1 nav-border max-w-6xl mx-auto bg-themePurple"
+      className="flex items-start flex-wrap justify-center w-full mb-4 pb-1 nav-border max-w-6xl mx-auto bg-themePurple"
     >
       <Link to="/" className="flex w-1/2 md:hidden mb-3 mt-1">
         <Img

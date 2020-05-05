@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 import Helmet from 'react-helmet'
 import Layout from '../components/Layout'
 import Video from '../components/Video'
+import Header from '../components/Header'
 
 const Index = ({ data }) => {
   const siteTitle = data.site.siteMetadata.title
@@ -15,9 +16,9 @@ const Index = ({ data }) => {
 
         <div className="flex w-full flex-wrap justify-center">
 
-          <h2 className="w-full text-center mb-2 text-4xl lg:text-5xl font-light">
+          <Header variant="3">
             recent videos
-          </h2>
+          </Header>
 
           {youtubeVideos.map(({ node: youtubeVideo }, index) => {
             return (
@@ -31,7 +32,7 @@ const Index = ({ data }) => {
                   <h3 className="w-full text-left text-2xl font-manrope font-light text-themeBlue mb-2">
                     {youtubeVideo.title}
                   </h3>
-                  <div className="w-full h-64 mb-2 picture-border-sm-1">
+                  <div className="w-full h-64 mb-2 picture-border-sm-2">
                     <Video
                       videoSrcURL={
                         'https://www.youtube.com/embed/' + youtubeVideo.videoId

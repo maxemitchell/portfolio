@@ -4,6 +4,9 @@ import Helmet from 'react-helmet'
 import Layout from '../components/Layout'
 import Video from '../components/Video'
 import Img from 'gatsby-image'
+import Header from '../components/Header'
+import ArtboardPreview from '../components/ArtboardPreview'
+import PhotoCollectionPreview from '../components/PhotoCollectionPreview'
 
 const Index = ({ data }) => {
   const siteTitle = data.site.siteMetadata.title
@@ -18,11 +21,12 @@ const Index = ({ data }) => {
       <div className="w-full max-w-6xl mx-auto">
 
         <div className="flex w-full flex-no-wrap mt-8 justify-center">
-          <Img
-            className="picture-border-sm-1 ml-4 w-3/5 max-w-xl"
-            alt="Featured Image"
-            fluid={profilePicture.fluid}
-          />
+          <Link to="/about/" className="picture-border-sm-1 ml-4 w-3/5 max-w-xl hover:picture-border-sm-2 duration-500">
+            <Img
+              alt="Featured Image"
+              fluid={profilePicture.fluid}
+            />
+          </Link>
 
           <div className="flex flex-wrap w-2/5 font-manrope px-3 sm:px-6 content-center max-w-lg">
             <p className="w-full text-left text-4xl sm:text-5xl lg:text-6xl font-light">
@@ -30,18 +34,18 @@ const Index = ({ data }) => {
             </p>
             <p className="w-full text-center text-2xl sm:text-3xl lg:text-5xl font-light">
               I'm
-              <Link to="/about/" className="inline text-themeBlue"> Max</Link>
+              <Link to="/about/" className="inline text-themeBlue hover:text-themeRed duration-500"> Max.</Link>
             </p>
             <p className="w-full text-left md:text-center text-lg sm:text-xl lg:text-2xl font-light pt-3">
               I study
-              <a href="https://ece.illinois.edu/" className="inline text-themeBlue"> computer engineering</a> at
-              <a href="https://illinois.edu/" className="inline text-themeRed"> UIUC</a>
+              <a href="https://ece.illinois.edu/" className="inline text-themeBlue hover:text-themeRed duration-500"> computer engineering</a> at
+              <a href="https://illinois.edu/" className="inline text-themeRed hover:text-themeBlue duration-500"> UIUC</a>
             </p>
             <p className="w-full text-left md:text-center text-base sm:text-lg lg:text-xl font-light pt-4">
               I also take
-              <Link to="/photos/" className="inline text-themeBlue"> pictures</Link>, make
-              <Link to="/videos/" className="inline text-themeBlue"> videos</Link>, and
-              <Link to="/code/" className="inline text-themeBlue"> code</Link>
+              <Link to="/photos/" className="inline text-themeBlue hover:text-themeRed duration-500"> pictures</Link>, make
+              <Link to="/videos/" className="inline text-themeBlue hover:text-themeRed duration-500"> videos</Link>, and
+              <Link to="/code/" className="inline text-themeBlue hover:text-themeRed duration-500"> code</Link>
             </p>
             <p className="w-full text-center text-xl sm:text-2xl lg:text-3xl font-normal pt-6">
               enjoy!
@@ -50,65 +54,49 @@ const Index = ({ data }) => {
           </div>
       </div>
 
-      <div className="flex w-full flex-wrap justify-center">
+      <div className="flex w-full flex-wrap justify-center mt-3">
 
-        <h2 className="w-full text-center mt-2 text-4xl lg:text-5xl font-light">
+        <Header variant="3">
           recent artboards
-        </h2>
+        </Header>
 
         {artboards.map(({ node: artboard }) => {
           return (
-            <Link
-              className="w-full mx-4 mb-3"
-              to={`/artboards/${artboard.slug}/`}
-            >
-              <h3 className="w-full text-xl mb-1 font-medium text-themeBlue">
-                {artboard.title}
-              </h3>
-              <Img
-                className="picture-border-sm-2 w-full picture-border-1"
-                alt="Featured Image"
-                fluid={artboard.artboard.fluid}
-              />
-            </Link>
+            <ArtboardPreview
+              slug={artboard.slug}
+              title={artboard.title}
+              fluid={artboard.artboard.fluid}
+            />
           )
         })}
       </div>
 
       <div className="flex w-full flex-wrap justify-center">
 
-        <h2 className="w-full text-center mt-1 text-4xl lg:text-5xl font-light">
+        <Header variant="3">
           recent photo collections
-        </h2>
+        </Header>
 
         {photoCollections.map(({ node: photoCollection }) => {
           return (
-            <Link
-              className="w-5/12 md:w-2/5 mx-4 mb-3"
-              to={`/photo_collections/${photoCollection.slug}/`}
-            >
-              <h3 className="w-full text-xl mb-1 font-medium text-themeBlue">
-                {photoCollection.title}
-              </h3>
-              <Img
-                className="picture-border-sm-2 w-full picture-border-1 max-w-xl"
-                alt="Featured Image"
-                fluid={photoCollection.featuredImage.fluid}
-              />
-            </Link>
+            <PhotoCollectionPreview
+              slug={photoCollection.slug}
+              title={photoCollection.title}
+              fluid={photoCollection.featuredImage.fluid}
+            />
           )
         })}
       </div>
 
       <div className="flex w-full flex-wrap justify-center">
 
-        <h2 className="w-full text-center mb-2 text-4xl lg:text-5xl font-light">
+        <Header variant="3">
           recent video
-        </h2>
+        </Header>
 
         {youtubeVideos.map(({ node: youtubeVideo }) => {
           return (
-            <div className="w-full h-64 mx-4 mb-3 picture-border-sm-1">
+            <div className="w-full h-64 mx-4 mb-5 mt-4 picture-border-sm-1">
               <Video
                 videoSrcURL={
                   'https://www.youtube.com/embed/' + youtubeVideo.videoId

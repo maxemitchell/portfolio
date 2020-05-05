@@ -2,6 +2,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import Helmet from 'react-helmet'
 import Layout from '../components/Layout'
+import Header from '../components/Header'
 
 const Index = ({ data }) => {
   const siteTitle = data.site.siteMetadata.title
@@ -15,14 +16,14 @@ const Index = ({ data }) => {
 
         <div className="flex w-full flex-wrap justify-center">
 
-          <h2 className="w-full text-center mb-2 text-4xl lg:text-5xl font-light">
-            my {numRepos} public github repos:
-          </h2>
+          <Header variant="3">
+            my {numRepos} public github repos
+          </Header>
 
           {githubRepos.map((repo, index) => {
             return (
               <a
-                className="flex flex-wrap w-full justify-center items-center mb-6 mx-4" key={index.videoId}
+                className="flex flex-wrap w-full justify-center items-center mt-3 mb-3 mx-4 hover:code-bg duration-500" key={index.videoId}
                 href={repo.url}
                 target="_blank"
               >
