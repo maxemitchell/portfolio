@@ -49,7 +49,7 @@ module.exports = {
       plugin(function({ addUtilities }) {
         const newUtilities = {
           '.boxshadow-3d-right': {
-            backgroundColor:' #342e37',
+            background:' #342e37',
             border: '.1rem solid #d6f8d6',
             boxShadow: '.3rem -.3rem 0 -.1rem #342e37, .3rem -.3rem #0bbcd6, .6rem -.6rem 0 -.1rem #342e37, .6rem -.6rem #e4572e',
             transition: 'box-shadow .75s',
@@ -61,7 +61,7 @@ module.exports = {
             transition: 'box-shadow .75s',
           },
           '.boxshadow-3d-collapse': {
-            boxShadow: '0 0 0 0 #342e37, 0 0 0 0 #0bbcd6, 0 0 0 0 #342e37, 0 0 0 0 #e4572e',
+            boxShadow: '0 0 0 0 #342e37, 0 0 0 0 #0bbcd6, 0 0 0 0 #342e37, 0 0 0 0 #e4572e !important',
           },
           '.nav-border': {
             boxShadow: '0 .3rem #342e37, 0 .3rem 0 .1rem #d6f8d6, -.3rem .6rem #342e37, -.3rem .6rem 0 .1rem #0bbcd6, -.6rem .9rem #342e37, -.6rem .9rem 0 .1rem #e4572e',
@@ -70,12 +70,8 @@ module.exports = {
             background: 'rgba(228,87,46,1)',
             background: 'linear-gradient(315deg, rgba(11,188,214,1) 0%, rgba(52,46,55,1) 50%, rgba(228,87,46,1) 100%)',
           },
-          '.gradient-banded': {
-            background: 'rgba(52,46,55,1)',
-            background: 'linear-gradient(315deg, rgba(11,188,214,1) 0%, rgba(52,46,55,1) 15%, rgba(52,46,55,1) 85%, rgba(228,87,46,1) 100%)'
-          },
           '.last': {
-            marginRight: '0'
+            marginRight: '0 !important'
           },
           '.first': {
             marginLeft: '0'
@@ -105,6 +101,26 @@ module.exports = {
           '.bg-blurred': {
             backgroundColor: 'rgba(52, 46, 55, .8)'
           },
+          '.title-bg-1': {
+            background: 'rgba(52,46,55,1)',
+            background: 'linear-gradient(135deg, rgba(11,188,214,1) 5%, rgba(228,87,46,1) 95%)',
+            boxShadow: '0 0 0 .3rem #342e37, 1.7rem -1.7rem 0 -.7rem #342e37, -1.7rem 1.7rem 0 -.7rem #342e37, -.6rem -.6rem #e4572e, .6rem .6rem #0bbcd6',
+          },
+          '.title-bg-2': {
+            background: 'rgba(52,46,55,1)',
+            background: 'linear-gradient(135deg, rgba(11,188,214,1) 5%, rgba(228,87,46,1) 95%)',
+            boxShadow: '0 0 0 .3rem #342e37, 1.7rem -1.7rem 0 -.7rem #342e37, -1.7rem 1.7rem 0 -.7rem #342e37, -.6rem -.6rem #e4572e, .6rem .6rem #0bbcd6',
+          },
+          '.title-bg-3': {
+            background: 'rgb(11,188,214',
+            background: 'linear-gradient(225deg, rgba(11,188,214,1) 0%, rgba(52,46,55,1) 10%, rgba(52,46,55,1) 90%, rgba(228,87,46,1) 100%)',
+            boxShadow: '0 0 0 .3rem #342e37, .6rem -.6rem #e4572e, -.6rem .6rem #0bbcd6',
+          },
+          '.title-bg-4': {
+            background: 'rgb(11,188,214',
+            background: 'linear-gradient(315deg, rgba(228,87,46,1) 0%, rgba(52,46,55,1) 14%, rgba(52,46,55,1) 86%, rgba(11,188,214,1) 100%)',
+            boxShadow: '0 0 0 .3rem #342e37, -.6rem -.6rem #e4572e, .6rem .6rem #0bbcd6',
+          }
         }
 
         addUtilities(newUtilities, ['responsive', 'hover'])

@@ -60,7 +60,7 @@ module.exports = {
         graphQLQuery: `
           query {
             viewer {
-              repositories(first: 10) {
+              repositories(last: 10, orderBy: {field: PUSHED_AT, direction: DESC}) {
                 totalCount
                 nodes {
                   name

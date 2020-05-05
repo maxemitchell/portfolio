@@ -30,7 +30,7 @@ const Index = ({ data }) => {
             </p>
             <p className="w-full text-center text-2xl sm:text-3xl lg:text-5xl font-light">
               I'm
-              <Link to="/about" className="inline text-themeBlue"> Max</Link>
+              <Link to="/about/" className="inline text-themeBlue"> Max</Link>
             </p>
             <p className="w-full text-left md:text-center text-lg sm:text-xl lg:text-2xl font-light pt-3">
               I study
@@ -39,9 +39,9 @@ const Index = ({ data }) => {
             </p>
             <p className="w-full text-left md:text-center text-base sm:text-lg lg:text-xl font-light pt-4">
               I also take
-              <Link to="/photos" className="inline text-themeBlue"> pictures</Link>, make
-              <Link to="/videos" className="inline text-themeBlue"> videos</Link>, and
-              <Link to="/code" className="inline text-themeBlue"> code</Link>
+              <Link to="/photos/" className="inline text-themeBlue"> pictures</Link>, make
+              <Link to="/videos/" className="inline text-themeBlue"> videos</Link>, and
+              <Link to="/code/" className="inline text-themeBlue"> code</Link>
             </p>
             <p className="w-full text-center text-xl sm:text-2xl lg:text-3xl font-normal pt-6">
               enjoy!
@@ -78,7 +78,7 @@ const Index = ({ data }) => {
       <div className="flex w-full flex-wrap justify-center">
 
         <h2 className="w-full text-center mt-1 text-4xl lg:text-5xl font-light">
-          recent photo_collections
+          recent photo collections
         </h2>
 
         {photoCollections.map(({ node: photoCollection }) => {

@@ -50,7 +50,7 @@ const Navigation = () => {
 
         <NavItem
           to="/code/"
-          className="first boxshadow-3d-left md:boxshadow-3d-right"
+          className="boxshadow-3d-left md:boxshadow-3d-right"
         >
           code
         </NavItem>

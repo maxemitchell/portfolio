@@ -3,6 +3,7 @@ import { graphql, Link } from 'gatsby'
 import Helmet from 'react-helmet'
 import Layout from '../components/Layout'
 import Img from 'gatsby-image'
+import Header from '../components/Header'
 
 const Index = ({ data }) => {
   const siteTitle = data.site.siteMetadata.title
@@ -14,11 +15,11 @@ const Index = ({ data }) => {
       <Helmet title={siteTitle} />
       <div className="w-full max-w-6xl mx-auto">
 
-        <div className="flex w-full flex-wrap justify-center">
+        <div className="flex w-full flex-wrap justify-center pt-2">
 
-          <h2 className="w-full text-center mt-1 text-4xl lg:text-5xl font-light">
-            recent photo_collections
-          </h2>
+          <Header variant="3">
+            recent photo collections
+          </Header>
 
           {photoCollections.map(({ node: photoCollection }) => {
             return (
@@ -41,9 +42,9 @@ const Index = ({ data }) => {
 
         <div className="flex w-full flex-wrap justify-center">
 
-          <h2 className="w-full text-center mt-2 text-4xl lg:text-5xl font-light">
+          <Header variant="4">
             recent artboards
-          </h2>
+          </Header>
 
           {artboards.map(({ node: artboard }) => {
             return (

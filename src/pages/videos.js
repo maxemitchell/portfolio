@@ -1,5 +1,5 @@
 import React from 'react'
-import { graphql, Link } from 'gatsby'
+import { graphql } from 'gatsby'
 import Helmet from 'react-helmet'
 import Layout from '../components/Layout'
 import Video from '../components/Video'
@@ -13,46 +13,46 @@ const Index = ({ data }) => {
       <Helmet title={siteTitle} />
       <div className="w-full max-w-5xl mx-auto">
 
-      <div className="flex w-full flex-wrap justify-center">
+        <div className="flex w-full flex-wrap justify-center">
 
-        <h2 className="w-full text-center mb-2 text-4xl lg:text-5xl font-light">
-          recent videos
-        </h2>
+          <h2 className="w-full text-center mb-2 text-4xl lg:text-5xl font-light">
+            recent videos
+          </h2>
 
-        {youtubeVideos.map(({ node: youtubeVideo }, index) => {
-          return (
-            <div className="flex flex-wrap md:flex-no-wrap w-full justify-center items-center mb-6 mx-4" key={youtubeVideo.videoId}>
-              {index % 2 == 1 &&
-                <p className="hidden md:flex w-full md:w-1/2 ml-6 text-base font-manrope font-thin">
-                  {youtubeVideo.description}
-                </p>
-              }
-              <div className="w-full md:w-1/2">
-                <h3 className="w-full text-left text-2xl font-manrope font-light text-themeBlue mb-2">
-                  {youtubeVideo.title}
-                </h3>
-                <div className="w-full h-64 mb-2 picture-border-sm-1">
-                  <Video
-                    videoSrcURL={
-                      'https://www.youtube.com/embed/' + youtubeVideo.videoId
-                    }
-                    videoTitle={youtubeVideo.title}
-                    className="h-full w-full"
-                  />
+          {youtubeVideos.map(({ node: youtubeVideo }, index) => {
+            return (
+              <div className="flex flex-wrap md:flex-no-wrap w-full justify-center items-center mb-6 mx-4" key={youtubeVideo.videoId}>
+                {index % 2 == 1 &&
+                  <p className="hidden md:flex w-full md:w-1/2 mr-6 text-base font-manrope font-thin">
+                    {youtubeVideo.description}
+                  </p>
+                }
+                <div className="w-full md:w-1/2">
+                  <h3 className="w-full text-left text-2xl font-manrope font-light text-themeBlue mb-2">
+                    {youtubeVideo.title}
+                  </h3>
+                  <div className="w-full h-64 mb-2 picture-border-sm-1">
+                    <Video
+                      videoSrcURL={
+                        'https://www.youtube.com/embed/' + youtubeVideo.videoId
+                      }
+                      videoTitle={youtubeVideo.title}
+                      className="h-full w-full"
+                    />
+                  </div>
                 </div>
-              </div>
-              {index % 2 === 0 &&
-                <p className="hidden md:flex w-full md:w-1/2 ml-6 text-base font-manrope font-thin">
+                {index % 2 === 0 &&
+                  <p className="hidden md:flex w-full md:w-1/2 ml-6 text-base font-manrope font-thin">
+                    {youtubeVideo.description}
+                  </p>
+                }
+                <p className="w-full md:hidden text-base font-manrope font-thin">
                   {youtubeVideo.description}
                 </p>
-              }
-              <p className="w-full md:hidden text-base font-manrope font-thin">
-                {youtubeVideo.description}
-              </p>
-            </div>
-          )
-        })}
-      </div>
+              </div>
+            )
+          })}
+        </div>
 
       </div>
     </Layout>
