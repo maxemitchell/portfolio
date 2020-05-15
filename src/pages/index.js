@@ -45,6 +45,7 @@ const Index = ({ data }) => {
               I study
               <a
                 href="https://ece.illinois.edu/"
+                target="_blank"
                 className="inline text-themeBlue hover:text-themeRed duration-500"
               >
                 {' '}
@@ -53,6 +54,7 @@ const Index = ({ data }) => {
               at
               <a
                 href="https://illinois.edu/"
+                target="_blank"
                 className="inline text-themeRed hover:text-themeBlue duration-500"
               >
                 {' '}
