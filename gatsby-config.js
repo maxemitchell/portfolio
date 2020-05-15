@@ -87,6 +87,7 @@ module.exports = {
         fonts: [
           'Manrope\:200,300,400,500,600,700,800',
         ],
+        display: 'swap'
       },
     },
     {
@@ -108,6 +109,14 @@ module.exports = {
             display: 'standalone',
             icon: `src/images/icon.png`,
         }
+    },
+    {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          include: /images/
+        }
+      }
     }
   ],
 }

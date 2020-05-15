@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
-import Helmet from 'react-helmet'
+import { Helmet } from 'react-helmet'
 import Layout from '../components/Layout'
 import Header from '../components/Header'
 import ArtboardPreview from '../components/ArtboardPreview'
@@ -16,10 +16,10 @@ const Index = ({ data }) => {
       <Helmet title={siteTitle} />
       <div className="w-full max-w-6xl mx-auto">
 
-        <div className="flex w-full flex-wrap justify-center">
+        <div className="flex w-full flex-wrap justify-center mt-6">
 
           <Header variant="3">
-            recent photo collections
+            photo collections
           </Header>
 
           {photoCollections.map(({ node: photoCollection }) => {
@@ -36,7 +36,7 @@ const Index = ({ data }) => {
         <div className="flex w-full flex-wrap justify-center">
 
           <Header variant="3">
-            recent artboards
+            artboards
           </Header>
 
           {artboards.map(({ node: artboard }) => {

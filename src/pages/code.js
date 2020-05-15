@@ -1,12 +1,11 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import Helmet from 'react-helmet'
+import { Helmet } from 'react-helmet'
 import Layout from '../components/Layout'
 import Header from '../components/Header'
 
 const Index = ({ data }) => {
   const siteTitle = data.site.siteMetadata.title
-  const numRepos = data.githubData.data.viewer.repositories.totalCount
   const githubRepos = data.githubData.data.viewer.repositories.nodes
 
   return (
@@ -15,10 +14,6 @@ const Index = ({ data }) => {
       <div className="w-full max-w-5xl mx-auto">
 
         <div className="flex w-full flex-wrap justify-center">
-
-          <Header variant="3">
-            my {numRepos} public github repos
-          </Header>
 
           {githubRepos.map((repo, index) => {
             return (

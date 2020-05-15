@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
-import Helmet from 'react-helmet'
+import { Helmet } from 'react-helmet'
 import Layout from '../components/Layout'
 import Video from '../components/Video'
 import Img from 'gatsby-image'
@@ -10,7 +10,7 @@ import PhotoCollectionPreview from '../components/PhotoCollectionPreview'
 
 const Index = ({ data }) => {
   const siteTitle = data.site.siteMetadata.title
-  const profilePicture = data.contentfulSiteData.secondaryImage
+  const profilePicture = data.contentfulSiteData.featuredImage
   const artboards = data.allContentfulArtboard.edges
   const photoCollections = data.allContentfulPhotoCollection.edges
   const youtubeVideos = data.allYoutubeVideo.edges
@@ -48,8 +48,7 @@ const Index = ({ data }) => {
               <Link to="/code/" className="inline text-themeBlue hover:text-themeRed duration-500"> code</Link>
             </p>
             <p className="w-full text-center text-xl sm:text-2xl lg:text-3xl font-normal pt-6">
-              enjoy!
-              <p className="inline text-themeBlue"> :)</p>
+              enjoy! :)
             </p>
           </div>
       </div>
@@ -124,7 +123,7 @@ export const query = graphql`
       }
     }
     contentfulSiteData {
-      secondaryImage {
+      featuredImage {
         fluid(maxHeight: 800) {
           ...GatsbyContentfulFluid_withWebp
         }

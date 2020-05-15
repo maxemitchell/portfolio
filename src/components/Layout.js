@@ -1,10 +1,9 @@
 import React from 'react'
 import Navigation from './Navigation'
-import Helmet from 'react-helmet'
 
 const Layout = ({ children }) => {
   return (
-    <div className="text-themeOffWhite h-full min-h-screen antialiased">
+    <div className="text-themeOffWhite font-manrope h-full min-h-screen antialiased">
       <Navigation />
       {children}
     </div>

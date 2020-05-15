@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import Helmet from 'react-helmet'
+import { Helmet } from 'react-helmet'
 import Layout from '../components/Layout'
 import Video from '../components/Video'
 import Header from '../components/Header'
@@ -14,11 +14,7 @@ const Index = ({ data }) => {
       <Helmet title={siteTitle} />
       <div className="w-full max-w-5xl mx-auto">
 
-        <div className="flex w-full flex-wrap justify-center">
-
-          <Header variant="3">
-            recent videos
-          </Header>
+        <div className="flex w-full flex-wrap justify-center mt-8">
 
           {youtubeVideos.map(({ node: youtubeVideo }, index) => {
             return (
