@@ -14,7 +14,7 @@ const Header = ({ variant, children }) => {
         </h3>
       )}
       {variant === '3' && (
-        <h3 className="inline mb-5 font-normal text-2xl md:text-3xl lg:text-4xl md:font-semibold px-5 pb-2 title-bg text-themeOffWhite rounded-tr-lg rounded-bl-lg">
+        <h3 className="inline mb-5 font-normal text-xl sm:text-2xl md:text-3xl lg:text-4xl md:font-semibold px-5 pb-2 title-bg text-themeOffWhite rounded-tr-lg rounded-bl-lg">
           {children}
         </h3>
       )}

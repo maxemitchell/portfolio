@@ -6,7 +6,7 @@ import YouTubeLogo from '../images/youtube.svg'
 
 const SocialMedia = () => {
   return (
-    <div className="flex flex-no-wrap w-full justify-center font-manrope font-medium text-base md:text-lg mb-6 mt-3">
+    <div className="flex flex-wrap sm:flex-no-wrap w-full justify-evenly items-baseline sm:justify-center font-manrope font-medium text-base md:text-lg mb-6 mt-3">
       <a
         href="https://www.instagram.com/_maxemitchell_"
         target="_blank"

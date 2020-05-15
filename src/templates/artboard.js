@@ -23,7 +23,7 @@ const ArtboardTemplate = ({ data }) => {
         </div>
 
         <Img
-          className="flex w-full picture-border-2 mx-4 mt-2"
+          className="flex w-full border-themeOffWhite border-2 sm:border-0 sm:picture-border-2 mx-2 sm:mx-4 mt-2"
           alt={artboard.title}
           fluid={artboard.artboard.fluid}
         />

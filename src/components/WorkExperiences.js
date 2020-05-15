@@ -3,9 +3,9 @@ import Experience from './Experience'
 
 const WorkExperiences = () => {
   return (
-    <div className="mx-6 timeline-top">
+    <div className="px-6">
       <Experience
-        variant={'left'}
+        variant={'top'}
         header={'Synchrony Financial / Emerging Technology Intern'}
         date={'January 2020 - Present'}
         body={"Currently working on a React Data Analytics platform built with AWS S3, Lambda, and EMR."}

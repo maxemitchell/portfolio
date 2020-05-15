@@ -8,7 +8,7 @@ const ArtboardPreview = ({ slug, title, fluid }) => {
       className="w-full mx-4 mb-3 group"
       to={`/artboards/${slug}/`}
     >
-      <h3 className="w-full text-xl md:text-2xl mb-2 font-medium text-themeBlue group-hover:text-themeRed duration-500">
+      <h3 className="w-full text-lg sm:text-xl md:text-2xl mb-2 font-medium text-themeBlue group-hover:text-themeRed duration-500">
         {title}
       </h3>
       <Img

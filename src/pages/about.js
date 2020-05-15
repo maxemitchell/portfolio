@@ -14,24 +14,24 @@ const About = ({ data }) => {
     <Layout>
       <Helmet title={siteTitle} />
       <div className="flex flex-wrap w-full max-w-6xl mx-auto justify-between items-center">
-        <div className="w-full font-manrope text-left text-lg font-thin leading-snug md:w-1/2 px-6 lg:px-8">
-          <p className="w-full mt-4">
+        <div className="w-full font-manrope text-left text-base sm:text-lg font-thin leading-snug md:w-1/2 px-6 lg:px-8">
+          <p className="w-full mt-2 sm:mt-4">
             In case it still wasn't clear, my name is <strong>Max</strong>.
           </p>
-          <p className="w-full mt-5">
+          <p className="w-full mt-3 sm:mt-5">
             I'm from <strong>Chicago, IL</strong>.
           </p>
-          <p className="w-full mt-5">
+          <p className="w-full mt-3 sm:mt-5">
             I study <strong>Computer Engineering</strong> with a minor in
             <strong> Technology and Management</strong> at <strong>UIUC</strong>
             .
           </p>
-          <p className="w-full mt-5">
+          <p className="w-full mt-3 sm:mt-5">
             In my free time I like to <strong>climb</strong> (bouldering), take{' '}
             <strong>pictures</strong> (currently rocking a Fuji X-T3), and
             <strong> travel</strong> (currently at 7 countries).
           </p>
-          <p className="w-full mt-5">
+          <p className="w-full mt-3 sm:mt-5">
             Yes, I realize how basic the above interests sound.
           </p>
         </div>
@@ -41,7 +41,7 @@ const About = ({ data }) => {
           <WorkExperiences />
         </div>
 
-        <a 
+        <a
           href="mailto:maxemitchell@gmail.com"
           className="mx-auto flex flex-no-wrap justify-center items-center mt-8 mb-2 hover:text-themeBlue hover:border-corners duration-300"
         >
