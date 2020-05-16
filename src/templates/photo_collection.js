@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
-import Img from 'gatsby-image'
+import Img from 'gatsby-image/withIEPolyfill'
 import Layout from '../components/Layout'
 
 const PhotoCollectionTemplate = ({ data }) => {
@@ -101,10 +101,11 @@ const PhotoCollectionTemplate = ({ data }) => {
         {showModal && (
           <div className="fixed flex justify-center items-center h-screen w-full top-0 left-0 bg-blurred">
             <Img
-              className="relative flex flex-1 max-w-screen-lg cursor-pointer border-themeOffWhite border-4 p-16"
+              className="relative flex flex-1 max-w-screen-lg max-h-screen cursor-pointer p-16"
               alt={photoCollection.title}
               fluid={currentImage.fluid}
               key={currentImage.id}
+              objectFit="contain"
             />
           </div>
         )}

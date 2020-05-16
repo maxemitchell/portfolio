@@ -43,7 +43,7 @@ module.exports = {
       maxHeight: {
         '0': '0',
         '50': '50px',
-        '100': '100px',
+        '100': '120px',
       },
       transitionDuration: {
         '2000': '2000ms',
@@ -127,7 +127,7 @@ module.exports = {
           textShadow: '0 0 .2rem #e4572e',
         },
         '.bg-blurred': {
-          backgroundColor: 'rgba(52, 46, 55, .8)',
+          backgroundColor: 'rgba(52, 46, 55, .95)',
         },
         '.border-tl': {
           boxShadow:

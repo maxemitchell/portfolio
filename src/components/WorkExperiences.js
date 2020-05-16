@@ -31,6 +31,20 @@ const WorkExperiences = () => {
         date={'June 2018 - August 2018'}
         body={'Created a 3D Geospatial Visualization tool in JavaScript for R&D use.'}
       />
+
+      <Experience
+        variant={'left'}
+        header={'University of Illinois at Urbana-Champaign'}
+        date={'August 2017 - Present'}
+        body={'Started my college career with the Fighting Illini.'}
+      />
+
+      <Experience
+        variant={'right'}
+        header={'Lane Tech High School'}
+        date={'August 2011 - June 2017'}
+        body={'Began the LTAC program for 7th and 8th grade and ended up staying for six years. Special props to the Innovation and Creation Lab, Physical Computing Lab, and Photography room.'}
+      />
     </div>
   )
 }
