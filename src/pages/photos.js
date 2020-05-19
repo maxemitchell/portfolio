@@ -16,7 +16,7 @@ const Index = ({ data }) => {
       <Helmet title={siteTitle} />
       <div className="w-full max-w-6xl mx-auto">
 
-        <div className="flex w-full flex-wrap justify-center mt-6">
+        <div className="flex w-full flex-wrap justify-around mt-6">
 
           <Header variant="3">
             photo collections

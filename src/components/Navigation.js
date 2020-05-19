@@ -10,7 +10,7 @@ const Navigation = () => {
       logoHoriz: file(relativePath: { eq: "logo_horiz_crop_transparent.png" }) {
         childImageSharp {
           fluid(
-            traceSVG: { background: "#342e37", color: "#0bbcd6" }
+            traceSVG: { background: "#000000", color: "#0bbcd6" }
           ) {
             ...GatsbyImageSharpFluid_tracedSVG
           }
@@ -22,7 +22,7 @@ const Navigation = () => {
   return (
     <nav
       role="navigation"
-      className="flex items-start flex-wrap justify-center w-full mb-4 pb-1 nav-border max-w-6xl mx-auto bg-themePurple"
+      className="flex items-start flex-wrap justify-center w-full mb-6 pb-1 nav-border max-w-6xl mx-auto bg-black"
     >
       <Link to="/" className="flex w-1/2 md:hidden mb-3 mt-1">
         <Img

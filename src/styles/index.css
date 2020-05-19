@@ -1,7 +1,7 @@
 @tailwind base;
 
 body, html {
-  @apply bg-themePurple;
+  @apply bg-black;
 }
 
 @tailwind components;
