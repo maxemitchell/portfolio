@@ -5,23 +5,24 @@ require('dotenv').config({
 const contentfulConfig = {
   spaceId: process.env.CONTENTFUL_SPACE_ID,
   accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-  host: process.env.CONTENTFUL_HOST
 }
 
 const youtubeAPIKey = process.env.YOUTUBE_API_KEY
 const githubAPIKey = process.env.GITHUB_API_KEY
 const { spaceId, accessToken } = contentfulConfig
 
-if (!spaceId || !accessToken) {
-  throw new Error(
-    'Contentful spaceId and the access token need to be provided.'
-  )
-}
-
-if (!youtubeAPIKey) {
-  throw new Error(
-    'YouTube API key needs to be provided.'
-  )
+if(process.env.gatsby_executing_command != 'serve'){
+  if (!spaceId || !accessToken) {
+    throw new Error(
+      'Contentful spaceId and the access token need to be provided.'
+    )
+  }
+  
+  if (!youtubeAPIKey) {
+    throw new Error(
+      'YouTube API key needs to be provided.'
+    )
+  }
 }
 
 module.exports = {
