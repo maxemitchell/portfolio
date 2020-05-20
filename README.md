@@ -14,8 +14,9 @@ The front end was created using [Gatsby](https://www.gatsbyjs.org/) and [Tailwin
 1. Clone the repo.
 2. Install yarn (or npm) if you don't already have it.
 3. In the top level directory, run `yarn install`
-4. To run locally, run `yarn dev`
-5. To test the production version, run `yarn build` followed by `yarn serve`
+4. Look at the `.env.example` file, and create local `.env.production` and `.env.development` files with your API Keys.
+5. To run locally, run `yarn dev`
+6. To test the production version, run `yarn build` followed by `yarn serve`
 
 ## Future Development:
 - Add a light mode and ability to toggle between
