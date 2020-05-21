@@ -14,17 +14,12 @@ const Index = ({ data }) => {
       <Helmet title={siteTitle} />
       <div className="w-full max-w-5xl mx-auto">
 
-        <div className="flex w-full flex-wrap justify-center mt-8">
+        <div className="flex w-full flex-wrap justify-center items-end mt-8">
 
-          {youtubeVideos.map(({ node: youtubeVideo }, index) => {
+          {youtubeVideos.map(({ node: youtubeVideo }) => {
             return (
-              <div className="flex flex-wrap md:flex-no-wrap w-full justify-center items-center mb-6 mx-4" key={youtubeVideo.videoId}>
-                {index % 2 == 1 &&
-                  <p className="hidden md:flex w-full md:w-1/2 mr-6 text-base font-manrope font-thin">
-                    {youtubeVideo.description}
-                  </p>
-                }
-                <div className="w-full md:w-1/2">
+              <div className="flex flex-no-wrap w-full md:w-1/2 justify-center items-center pb-6 px-4" key={youtubeVideo.videoId}>
+                <div className="w-full">
                   <h3 className="w-full text-left text-2xl font-manrope font-light text-themeBlue mb-2">
                     {youtubeVideo.title}
                   </h3>
@@ -38,14 +33,7 @@ const Index = ({ data }) => {
                     />
                   </div>
                 </div>
-                {index % 2 === 0 &&
-                  <p className="hidden md:flex w-full md:w-1/2 ml-6 text-base font-manrope font-thin">
-                    {youtubeVideo.description}
-                  </p>
-                }
-                <p className="w-full md:hidden text-base font-manrope font-thin">
-                  {youtubeVideo.description}
-                </p>
+  
               </div>
             )
           })}
