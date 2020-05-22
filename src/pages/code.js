@@ -2,7 +2,6 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
 import Layout from '../components/Layout'
-import Header from '../components/Header'
 
 const Index = ({ data }) => {
   const siteTitle = data.site.siteMetadata.title

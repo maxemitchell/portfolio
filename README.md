@@ -5,24 +5,24 @@ A personal portfolio website for my projects and photography. You can check it o
 
 The front end was created using [Gatsby](https://www.gatsbyjs.org/) and [TailwindCSS](https://tailwindcss.com/). The images are hosted on [Contentful](https://www.contentful.com/), and the site itself is hosted on [Netlify](https://www.netlify.com/). This was the long way of saying it's a GCN stack website.
 
-## Resources Used:
-- [Ryan Wiemer's gatsby-stareter-gcn](https://github.com/ryanwiemer/gatsby-starter-gcn)
-- [iammatthias's personal photography page](https://github.com/iammatthias/.com)
-- Way too much Google searching
+## Resources Used
+-   [Ryan Wiemer's gatsby-stareter-gcn](https://github.com/ryanwiemer/gatsby-starter-gcn)
+-   [iammatthias's personal photography page](https://github.com/iammatthias/.com)
+-   Way too much Google searching
 
-## Development Instructions:
-1. Clone the repo.
-2. Install yarn (or npm) if you don't already have it.
-3. In the top level directory, run `yarn install`
-4. Look at the `.env.example` file, and create local `.env.production` and `.env.development` files with your API Keys.
-5. To run locally, run `yarn dev`
-6. To test the production version, run `yarn build` followed by `yarn serve`
+## Development Instructions
+1.  Clone the repo.
+2.  Install yarn (or npm) if you don't already have it.
+3.  In the top level directory, run `yarn install`
+4.  Look at the `.env.example` file, and create local `.env.production` and `.env.development` files with your API Keys.
+5.  To run locally, run `yarn dev`
+6.  To test the production version, run `yarn build` followed by `yarn serve`
 
-## Future Development:
-- Add a light mode and ability to toggle between
-- Add a blog page
-- Continue to mess with styling
-- Add more photo collections and videos
+## Future Development
+-   Add a light mode and ability to toggle between
+-   Add a blog page
+-   Continue to mess with styling
+-   Add more photo collections and videos
 
-### General Notes:
+### General Notes
 I made this site for the purpose of both learning a modern front-end stack and to be able to say I built my own personal site from scratch. This gave me the freedom of creating something actually unique, and the end result was far more performant than many bootstrap style websites, especially for the resolution of my pictures. This will also be constantly changing and evolving, but for now I'm happy with where it's at.

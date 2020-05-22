@@ -3,7 +3,6 @@ import { graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
 import Layout from '../components/Layout'
 import Video from '../components/Video'
-import Header from '../components/Header'
 
 const Index = ({ data }) => {
   const siteTitle = data.site.siteMetadata.title
