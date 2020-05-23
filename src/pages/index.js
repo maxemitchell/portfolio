@@ -107,7 +107,7 @@ const Index = ({ data }) => {
           })}
         </div>
 
-        <div className="flex w-full flex-wrap justify-around">
+        <div className="flex w-full flex-wrap justify-around items-end">
           <Header variant="3">recent photo collections</Header>
 
           {photoCollections.map(({ node: photoCollection }) => {
@@ -126,7 +126,7 @@ const Index = ({ data }) => {
 
           {youtubeVideos.map(({ node: youtubeVideo }) => {
             return (
-              <div className="w-full h-64 mx-4 mb-5 mt-4 picture-border-sm-1">
+              <div className="w-full h-64 md:h-96 lg:h-128 mx-4 mb-5 mt-4 picture-border-sm-1">
                 <Video
                   videoSrcURL={
                     'https://www.youtube.com/embed/' + youtubeVideo.videoId
@@ -160,7 +160,8 @@ export const query = graphql`
       }
     }
     allContentfulArtboard(
-      limit: 2
+      limit: 2,
+      sort: {fields: artboardDate, order: DESC}
     ) {
       edges {
         node {
@@ -174,7 +175,10 @@ export const query = graphql`
         }
       }
     }
-    allContentfulPhotoCollection(limit: 3) {
+    allContentfulPhotoCollection(
+      limit: 4, 
+      sort: {fields: collectionDate, order: DESC}
+    ) {
       edges {
         node {
           title
