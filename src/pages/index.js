@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
-import { Helmet } from 'react-helmet'
 import Layout from '../components/Layout'
+import SEO from '../components/SEO'
 import Video from '../components/Video'
 import Img from 'gatsby-image'
 import Header from '../components/Header'
@@ -9,7 +9,6 @@ import ArtboardPreview from '../components/ArtboardPreview'
 import PhotoCollectionPreview from '../components/PhotoCollectionPreview'
 
 const Index = ({ data }) => {
-  const siteTitle = data.site.siteMetadata.title
   const profilePicture = data.contentfulSiteData.featuredImage
   const artboards = data.allContentfulArtboard.edges
   const photoCollections = data.allContentfulPhotoCollection.edges
@@ -17,7 +16,7 @@ const Index = ({ data }) => {
 
   return (
     <Layout>
-      <Helmet title={siteTitle} />
+      <SEO title="Home" />
       <div className="w-full max-w-6xl mx-auto">
         <div className="flex w-full flex-wrap sm:flex-no-wrap mt-6 sm:mt-8 justify-center">
           <Link
@@ -147,11 +146,6 @@ export default Index
 
 export const query = graphql`
   query Index {
-    site {
-      siteMetadata {
-        title
-      }
-    }
     contentfulSiteData {
       featuredImage {
         fluid(maxHeight: 800) {

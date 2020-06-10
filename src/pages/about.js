@@ -1,18 +1,15 @@
 import React from 'react'
-import { graphql } from 'gatsby'
-import { Helmet } from 'react-helmet'
+import SEO from '../components/SEO'
 import Layout from '../components/Layout'
 import WorkExperiences from '../components/WorkExperiences'
 import Header from '../components/Header'
 import SocialMedia from '../components/SocialMedia'
 import MailLogo from '../images/mail.svg'
 
-const About = ({ data }) => {
-  const siteTitle = data.site.siteMetadata.title
-
+const About = ({}) => {
   return (
     <Layout>
-      <Helmet title={siteTitle} />
+      <SEO title="About" />
       <div className="flex flex-wrap w-full max-w-6xl mx-auto justify-between items-center">
         <div className="w-full font-manrope text-left text-base sm:text-lg font-thin leading-snug md:w-1/2 px-6 lg:px-8">
           <p className="w-full mt-2 sm:mt-4">
@@ -60,13 +57,3 @@ const About = ({ data }) => {
 }
 
 export default About
-
-export const query = graphql`
-  query About {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`

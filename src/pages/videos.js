@@ -1,16 +1,15 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { Helmet } from 'react-helmet'
+import SEO from '../components/SEO'
 import Layout from '../components/Layout'
 import Video from '../components/Video'
 
 const Index = ({ data }) => {
-  const siteTitle = data.site.siteMetadata.title
   const youtubeVideos = data.allYoutubeVideo.edges
 
   return (
     <Layout>
-      <Helmet title={siteTitle} />
+      <SEO title="Videos" />
       <div className="w-full max-w-5xl mx-auto">
 
         <div className="flex w-full flex-wrap justify-center items-end mt-8">
@@ -47,11 +46,6 @@ export default Index
 
 export const query = graphql`
   query Videos {
-    site {
-      siteMetadata {
-        title
-      }
-    }
     allYoutubeVideo {
       edges {
         node {

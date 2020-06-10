@@ -29,7 +29,22 @@ module.exports = {
   siteMetadata: {
     title: 'maxemitchell portfolio',
   },
+  siteMetadata: {
+    siteUrl: "https://www.maxemitchell.com",
+    title: "Max Mitchell",
+    titleTemplate: "Max Mitchell | %s",
+    titleAlt: "Max Mitchell",
+    description: "Max Mitchell's personal portfolio website showcasing photography and coding projects.",
+    banner: "/images/logo_horiz_crop.png",
+    headline: "Max Mitchell's Personal Portfolio Website",
+    siteLanguage: "en",
+    ogLanguage: "en_US",
+    author: "Max Mitchell",
+    twitter: "@maxemitchell",
+    facebook: "Max Mitchell",
+  },
   plugins: [
+    'gatsby-plugin-sitemap',
     'gatsby-transformer-remark',
     'gatsby-transformer-sharp',
     'gatsby-plugin-react-helmet',

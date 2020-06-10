@@ -1,15 +1,14 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { Helmet } from 'react-helmet'
+import SEO from '../components/SEO'
 import Layout from '../components/Layout'
 
 const Index = ({ data }) => {
-  const siteTitle = data.site.siteMetadata.title
   const githubRepos = data.githubData.data.viewer.repositories.nodes
 
   return (
     <Layout>
-      <Helmet title={siteTitle} />
+      <SEO title="Code" />
       <div className="w-full max-w-5xl mx-auto">
 
         <div className="flex w-full flex-wrap justify-center">
@@ -41,11 +40,6 @@ export default Index
 
 export const query = graphql`
   query Code {
-    site {
-      siteMetadata {
-        title
-      }
-    }
     githubData {
       data {
         viewer {
