@@ -45,6 +45,7 @@ const Index = ({ data }) => {
               <a
                 href="https://ece.illinois.edu/"
                 target="_blank"
+                rel="noreferrer"
                 className="inline text-themeBlue hover:text-themeRed duration-500"
               >
                 {' '}
@@ -54,6 +55,7 @@ const Index = ({ data }) => {
               <a
                 href="https://illinois.edu/"
                 target="_blank"
+                rel="noreferrer"
                 className="inline text-themeRed hover:text-themeBlue duration-500"
               >
                 {' '}
