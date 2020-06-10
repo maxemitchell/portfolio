@@ -62,7 +62,7 @@ const SEO = ({ title, desc, banner }) => {
       '@type': 'Person',
       name: author,
     },
-    datePublished: '2020-05-20T10:30:00+01:00',
+    datePublished: '2020-05-20',
     dateModified: buildTime,
     image: {
       '@type': 'ImageObject',

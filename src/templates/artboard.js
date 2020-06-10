@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { Helmet } from 'react-helmet'
+import SEO from '../components/SEO'
 import Img from 'gatsby-image'
 import Layout from '../components/Layout'
 
@@ -11,7 +11,7 @@ const ArtboardTemplate = ({ data }) => {
 
   return (
     <Layout>
-      <Helmet title={artboard.title} />
+      <SEO title={artboard.title} />
       <div className="flex flex-wrap w-full font-manrope text-themeOffWhite mx-auto justify-center xl:w-5/6">
         <div className="flex w-full justify-start ml-4 items-baseline mt-1">
           <h1 className="text-3xl sm:text-4xl font-light textshadow-blue">
@@ -59,11 +59,6 @@ export default ArtboardTemplate
 
 export const query = graphql`
   query ArtboardBySlug($slug: String!) {
-    site {
-      siteMetadata {
-        title
-      }
-    }
     contentfulArtboard(slug: { eq: $slug }) {
       title
       artboard {

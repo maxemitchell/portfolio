@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { graphql } from 'gatsby'
-import { Helmet } from 'react-helmet'
+import SEO from '../components/SEO'
 import Img from 'gatsby-image/withIEPolyfill'
 import Layout from '../components/Layout'
 
@@ -23,7 +23,7 @@ const PhotoCollectionTemplate = ({ data }) => {
 
   return (
     <Layout>
-      <Helmet title={photoCollection.title} />
+      <SEO title={photoCollection.title} />
       <div
         className="flex flex-wrap w-full font-manrope text-themeOffWhite mx-auto justify-center xl:w-5/6"
         onClick={handleClose}
@@ -118,11 +118,6 @@ export default PhotoCollectionTemplate
 
 export const query = graphql`
   query PhotoCollectiondBySlug($slug: String!) {
-    site {
-      siteMetadata {
-        title
-      }
-    }
     contentfulPhotoCollection(slug: { eq: $slug }) {
       title
       photos {
