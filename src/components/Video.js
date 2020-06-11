@@ -1,17 +1,13 @@
 import React from 'react'
+import ReactPlayer from 'react-player/lazy'
 
-const Video = ({ videoSrcURL, videoTitle, className }) => (
+const Video = ({ videoID, className }) => (
   <div className={className}>
-    <iframe
-      src={videoSrcURL}
-      title={videoTitle}
-      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-      frameBorder="0"
+    <ReactPlayer
+      light={'https://i.ytimg.com/vi_webp/' + videoID + '/0.webp'}
+      url={'https://www.youtube.com/embed/' + videoID}
       width="100%"
       height="100%"
-      webkitallowfullscreen="true"
-      mozallowfullscreen="true"
-      allowFullScreen
     />
   </div>
 )

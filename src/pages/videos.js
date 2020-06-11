@@ -16,22 +16,22 @@ const Index = ({ data }) => {
 
           {youtubeVideos.map(({ node: youtubeVideo }) => {
             return (
-              <div className="flex flex-no-wrap w-full md:w-1/2 justify-center items-center pb-6 px-4" key={youtubeVideo.videoId}>
+              <div
+                className="flex flex-no-wrap w-full md:w-1/2 justify-center items-center pb-6 px-4"
+                key={youtubeVideo.videoId}
+              >
                 <div className="w-full">
                   <h3 className="w-full text-left text-2xl font-manrope font-light text-themeBlue mb-2">
                     {youtubeVideo.title}
                   </h3>
                   <div className="w-full h-64 mb-2 picture-border-sm-2">
                     <Video
-                      videoSrcURL={
-                        'https://www.youtube.com/embed/' + youtubeVideo.videoId
-                      }
+                      videoID={youtubeVideo.videoId}
                       videoTitle={youtubeVideo.title}
                       className="h-full w-full"
                     />
                   </div>
                 </div>
-  
               </div>
             )
           })}

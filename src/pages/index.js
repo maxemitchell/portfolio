@@ -129,9 +129,7 @@ const Index = ({ data }) => {
             return (
               <div className="w-full h-64 md:h-96 lg:h-128 mx-4 mb-5 mt-4 picture-border-sm-1">
                 <Video
-                  videoSrcURL={
-                    'https://www.youtube.com/embed/' + youtubeVideo.videoId
-                  }
+                  videoID={youtubeVideo.videoId}
                   videoTitle={youtubeVideo.title}
                   className="h-full w-full"
                 />

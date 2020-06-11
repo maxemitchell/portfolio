@@ -27,9 +27,6 @@ if(process.env.gatsby_executing_command != 'serve'){
 
 module.exports = {
   siteMetadata: {
-    title: 'maxemitchell portfolio',
-  },
-  siteMetadata: {
     siteUrl: "https://www.maxemitchell.com",
     title: "Max Mitchell",
     titleTemplate: "Max Mitchell | %s",
@@ -100,7 +97,7 @@ module.exports = {
       resolve: 'gatsby-plugin-google-fonts',
       options: {
         fonts: [
-          'Manrope\:200,300,400,500,600,700,800',
+          'Manrope\:200,300,400,500,600,700',
         ],
         display: 'swap'
       },
@@ -116,7 +113,7 @@ module.exports = {
     {
         resolve: 'gatsby-plugin-manifest',
         options: {
-            name: 'maxemitchell',
+            name: 'Max Mitchell',
             short_name: 'maxemitchell',
             start_url: '/',
             background_color: '#342e37',

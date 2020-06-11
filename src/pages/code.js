@@ -16,7 +16,7 @@ const Index = ({ data }) => {
           {githubRepos.map((repo, index) => {
             return (
               <a
-                className="flex flex-wrap w-full justify-center items-center mt-3 mb-3 mx-4 hover:code-bg duration-500" key={index.videoId}
+                className="flex flex-wrap w-full justify-center items-center mt-3 mb-3 mx-4 hover:code-bg duration-500" key={index}
                 href={repo.url}
                 target="_blank"
               >

@@ -26,6 +26,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.0.0",
+    "react-player": "^2.2.0",
     "sharp": "^0.25.2"
   },
   "devDependencies": {
