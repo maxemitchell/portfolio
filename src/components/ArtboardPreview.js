@@ -15,6 +15,7 @@ const ArtboardPreview = ({ slug, title, fluid }) => {
         className="picture-border-sm-2 w-full group-hover:picture-border-sm-1 duration-500"
         alt="Featured Image"
         fluid={fluid}
+        loading="lazy"
       />
     </Link>
   )

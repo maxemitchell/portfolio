@@ -148,7 +148,7 @@ export const query = graphql`
   query Index {
     contentfulSiteData {
       featuredImage {
-        fluid(maxHeight: 800) {
+        fluid(maxHeight: 620) {
           ...GatsbyContentfulFluid_withWebp
         }
       }
@@ -162,7 +162,7 @@ export const query = graphql`
           title
           slug
           artboard {
-            fluid(maxWidth: 1200) {
+            fluid(maxWidth: 1100) {
               ...GatsbyContentfulFluid_withWebp
             }
           }
@@ -178,7 +178,7 @@ export const query = graphql`
           title
           slug
           featuredImage {
-            fluid(maxHeight: 720) {
+            fluid(maxHeight: 520) {
               ...GatsbyContentfulFluid_withWebp
             }
           }
