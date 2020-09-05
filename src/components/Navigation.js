@@ -49,10 +49,10 @@ const Navigation = () => {
         </Link>
 
         <NavItem
-          to="/code/"
+          to="/code_art/"
           className="boxshadow-3d-left md:boxshadow-3d-right"
         >
-          code
+          code_art
         </NavItem>
         <NavItem
           to="/about/"

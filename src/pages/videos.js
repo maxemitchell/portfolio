@@ -4,7 +4,7 @@ import SEO from '../components/SEO'
 import Layout from '../components/Layout'
 import Video from '../components/Video'
 
-const Index = ({ data }) => {
+const Videos = ({ data }) => {
   const youtubeVideos = data.allYoutubeVideo.edges
 
   return (
@@ -42,7 +42,7 @@ const Index = ({ data }) => {
   )
 }
 
-export default Index
+export default Videos
 
 export const query = graphql`
   query Videos {

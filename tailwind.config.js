@@ -197,4 +197,7 @@ module.exports = {
       addUtilities(newUtilities, ['responsive', 'hover', 'group-hover'])
     }),
   ],
+  future: {
+    removeDeprecatedGapUtilities: true,
+  },
 }

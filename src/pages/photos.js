@@ -6,7 +6,7 @@ import Header from '../components/Header'
 import ArtboardPreview from '../components/ArtboardPreview'
 import PhotoCollectionPreview from '../components/PhotoCollectionPreview'
 
-const Index = ({ data }) => {
+const Photos = ({ data }) => {
   const artboards = data.allContentfulArtboard.edges
   const photoCollections = data.allContentfulPhotoCollection.edges
 
@@ -54,7 +54,7 @@ const Index = ({ data }) => {
   )
 }
 
-export default Index
+export default Photos
 
 export const query = graphql`
   query Photos {

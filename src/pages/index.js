@@ -13,6 +13,7 @@ const Index = ({ data }) => {
   const artboards = data.allContentfulArtboard.edges
   const photoCollections = data.allContentfulPhotoCollection.edges
   const youtubeVideos = data.allYoutubeVideo.edges
+  const githubRepos = data.githubData.data.viewer.repositories.nodes
 
   return (
     <Layout>
@@ -26,11 +27,8 @@ const Index = ({ data }) => {
             <Img alt="Featured Image" fluid={profilePicture.fluid} />
           </Link>
 
-          <div className="flex flex-wrap w-full sm:w-2/5 font-manrope mt-2 sm:mt-0 sm:px-6 content-center max-w-lg">
-            <p className="w-full text-center sm:text-left text-4xl sm:text-5xl lg:text-6xl font-light mr-40 sm:mr-0">
-              hi!
-            </p>
-            <p className="w-full text-center text-2xl sm:text-3xl lg:text-5xl font-light">
+          <div className="flex flex-wrap w-full sm:w-2/5 font-manrope mt-2 sm:mt-0 px-1 sm:px-6 content-center max-w-lg">
+            <p className="w-full text-center text-3xl sm:text-4xl lg:text-5xl font-light">
               I'm
               <Link
                 to="/about/"
@@ -79,17 +77,24 @@ const Index = ({ data }) => {
                 {' '}
                 videos
               </Link>
-              , and
-              <Link
-                to="/code/"
+              , write
+              <a
+                href="https://github.com/maxemitchell"
+                target="_blank"
+                rel="noreferrer"
                 className="inline text-themeBlue hover:text-themeRed duration-500"
               >
                 {' '}
-                code
+                normal code
+              </a>
+              , and write
+              <Link
+                to="/code_art/"
+                className="inline text-themeBlue hover:text-themeRed duration-500"
+              >
+                {' '}
+                creative code
               </Link>
-            </p>
-            <p className="w-full text-center text-xl sm:text-2xl lg:text-3xl font-normal pt-1 sm:pt-6">
-              enjoy! :)
             </p>
           </div>
         </div>
@@ -137,6 +142,28 @@ const Index = ({ data }) => {
             )
           })}
         </div>
+
+        <div className="flex w-full flex-wrap justify-center">
+          <Header variant="3">recent code repos</Header>
+
+          {githubRepos.slice(0, 3).map((repo, index) => {
+            return (
+              <a
+                className="flex flex-wrap w-full justify-center items-center mt-2 mb-3 mx-4 hover:code-bg duration-500"
+                key={index}
+                href={repo.url}
+                target="_blank"
+              >
+                <h3 className="w-full text-left text-2xl font-manrope font-light text-themeBlue mb-2">
+                  {repo.name}
+                </h3>
+                <p className="w-full text-base font-manrope font-thin">
+                  {repo.description}
+                </p>
+              </a>
+            )
+          })}
+        </div>
       </div>
     </Layout>
   )
@@ -154,8 +181,8 @@ export const query = graphql`
       }
     }
     allContentfulArtboard(
-      limit: 2,
-      sort: {fields: artboardDate, order: DESC}
+      limit: 2
+      sort: { fields: artboardDate, order: DESC }
     ) {
       edges {
         node {
@@ -170,8 +197,8 @@ export const query = graphql`
       }
     }
     allContentfulPhotoCollection(
-      limit: 4, 
-      sort: {fields: collectionDate, order: DESC}
+      limit: 4
+      sort: { fields: collectionDate, order: DESC }
     ) {
       edges {
         node {
@@ -191,6 +218,23 @@ export const query = graphql`
           title
           description
           videoId
+        }
+      }
+    }
+    githubData {
+      data {
+        viewer {
+          repositories {
+            totalCount
+            nodes {
+              description
+              name
+              url
+              stargazers {
+                totalCount
+              }
+            }
+          }
         }
       }
     }

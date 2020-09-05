@@ -5,6 +5,7 @@
   "repository": "https://github.com/maxemitchell/portfolio",
   "author": "Max Mitchell <maxemitchell@gmail.com>",
   "dependencies": {
+    "@loadable/component": "^5.13.1",
     "@types/react-helmet": "^6.0.0",
     "core-js": "3",
     "gatsby-image": "^2.3.1",
@@ -23,6 +24,8 @@
     "gatsby-transformer-remark": "^2.7.1",
     "gatsby-transformer-sharp": "^2.4.3",
     "lodash": "^4.17.11",
+    "p5": "0.9",
+    "raw-loader": "^4.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.0.0",
