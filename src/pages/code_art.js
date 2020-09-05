@@ -7,6 +7,7 @@ import p5 from 'p5'
 import 'p5/lib/addons/p5.sound'
 import ghostCoastShader from '../shaders/ghostCoast.frag'
 import vertShader from '../shaders/base.vert'
+import ghostCoast from '../shaders/Space Ghost Coast To Coast.mp3'
 
 class CodeArt extends React.Component {
   constructor(props) {
@@ -27,7 +28,7 @@ class CodeArt extends React.Component {
 
     p.preload = () => {
       p.soundFormats('mp3')
-      song = p.loadSound('../shaders/Space Ghost Coast To Coast.mp3')
+      song = p.loadSound(ghostCoast)
     }
 
     p.setup = () => {
