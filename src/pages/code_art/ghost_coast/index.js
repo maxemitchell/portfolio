@@ -1,15 +1,14 @@
 import React from 'react'
-import { graphql } from 'gatsby'
-import SEO from '../components/SEO'
-import Layout from '../components/Layout'
-import Header from '../components/Header'
+import SEO from '../../../components/SEO'
+import Layout from '../../../components/Layout'
+import Header from '../../../components/Header'
 import p5 from 'p5'
 import 'p5/lib/addons/p5.sound'
-import ghostCoastShader from '../shaders/ghostCoast.frag'
-import vertShader from '../shaders/base.vert'
-import ghostCoast from '../shaders/Space Ghost Coast To Coast.mp3'
+import ghostCoastShader from './ghostCoast.frag'
+import vertShader from './base.vert'
+import ghostCoast from './Space Ghost Coast To Coast.mp3'
 
-class CodeArt extends React.Component {
+class GhostCoast extends React.Component {
   constructor(props) {
     super(props)
     this.myRef = React.createRef()
@@ -177,4 +176,4 @@ class CodeArt extends React.Component {
   }
 }
 
-export default CodeArt
+export default GhostCoast
