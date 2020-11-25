@@ -26,7 +26,7 @@ const CodeArt = ({data}) => {
                         <Link to="/code_art/thanksgiving_break">
                             <Header variant="1">Thanksgiving Break</Header>
                         </Link>
-                        <div className="flex w-full boxshadow-3d-left mt-4 md:mt-8 mb-4">
+                        <div className="flex w-full boxshadow-3d-left mt-4 mb-4">
                             <p className="w-full text-sm md:text-md lg:text-lg font-thin font-manrope m-4">
                                 Over Thanksgiving Break 2020, I created this visualizer using{' '}
                                 <a
