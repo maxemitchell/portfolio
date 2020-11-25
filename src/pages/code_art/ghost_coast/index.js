@@ -9,8 +9,8 @@ import vertShader from './base.vert'
 import ghostCoast from './Space Ghost Coast To Coast.mp3'
 
 class GhostCoast extends React.Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
     this.myRef = React.createRef()
   }
 
@@ -126,49 +126,51 @@ class GhostCoast extends React.Component {
     return (
       <Layout>
         <SEO title="Code Art" />
-        <div className="flex flex-wrap mt-10 mx-auto w-full justify-center items-center mb-10">
-          <Header variant="3">Space Ghost Coast To Coast</Header>
+        <div className="flex flex-wrap lg:flex-no-wrap mt-8 w-full justify-center items-center">
           <div
-            className="justify-center mt-6 mb-6"
+            className="flex justify-center"
             ref={this.myRef}
           />
-          <div className="flex w-full lg:w-1/4 justify-center lg:justify-start lg:ml-2">
-            <p className="w-full text-md md:text-lg lg:text-xl font-thin font-manrope mx-4">
-              Inspired by{' '}
-              <a
-                href="https://opensource.glassanimals.com/"
-                target="_blank"
-                rel="noreferrer"
-                className="inline text-themeBlue hover:text-themeRed duration-500"
-              >
-                Glass Animal's
-              </a>{' '}
-              latest album{' '}
-              <a
-                href="https://en.wikipedia.org/wiki/Dreamland_(Glass_Animals_album)"
-                target="_blank"
-                rel="noreferrer"
-                className="inline text-themeRed hover:text-themeBlue duration-500"
-              >
-                Dreamland
-              </a>
-              , I decided to create a music visualizer for the song{' '}
-              <a
-                href="https://www.youtube.com/watch?v=ejirGSd3Hws"
-                target="_blank"
-                rel="noreferrer"
-                className="inline text-themeBlue hover:text-themeRed duration-500"
-              >
-                Space Ghost Coast to Coast{' '}
-              </a>
-              with GLSL and p5.js. This was my first
-              time using both, but I love the end result.
-              Please{' '}
-              <strong>
-                click/tap{' '}
-              </strong> 
-              on the visualizer to <strong>start/stop</strong> the music.
-            </p>
+          <div className="flex w-full flex-wrap max-w-sm lg:w-1/2 mb-4 lg:ml-12 lg:justify-start">
+            <Header variant="1">Space Ghost Coast To Coast</Header>
+            <div className="flex w-full boxshadow-3d-right mt-4 lg:mt-8 mb-4">
+                <p className="w-full text-sm md:text-md lg:text-lg font-thin font-manrope m-4">
+                Inspired by{' '}
+                <a
+                    href="https://opensource.glassanimals.com/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline text-themeBlue hover:text-themeRed duration-500"
+                >
+                    Glass Animal's
+                </a>{' '}
+                latest album{' '}
+                <a
+                    href="https://en.wikipedia.org/wiki/Dreamland_(Glass_Animals_album)"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline text-themeRed hover:text-themeBlue duration-500"
+                >
+                    Dreamland
+                </a>
+                , I decided to create a music visualizer for the song{' '}
+                <a
+                    href="https://www.youtube.com/watch?v=ejirGSd3Hws"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline text-themeBlue hover:text-themeRed duration-500"
+                >
+                    Space Ghost Coast to Coast{' '}
+                </a>
+                with GLSL and p5.js. This was my first
+                time using both, but I love the end result.
+                </p>
+            </div>
+            <div className="flex w-full boxshadow-3d-right mt-4 lg:mt-8">
+                <p className="w-full text-sm md:text-md lg:text-lg font-thin font-manrope m-4">
+                    Please <b>click</b> on the visualization to start/stop the song.
+                </p>
+            </div>
           </div>
         </div>
       </Layout>

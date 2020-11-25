@@ -9,79 +9,97 @@ const CodeArt = ({data}) => {
     return (
         <Layout>
             <SEO title="Code Art" />
-            <div className="flex flex-wrap mt-10 justify-center items-center mb-10">
-                <Link
-                    to="/code_art/ghost_coast"
-                    className="flex flex-wrap md:flex-no-wrap w-full justify-center items-center mb-8"
-                >
-                    <div className="flex flex-wrap w-1/3 justify-end text-right">
-                        <Header variant="1">Space Ghost Coast To Coast</Header>
-                        <p className="w-full text-sm md:text-md lg:text-lg font-thin font-manrope mr-8 mb-4">
-                            Inspired by{' '}
-                            <a
-                                href="https://opensource.glassanimals.com/"
-                                target="_blank"
-                                rel="noreferrer"
-                                className="inline text-themeBlue hover:text-themeRed duration-500"
-                            >
-                                Glass Animal's
-                            </a>{' '}
-                            latest album{' '}
-                            <a
-                                href="https://en.wikipedia.org/wiki/Dreamland_(Glass_Animals_album)"
-                                target="_blank"
-                                rel="noreferrer"
-                                className="inline text-themeRed hover:text-themeBlue duration-500"
-                            >
-                                Dreamland
-                            </a>
-                            , I decided to create a music visualizer for the song{' '}
-                            <a
-                                href="https://www.youtube.com/watch?v=ejirGSd3Hws"
-                                target="_blank"
-                                rel="noreferrer"
-                                className="inline text-themeBlue hover:text-themeRed duration-500"
-                            >
-                                Space Ghost Coast to Coast{' '}
-                            </a>
-                            with GLSL and p5.js. This was my first
-                            time using both, but I love the end result.
-                            Please{' '}
-                            <strong>
-                                click/tap{' '}
-                            </strong> 
-                            on the visualizer to <strong>start/stop</strong> the music.
-                        </p>
-                    </div>
-                    <div className="flex w-1/3 justify-start ml-4">
-                        <Img
-                            className="picture-border-sm-2"
-                            alt="Space Ghost Preview Image"
-                            fixed={data.ghostCoast.childImageSharp.fixed}
-                            loading="lazy"
-                        />
-                    </div>
-                </Link>
+            <div className="flex flex-wrap mt-10 justify-center items-center mb-10 max-w-6xl w-full mx-auto">
 
-                <Link
-                    to="/code_art/thanksgiving_break"
-                    className="flex flex-wrap md:flex-no-wrap w-full justify-center items-center mb-8"
-                >
-                    <div className="flex w-1/3 justify-end mr-4">
-                        <Img
-                            className="picture-border-sm-2"
-                            alt="Space Ghost Preview Image"
-                            fixed={data.ghostCoast.childImageSharp.fixed}
-                            loading="lazy"
-                        />
+                <div className="flex flex-wrap md:flex-no-wrap w-full justify-center md:justify-start items-center">
+                    <div className="flex w-3/4 md:w-1/2 xl:w-1/3 justify-center md:justify-end mx-4">
+                        <Link to="/code_art/thanksgiving_break" className="w-full max-w-md">
+                            <Img
+                                className="picture-border-sm-2 w-full"
+                                alt="Space Ghost Preview Image"
+                                fluid={data.thanksgivingBreak.childImageSharp.fluid}
+                                loading="lazy"
+                            />
+                        </Link>
                     </div>
-                    <div className="flex flex-wrap w-1/3 justify-start text-left">
-                        <Header variant="1">Thanksgiving Break</Header>
-                        <p className="w-full text-sm md:text-md lg:text-lg font-thin font-manrope ml-8 mb-4">
-                            It was Thanksgiving Break bitches
-                        </p>
+                    <div className="hidden md:flex flex-wrap max-w-lg w-3/4 md:w-1/2 xl:w-1/3 justify-start text-left ml-8 mr-4">
+                        <Link to="/code_art/thanksgiving_break">
+                            <Header variant="1">Thanksgiving Break</Header>
+                        </Link>
+                        <div className="flex w-full boxshadow-3d-left mt-4 md:mt-8 mb-4">
+                            <p className="w-full text-sm md:text-md lg:text-lg font-thin font-manrope m-4">
+                                Over Thanksgiving Break 2020, I created this visualizer using{' '}
+                                <a
+                                    href="https://p5js.org/"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="inline text-themeRed hover:text-themeBlue duration-500"
+                                >
+                                    p5.js
+                                </a>. The song featured is an unreleased track from my friend{' '}
+                                <a
+                                    href="https://www.instagram.com/bmark347/"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="inline text-themeBlue hover:text-themeRed duration-500"
+                                >
+                                    Ben Mark
+                                </a>
+                                . I also released a YouTube video documenting my creation process.
+                            </p>
+                        </div>
                     </div>
-                </Link>
+                </div>
+                <div className="flex flex-wrap md:flex-no-wrap w-full justify-center md:justify-end items-center mt-12">
+                    <div className="hidden md:flex flex-wrap max-w-lg w-3/4 md:w-1/2 xl:w-1/3 justify-end text-right mr-8 ml-4">
+                        <Link to="/code_art/ghost_coast">
+                            <Header variant="4">Ghost Coast</Header>
+                        </Link>
+                            <div className="flex w-full boxshadow-3d-right mt-4 mb-4">
+                                <p className="w-full text-sm md:text-md lg:text-lg font-thin font-manrope m-4">
+                                Inspired by{' '}
+                                <a
+                                    href="https://opensource.glassanimals.com/"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="inline text-themeBlue hover:text-themeRed duration-500"
+                                >
+                                    Glass Animal's
+                                </a>{' '}
+                                latest album{' '}
+                                <a
+                                    href="https://en.wikipedia.org/wiki/Dreamland_(Glass_Animals_album)"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="inline text-themeRed hover:text-themeBlue duration-500"
+                                >
+                                    Dreamland
+                                </a>
+                                , I decided to create a music visualizer for the song{' '}
+                                <a
+                                    href="https://www.youtube.com/watch?v=ejirGSd3Hws"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="inline text-themeBlue hover:text-themeRed duration-500"
+                                >
+                                    Space Ghost Coast to Coast{' '}
+                                </a>
+                                with GLSL and p5.js. This was my first
+                                time using both, but I love the end result.
+                                </p>
+                            </div>
+                    </div>
+                    <div className="flex w-3/4 md:w-1/2 xl:w-1/3 justify-center md:justify-start mx-4">
+                        <Link to="/code_art/ghost_coast" className="w-full max-w-md">
+                            <Img
+                                className="picture-border-sm-1"
+                                alt="Space Ghost Preview Image"
+                                fluid={data.ghostCoast.childImageSharp.fluid}
+                                loading="lazy"
+                            />
+                        </Link>
+                    </div>
+                </div>
             </div>
         </Layout>
     )
@@ -95,9 +113,18 @@ export const query = graphql`
             relativePath: { eq: "ghost_coast_preview.png" }
         ) {
             childImageSharp {
-            fixed(width: 300, height: 300) {
-                ...GatsbyImageSharpFixed
+                fluid(traceSVG: { background: "#000000", color: "#0bbcd6" }) {
+                    ...GatsbyImageSharpFluid_tracedSVG
+                }
             }
+        }
+        thanksgivingBreak: file(
+            relativePath: { eq: "thanksgiving_break_preview.png" }
+        ) {
+            childImageSharp {
+                fluid(traceSVG: { background: "#000000", color: "#0bbcd6" }) {
+                    ...GatsbyImageSharpFluid_tracedSVG
+                }
             }
         }
  
