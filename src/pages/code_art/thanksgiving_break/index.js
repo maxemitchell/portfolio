@@ -238,7 +238,7 @@ class ThanksgivingBreak extends React.Component {
                                 >
                                     Ben Mark
                                 </a>
-                                . I also released a YouTube video documenting my creation process. Please <b>click</b> on the visualization to start/stop the song. You can cycle the color palettes with <b>space bar</b>.
+                                . I also released a YouTube video documenting my creation process.
                             </p>
                         </div>
                         <div className="flex w-full boxshadow-3d-right mt-4 lg:mt-8">
