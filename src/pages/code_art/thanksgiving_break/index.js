@@ -213,6 +213,7 @@ class ThanksgivingBreak extends React.Component {
             <Layout>
                 <SEO title="Code Art" />
                 <div className="flex flex-wrap lg:flex-no-wrap mt-8 w-full justify-center items-center">
+                    {/* The actaual canvas for p5.js */}
                     <div
                         className="flex justify-center"
                         ref={this.myRef}
@@ -236,9 +237,18 @@ class ThanksgivingBreak extends React.Component {
                                     rel="noreferrer"
                                     className="inline text-themeBlue hover:text-themeRed duration-500"
                                 >
-                                    Ben Mark
+                                    Ben Mark  https://www.youtube.com/watch?v=_yXQayoxJOg
                                 </a>
-                                . I also released a YouTube video documenting my creation process.
+                                . I also released a{' '}
+                                <a
+                                    href="https://www.youtube.com/watch?v=_yXQayoxJOg"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="inline text-themeRed hover:text-themeBlue duration-500"
+                                >
+                                    YouTube video{' '}
+                                </a>
+                                documenting my creation process.
                             </p>
                         </div>
                         <div className="flex w-full boxshadow-3d-right mt-4 lg:mt-8">

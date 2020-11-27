@@ -45,7 +45,16 @@ const CodeArt = ({data}) => {
                                 >
                                     Ben Mark
                                 </a>
-                                . I also released a YouTube video documenting my creation process.
+                                . I also released a{' '}
+                                <a
+                                    href="https://www.youtube.com/watch?v=_yXQayoxJOg"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="inline text-themeRed hover:text-themeBlue duration-500"
+                                >
+                                    YouTube video{' '}
+                                </a>
+                                documenting my creation process.
                             </p>
                         </div>
                     </div>
