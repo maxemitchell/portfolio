@@ -237,7 +237,7 @@ class ThanksgivingBreak extends React.Component {
                                     rel="noreferrer"
                                     className="inline text-themeBlue hover:text-themeRed duration-500"
                                 >
-                                    Ben Mark  https://www.youtube.com/watch?v=_yXQayoxJOg
+                                    Ben Mark
                                 </a>
                                 . I also released a{' '}
                                 <a
