@@ -127,6 +127,8 @@ class PackedCircles extends React.Component {
             p.noStroke()
 
             canvas = p.createCanvas(dimension, dimension)
+            canvas.mouseClicked(p.handleClick)
+
             circles = new Circles()
         }
 
@@ -143,6 +145,10 @@ class PackedCircles extends React.Component {
         p.windowResized = () => {
             dimension = p.min(p.windowWidth / windowRatio, p.windowHeight / windowRatio)
             p.resizeCanvas(dimension, dimension)
+        }
+
+        p.handleClick = () => {
+            circles = new Circles()
         }
     }
 
@@ -193,6 +199,11 @@ class PackedCircles extends React.Component {
                                     example
                                 </a>
                                 {' '}by Daniel Shiffman (notably his use of target circles per frame). Color Palette comes from Childish Gambino's STN MTN mixtape. 
+                            </p>
+                        </div>
+                        <div className="flex w-full boxshadow-3d-right mt-4 lg:mt-8">
+                            <p className="w-full text-sm md:text-md lg:text-lg font-thin font-manrope m-4">
+                                This artwork <strong>randomly generates</strong> each time you <strong>click</strong> it. So please click it as much as your heart desires.
                             </p>
                         </div>
                     </div>
