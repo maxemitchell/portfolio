@@ -4,12 +4,12 @@ const Header = ({ variant, children }) => {
   return (
     <div className="w-full text-center mt-5 mb-5">
       {variant === '1' && (
-        <h3 className="inline font-bold text-2xl px-3 md:px-4 pb-1 md:pb-2 text-black gradient-bg border-tl rounded-tr-lg rounded-bl-lg">
+        <h3 className="inline font-bold text-2xl px-3 md:px-4 pb-1 text-black gradient-bg border-tl rounded-tr-lg rounded-bl-lg">
           {children}
         </h3>
       )}
       {variant === '2' && (
-        <h3 className="inline font-bold text-2xl px-3 md:px-4 pb-1 md:pb-2 text-black gradient-bg border-corners rounded-tr-lg rounded-bl-lg">
+        <h3 className="inline font-bold text-2xl px-3 md:px-4 pb-1 text-black gradient-bg border-corners rounded-tr-lg rounded-bl-lg">
           {children}
         </h3>
       )}
@@ -19,7 +19,7 @@ const Header = ({ variant, children }) => {
         </h3>
       )}
       {variant === '4' && (
-        <h3 className="inline font-bold text-2xl px-3 md:px-4 pb-1 md:pb-2 text-black gradient-bg border-tr rounded-tl-lg rounded-br-lg">
+        <h3 className="inline font-bold text-2xl px-3 md:px-4 pb-1 text-black gradient-bg border-tr rounded-tl-lg rounded-br-lg">
           {children}
         </h3>
       )}

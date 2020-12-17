@@ -126,9 +126,9 @@ class GhostCoast extends React.Component {
     return (
       <Layout>
         <SEO title="Code Art" />
-        <div className="flex flex-wrap lg:flex-no-wrap mt-8 w-full justify-center items-center">
+        <div className="flex flex-wrap lg:flex-no-wrap mt-12 w-full justify-center items-center">
           <div
-            className="flex justify-center"
+            className="picture-border-sm-1 flex justify-center"
             ref={this.myRef}
           />
           <div className="flex w-full flex-wrap max-w-sm lg:w-1/2 mb-4 lg:ml-12 lg:justify-start">

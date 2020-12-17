@@ -109,6 +109,46 @@ const CodeArt = ({data}) => {
                         </Link>
                     </div>
                 </div>
+                <div className="flex flex-wrap md:flex-no-wrap w-full justify-center md:justify-start items-center mt-12">
+                    <div className="flex w-3/4 md:w-1/2 xl:w-1/3 justify-center md:justify-end mx-4">
+                        <Link to="/code_art/packed_circles" className="w-full max-w-md">
+                            <Img
+                                className="picture-border-sm-2 w-full"
+                                alt="PCK MTN Preview"
+                                fluid={data.circlePacking.childImageSharp.fluid}
+                                loading="lazy"
+                            />
+                        </Link>
+                    </div>
+                    <div className="hidden md:flex flex-wrap max-w-lg w-3/4 md:w-1/2 xl:w-1/3 justify-start text-left ml-8 mr-4">
+                        <Link to="/code_art/packed_circles">
+                            <Header variant="1">PCK MTN</Header>
+                        </Link>
+                        <div className="flex w-full boxshadow-3d-left mt-4 mb-4">
+                            <p className="w-full text-sm md:text-md lg:text-lg font-thin font-manrope m-4">
+                                My first piece of generative art. Inspired by various posts on{' '}
+                                <a
+                                    href="https://www.reddit.com/r/generative/"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="inline text-themeRed hover:text-themeBlue duration-500"
+                                >
+                                    r/generative
+                                </a>
+                                {' '}and this{' '}
+                                <a
+                                    href="https://editor.p5js.org/cah689/sketches/B1kCFI36b"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="inline text-themeBlue hover:text-themeRed duration-500"
+                                >
+                                    example
+                                </a>
+                                {' '}by Daniel Shiffman (notably his use of target circles per frame). Color Palette comes from Childish Gambino's STN MTN mixtape. 
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </Layout>
     )
@@ -136,6 +176,14 @@ export const query = graphql`
                 }
             }
         }
- 
+        circlePacking: file(
+            relativePath: { eq: "circle_packing_preview.png" }
+        ) {
+            childImageSharp {
+                fluid(traceSVG: { background: "#000000", color: "#0bbcd6" }) {
+                    ...GatsbyImageSharpFluid_tracedSVG
+                }
+            }
+        }
     }
 `
