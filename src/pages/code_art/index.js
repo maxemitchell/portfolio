@@ -149,6 +149,37 @@ const CodeArt = ({data}) => {
                         </div>
                     </div>
                 </div>
+                <div className="flex flex-wrap md:flex-no-wrap w-full justify-center md:justify-end items-center mt-12">
+                    <div className="hidden md:flex flex-wrap max-w-lg w-3/4 md:w-1/2 xl:w-1/3 justify-end text-right mr-8 ml-4">
+                        <Link to="/code_art/color_of_average">
+                            <Header variant="4">Color of Average</Header>
+                        </Link>
+                            <div className="flex w-full boxshadow-3d-right mt-4 mb-4">
+                                <p className="w-full text-sm md:text-md lg:text-lg font-thin font-manrope m-4">
+                                My second generative art. Inspired by{' '}
+                                <a
+                                    href="https://www.reddit.com/r/generative/comments/kbvau2/oc_each_clock_shows_average_time_of_its_neighbors/"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="inline text-themeRed hover:text-themeBlue duration-500"
+                                >
+                                    this post
+                                </a>
+                                {' '}on reddit, I created some sort of naturally changing gradient. It has a nice pastel look to it, and works with a handful of source points that rotate the colorwheel while the rest of the points take the average value of their neighbors.
+                            </p>
+                            </div>
+                    </div>
+                    <div className="flex w-3/4 md:w-1/2 xl:w-1/3 justify-center md:justify-start mx-4">
+                        <Link to="/code_art/color_of_average" className="w-full max-w-md">
+                            <Img
+                                className="picture-border-sm-1"
+                                alt="Space Ghost Preview Image"
+                                fluid={data.colorAverage.childImageSharp.fluid}
+                                loading="lazy"
+                            />
+                        </Link>
+                    </div>
+                </div>
             </div>
         </Layout>
     )
@@ -178,6 +209,15 @@ export const query = graphql`
         }
         circlePacking: file(
             relativePath: { eq: "circle_packing_preview.png" }
+        ) {
+            childImageSharp {
+                fluid(traceSVG: { background: "#000000", color: "#0bbcd6" }) {
+                    ...GatsbyImageSharpFluid_tracedSVG
+                }
+            }
+        }
+        colorAverage: file(
+            relativePath: { eq: "color_of_average_preview.png" }
         ) {
             childImageSharp {
                 fluid(traceSVG: { background: "#000000", color: "#0bbcd6" }) {
