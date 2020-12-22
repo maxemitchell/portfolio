@@ -19,7 +19,7 @@ const Header = ({ variant, children }) => {
         </h3>
       )}
       {variant === '4' && (
-        <h3 className="inline font-bold text-2xl px-3 md:px-4 pb-1 text-black gradient-bg border-tr rounded-tl-lg rounded-br-lg">
+        <h3 className="inline font-bold text-2xl px-3 md:px-4 pb-1 text-black gradient-bg-2 border-tr rounded-tl-lg rounded-br-lg">
           {children}
         </h3>
       )}

@@ -10,8 +10,40 @@ const CodeArt = ({data}) => {
         <Layout>
             <SEO title="Code Art" />
             <div className="flex flex-wrap mt-10 justify-center items-center mb-10 max-w-6xl w-full mx-auto">
+                
+                <div className="flex flex-wrap md:flex-no-wrap w-full justify-center md:justify-end items-center">
+                    <div className="hidden md:flex flex-wrap max-w-lg w-3/4 md:w-1/2 xl:w-1/3 justify-end text-right mr-8 ml-4">
+                        <Link to="/code_art/an_average_packing">
+                            <Header variant="4">An Average Packing</Header>
+                        </Link>
+                            <div className="flex w-full boxshadow-3d-right mt-4 mb-4">
+                                <p className="w-full text-sm md:text-md lg:text-lg font-thin font-manrope m-4">
+                                Combining my previous two generative works, this is a work with packed circles that take the average color of their neighbors, using the{' '}
+                                <a
+                                    href="https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="inline text-themeRed hover:text-themeBlue duration-500"
+                                >
+                                k-nearest neighbors algorithm
+                                </a>
+                                {' '}(In this case with k=7).
+                            </p>
+                            </div>
+                    </div>
+                    <div className="flex w-3/4 md:w-1/2 xl:w-1/3 justify-center md:justify-start mx-4">
+                        <Link to="/code_art/an_average_packing" className="w-full max-w-md">
+                            <Img
+                                className="picture-border-sm-1"
+                                alt="An Average Packing Preview Image"
+                                fluid={data.averagePacking.childImageSharp.fluid}
+                                loading="lazy"
+                            />
+                        </Link>
+                    </div>
+                </div>
 
-                <div className="flex flex-wrap md:flex-no-wrap w-full justify-center md:justify-start items-center">
+                <div className="flex flex-wrap md:flex-no-wrap w-full justify-center md:justify-start items-center mt-12">
                     <div className="flex w-3/4 md:w-1/2 xl:w-1/3 justify-center md:justify-end mx-4">
                         <Link to="/code_art/thanksgiving_break" className="w-full max-w-md">
                             <Img
@@ -218,6 +250,15 @@ export const query = graphql`
         }
         colorAverage: file(
             relativePath: { eq: "color_of_average_preview.png" }
+        ) {
+            childImageSharp {
+                fluid(traceSVG: { background: "#000000", color: "#0bbcd6" }) {
+                    ...GatsbyImageSharpFluid_tracedSVG
+                }
+            }
+        }
+        averagePacking: file(
+            relativePath: { eq: "an_average_packing_preview.png" }
         ) {
             childImageSharp {
                 fluid(traceSVG: { background: "#000000", color: "#0bbcd6" }) {

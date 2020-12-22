@@ -150,6 +150,11 @@ module.exports = {
           background:
             'linear-gradient(315deg, rgba(11,188,214,1) 5%, rgba(228,87,46,1) 95%)',
         },
+        '.gradient-bg-2': {
+          background: '#000000',
+          background:
+            'linear-gradient(225deg, rgba(228,87,46,1) 5%, rgba(11,188,214,1) 95%)',
+        },
         '.title-bg': {
           background: 'rgb(11,188,214',
           background:
