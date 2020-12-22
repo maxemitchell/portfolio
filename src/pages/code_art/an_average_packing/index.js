@@ -213,7 +213,6 @@ class AnAveragePacking extends React.Component {
         }
 
         p.handleClick = () => {
-            p.save()
             circles = new AveragedCircles()
             p.frameCount = 0
         }
