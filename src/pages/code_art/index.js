@@ -4,6 +4,7 @@ import SEO from '../../components/SEO'
 import Layout from '../../components/Layout'
 import Header from '../../components/Header'
 import Img from 'gatsby-image'
+import CodeArtPreview from '../../components/CodeArtPreview'
 
 const CodeArt = ({data}) => {
     return (
@@ -11,93 +12,113 @@ const CodeArt = ({data}) => {
             <SEO title="Code Art" />
             <div className="flex flex-wrap mt-10 justify-center items-center mb-10 max-w-6xl w-full mx-auto">
                 
-                <div className="flex flex-wrap md:flex-no-wrap w-full justify-center md:justify-end items-center">
-                    <div className="hidden md:flex flex-wrap max-w-lg w-3/4 md:w-1/2 xl:w-1/3 justify-end text-right mr-8 ml-4">
-                        <Link to="/code_art/an_average_packing">
-                            <Header variant="4">An Average Packing</Header>
-                        </Link>
-                            <div className="flex w-full boxshadow-3d-right mt-4 mb-4">
-                                <p className="w-full text-sm md:text-md lg:text-lg font-thin font-manrope m-4">
-                                Combining my previous two generative works, this is a work with packed circles that take the average color of their neighbors, using the{' '}
-                                <a
-                                    href="https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="inline text-themeRed hover:text-themeBlue duration-500"
-                                >
-                                k-nearest neighbors algorithm
-                                </a>
-                                {' '}(In this case with k=7).
-                            </p>
-                            </div>
-                    </div>
-                    <div className="flex w-3/4 md:w-1/2 xl:w-1/3 justify-center md:justify-start mx-4">
-                        <Link to="/code_art/an_average_packing" className="w-full max-w-md">
-                            <Img
-                                className="picture-border-sm-1"
-                                alt="An Average Packing Preview Image"
-                                fluid={data.averagePacking.childImageSharp.fluid}
-                                loading="lazy"
-                            />
-                        </Link>
-                    </div>
-                </div>
+                <CodeArtPreview
+                    slug="/code_art/unknown_lines"
+                    title="Unknown Lines"
+                    fluid={data.unknownLines.childImageSharp.fluid}
+                    type="left"
+                    description={
+                        <p className="w-full text-sm md:text-md lg:text-lg font-thin font-manrope m-4">
+                            Inspired by Joy Division's Unknown Pleasures album cover, I created this music visualizer using{' '}
+                            <a
+                                href="https://threejs.org/"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="inline text-themeRed hover:text-themeBlue duration-500"
+                            >
+                                three.js
+                            </a>. The song featured is an unreleased track from my friend{' '}
+                            <a
+                                href="https://www.instagram.com/bmark347/"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="inline text-themeBlue hover:text-themeRed duration-500"
+                            >
+                                Ben Mark
+                            </a>
+                            . I also released a{' '}
+                            <a
+                                href="https://www.youtube.com/watch?v=_yXQayoxJOg"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="inline text-themeRed hover:text-themeBlue duration-500"
+                            >
+                                YouTube video{' '}
+                            </a>
+                            documenting my creation process.
+                        </p>
+                    }
+                />
 
-                <div className="flex flex-wrap md:flex-no-wrap w-full justify-center md:justify-start items-center mt-12">
-                    <div className="flex w-3/4 md:w-1/2 xl:w-1/3 justify-center md:justify-end mx-4">
-                        <Link to="/code_art/thanksgiving_break" className="w-full max-w-md">
-                            <Img
-                                className="picture-border-sm-2 w-full"
-                                alt="Space Ghost Preview Image"
-                                fluid={data.thanksgivingBreak.childImageSharp.fluid}
-                                loading="lazy"
-                            />
-                        </Link>
-                    </div>
-                    <div className="hidden md:flex flex-wrap max-w-lg w-3/4 md:w-1/2 xl:w-1/3 justify-start text-left ml-8 mr-4">
-                        <Link to="/code_art/thanksgiving_break">
-                            <Header variant="1">Thanksgiving Break</Header>
-                        </Link>
-                        <div className="flex w-full boxshadow-3d-left mt-4 mb-4">
-                            <p className="w-full text-sm md:text-md lg:text-lg font-thin font-manrope m-4">
-                                Over Thanksgiving Break 2020, I created this visualizer using{' '}
-                                <a
-                                    href="https://p5js.org/"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="inline text-themeRed hover:text-themeBlue duration-500"
-                                >
-                                    p5.js
-                                </a>. The song featured is an unreleased track from my friend{' '}
-                                <a
-                                    href="https://www.instagram.com/bmark347/"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="inline text-themeBlue hover:text-themeRed duration-500"
-                                >
-                                    Ben Mark
-                                </a>
-                                . I also released a{' '}
-                                <a
-                                    href="https://www.youtube.com/watch?v=_yXQayoxJOg"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="inline text-themeRed hover:text-themeBlue duration-500"
-                                >
-                                    YouTube video{' '}
-                                </a>
-                                documenting my creation process.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div className="flex flex-wrap md:flex-no-wrap w-full justify-center md:justify-end items-center mt-12">
-                    <div className="hidden md:flex flex-wrap max-w-lg w-3/4 md:w-1/2 xl:w-1/3 justify-end text-right mr-8 ml-4">
-                        <Link to="/code_art/ghost_coast">
-                            <Header variant="4">Ghost Coast</Header>
-                        </Link>
-                            <div className="flex w-full boxshadow-3d-right mt-4 mb-4">
-                                <p className="w-full text-sm md:text-md lg:text-lg font-thin font-manrope m-4">
+                <CodeArtPreview
+                    slug="/code_art/an_average_packing"
+                    title="An Average Packing"
+                    fluid={data.averagePacking.childImageSharp.fluid}
+                    type="right"
+                    className="mt-12"
+                    description={
+                        <p className="w-full text-sm md:text-md lg:text-lg font-thin font-manrope m-4">
+                            Combining my previous two generative works, this is a work with packed circles that take the average color of their neighbors, using the{' '}
+                            <a
+                                href="https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="inline text-themeRed hover:text-themeBlue duration-500"
+                            >
+                            k-nearest neighbors algorithm
+                            </a>
+                            {' '}(In this case with k=7).
+                        </p>
+                    }
+                 />
+
+                <CodeArtPreview
+                    slug="/code_art/thanksgiving_break"
+                    title="Thanksgiving Break"
+                    fluid={data.thanksgivingBreak.childImageSharp.fluid}
+                    type="left"
+                    className="mt-12"
+                    description={
+                        <p className="w-full text-sm md:text-md lg:text-lg font-thin font-manrope m-4">
+                            Over Thanksgiving Break 2020, I created this visualizer using{' '}
+                            <a
+                                href="https://p5js.org/"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="inline text-themeRed hover:text-themeBlue duration-500"
+                            >
+                                p5.js
+                            </a>. The song featured is an unreleased track from my friend{' '}
+                            <a
+                                href="https://www.instagram.com/bmark347/"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="inline text-themeBlue hover:text-themeRed duration-500"
+                            >
+                                Ben Mark
+                            </a>
+                            . I also released a{' '}
+                            <a
+                                href="https://www.youtube.com/watch?v=_yXQayoxJOg"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="inline text-themeRed hover:text-themeBlue duration-500"
+                            >
+                                YouTube video{' '}
+                            </a>
+                            documenting my creation process.
+                        </p>
+                    }
+                />
+
+                <CodeArtPreview
+                    slug="/code_art/ghost_coast"
+                    title="Ghost Coast"
+                    fluid={data.ghostCoast.childImageSharp.fluid}
+                    type="right"
+                    className="mt-12"
+                    description={
+                        <p className="w-full text-sm md:text-md lg:text-lg font-thin font-manrope m-4">
                                 Inspired by{' '}
                                 <a
                                     href="https://opensource.glassanimals.com/"
@@ -128,90 +149,62 @@ const CodeArt = ({data}) => {
                                 with GLSL and p5.js. This was my first
                                 time using both, but I love the end result.
                                 </p>
-                            </div>
-                    </div>
-                    <div className="flex w-3/4 md:w-1/2 xl:w-1/3 justify-center md:justify-start mx-4">
-                        <Link to="/code_art/ghost_coast" className="w-full max-w-md">
-                            <Img
-                                className="picture-border-sm-1"
-                                alt="Space Ghost Preview Image"
-                                fluid={data.ghostCoast.childImageSharp.fluid}
-                                loading="lazy"
-                            />
-                        </Link>
-                    </div>
-                </div>
-                <div className="flex flex-wrap md:flex-no-wrap w-full justify-center md:justify-start items-center mt-12">
-                    <div className="flex w-3/4 md:w-1/2 xl:w-1/3 justify-center md:justify-end mx-4">
-                        <Link to="/code_art/packed_circles" className="w-full max-w-md">
-                            <Img
-                                className="picture-border-sm-2 w-full"
-                                alt="PCK MTN Preview"
-                                fluid={data.circlePacking.childImageSharp.fluid}
-                                loading="lazy"
-                            />
-                        </Link>
-                    </div>
-                    <div className="hidden md:flex flex-wrap max-w-lg w-3/4 md:w-1/2 xl:w-1/3 justify-start text-left ml-8 mr-4">
-                        <Link to="/code_art/packed_circles">
-                            <Header variant="1">PCK MTN</Header>
-                        </Link>
-                        <div className="flex w-full boxshadow-3d-left mt-4 mb-4">
-                            <p className="w-full text-sm md:text-md lg:text-lg font-thin font-manrope m-4">
-                                My first piece of generative art. Inspired by various posts on{' '}
-                                <a
-                                    href="https://www.reddit.com/r/generative/"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="inline text-themeRed hover:text-themeBlue duration-500"
-                                >
-                                    r/generative
-                                </a>
-                                {' '}and this{' '}
-                                <a
-                                    href="https://editor.p5js.org/cah689/sketches/B1kCFI36b"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="inline text-themeBlue hover:text-themeRed duration-500"
-                                >
-                                    example
-                                </a>
-                                {' '}by Daniel Shiffman (notably his use of target circles per frame). Color Palette comes from Childish Gambino's STN MTN mixtape. 
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div className="flex flex-wrap md:flex-no-wrap w-full justify-center md:justify-end items-center mt-12">
-                    <div className="hidden md:flex flex-wrap max-w-lg w-3/4 md:w-1/2 xl:w-1/3 justify-end text-right mr-8 ml-4">
-                        <Link to="/code_art/color_of_average">
-                            <Header variant="4">Color of Average</Header>
-                        </Link>
-                            <div className="flex w-full boxshadow-3d-right mt-4 mb-4">
-                                <p className="w-full text-sm md:text-md lg:text-lg font-thin font-manrope m-4">
-                                My second generative art. Inspired by{' '}
-                                <a
-                                    href="https://www.reddit.com/r/generative/comments/kbvau2/oc_each_clock_shows_average_time_of_its_neighbors/"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="inline text-themeRed hover:text-themeBlue duration-500"
-                                >
-                                    this post
-                                </a>
-                                {' '}on reddit, I created some sort of naturally changing gradient. It has a nice pastel look to it, and works with a handful of source points that rotate the colorwheel while the rest of the points take the average value of their neighbors.
-                            </p>
-                            </div>
-                    </div>
-                    <div className="flex w-3/4 md:w-1/2 xl:w-1/3 justify-center md:justify-start mx-4">
-                        <Link to="/code_art/color_of_average" className="w-full max-w-md">
-                            <Img
-                                className="picture-border-sm-1"
-                                alt="Space Ghost Preview Image"
-                                fluid={data.colorAverage.childImageSharp.fluid}
-                                loading="lazy"
-                            />
-                        </Link>
-                    </div>
-                </div>
+                    }
+                 />
+
+                 <CodeArtPreview
+                    slug="/code_art/packed_circles"
+                    title="PCK MTN"
+                    fluid={data.circlePacking.childImageSharp.fluid}
+                    type="left"
+                    className="mt-12"
+                    description={
+                        <p className="w-full text-sm md:text-md lg:text-lg font-thin font-manrope m-4">
+                            My first piece of generative art. Inspired by various posts on{' '}
+                            <a
+                                href="https://www.reddit.com/r/generative/"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="inline text-themeRed hover:text-themeBlue duration-500"
+                            >
+                                r/generative
+                            </a>
+                            {' '}and this{' '}
+                            <a
+                                href="https://editor.p5js.org/cah689/sketches/B1kCFI36b"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="inline text-themeBlue hover:text-themeRed duration-500"
+                            >
+                                example
+                            </a>
+                            {' '}by Daniel Shiffman (notably his use of target circles per frame). Color Palette comes from Childish Gambino's STN MTN mixtape. 
+                        </p>
+                    }
+                />
+
+                <CodeArtPreview
+                    slug="/code_art/color_of_average"
+                    title="Color of Average"
+                    fluid={data.colorAverage.childImageSharp.fluid}
+                    type="right"
+                    className="mt-12"
+                    description={
+                        <p className="w-full text-sm md:text-md lg:text-lg font-thin font-manrope m-4">
+                            My second generative art. Inspired by{' '}
+                            <a
+                                href="https://www.reddit.com/r/generative/comments/kbvau2/oc_each_clock_shows_average_time_of_its_neighbors/"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="inline text-themeRed hover:text-themeBlue duration-500"
+                            >
+                                this post
+                            </a>
+                            {' '}on reddit, I created some sort of naturally changing gradient. It has a nice pastel look to it, and works with a handful of source points that rotate the colorwheel while the rest of the points take the average value of their neighbors.
+                        </p>
+                    }
+                 />
+
             </div>
         </Layout>
     )
@@ -223,6 +216,15 @@ export const query = graphql`
     query CodeArtPreviews {
         ghostCoast: file(
             relativePath: { eq: "ghost_coast_preview.png" }
+        ) {
+            childImageSharp {
+                fluid(traceSVG: { background: "#000000", color: "#0bbcd6" }) {
+                    ...GatsbyImageSharpFluid_tracedSVG
+                }
+            }
+        }
+        unknownLines: file(
+            relativePath: { eq: "unknown_lines_preview.png" }
         ) {
             childImageSharp {
                 fluid(traceSVG: { background: "#000000", color: "#0bbcd6" }) {
