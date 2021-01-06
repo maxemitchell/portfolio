@@ -3,9 +3,7 @@ import SEO from '../../../components/SEO'
 import Layout from '../../../components/Layout'
 import Header from '../../../components/Header'
 import * as THREE from 'three'
-import { MeshLine, MeshLineMaterial, MeshLineRaycast } from 'three.meshline'
 import song117 from './Song 117.mp3'
-import { Mesh } from 'three'
 
 class UnknownLines extends React.Component {
     componentDidMount() { 
@@ -14,8 +12,6 @@ class UnknownLines extends React.Component {
         this.camera = new THREE.OrthographicCamera(-550, -250, 1200, -200, 200, 5000)
         this.camera.position.set(400,1000,300)
         this.camera.lookAt(400,0,0)
-
-        
         
         this.dimension = Math.min(window.innerHeight / 1.5, window.innerWidth / 1.5)
         
@@ -36,7 +32,6 @@ class UnknownLines extends React.Component {
         this.sound = sound
         this.analyser = new THREE.AudioAnalyser( sound, 128 )
 
-        
         // Line setup
         this.lines = new THREE.Group()
         this.scene.add(this.lines)
