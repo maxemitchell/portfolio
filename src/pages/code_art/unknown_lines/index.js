@@ -47,7 +47,6 @@ class UnknownLines extends React.Component {
     animate(now) {
         this.frameId = requestAnimationFrame(this.animate.bind(this))
         this.renderer.render(this.scene, this.camera)
-
         
         if(!this.last || now - this.last >= 5){
             this.last = now
@@ -63,15 +62,19 @@ class UnknownLines extends React.Component {
         const plane = new THREE.Mesh(planeGeometry, new THREE.MeshBasicMaterial({
             color: 0x000000,
             wireframe: false,
-            side: THREE.DoubleSide,
-            transparent: false,
+            transparent: false
         }))
         this.lines.add(plane)
 
-        const lineGeometry = new THREE.Geometry()
-        for (let i = 0; i < plane.geometry.parameters.widthSegments + 1; i++) {
-            lineGeometry.vertices.push(planeGeometry.vertices[i]); // share the upper points of the plane
+        const lineGeometry = new THREE.BufferGeometry()
+        let lineVertices = []
+        for (let i = 0; i < 200; i++) {
+            lineVertices.push(planeGeometry.attributes.position.array[3*i]); // share the upper points of the plane
+            lineVertices.push(planeGeometry.attributes.position.array[3*i+1]);
+            lineVertices.push(planeGeometry.attributes.position.array[3*i+2]);
         }
+        lineGeometry.setAttribute( 'position', new THREE.BufferAttribute( new Float32Array(lineVertices), 3 ) );
+
         const lineMat = new THREE.LineBasicMaterial({ color: 0xE1E1E1, transparent: true, opacity: .57 })
         const line = new THREE.Line(lineGeometry, lineMat)
 
@@ -86,20 +89,26 @@ class UnknownLines extends React.Component {
             }
             y = Math.pow(y, 1.2)
 
-            plane.geometry.vertices[i].y = y
+            plane.geometry.attributes.position.array[(i*3)+1] = y
+            line.geometry.attributes.position.array[(i*3)+1] = y
         }
     }
 
     moveLines() {
         let planesThatHaveGoneFarEnough = []
         this.lines.children.forEach( plane => {
-            plane.geometry.vertices.forEach( vertex => vertex.z -= 1)
- 
-            if(plane.geometry.vertices[0].z <= -1000){
+            for(let i = 0; i < 400; i++){
+                plane.geometry.attributes.position.array[(i*3)+2] -= 1
+                if(i < 200){
+                    plane.children[0].geometry.attributes.position.array[(i*3)+2] -= 1
+                }
+            }
+
+            if(plane.geometry.attributes.position.array[2] <= -1000){
                 planesThatHaveGoneFarEnough.push(plane)
             }else{
-                plane.geometry.verticesNeedUpdate  = true
-                plane.children[0].geometry.verticesNeedUpdate  = true
+                plane.geometry.attributes.position.needsUpdate  = true
+                plane.children[0].geometry.attributes.position.needsUpdate  = true
             }
         })
         planesThatHaveGoneFarEnough.forEach(plane => this.lines.remove(plane))
@@ -109,6 +118,7 @@ class UnknownLines extends React.Component {
         if (this.mount) {
             this.dimension = Math.min(window.innerHeight / 1.5, window.innerWidth / 1.5)
             this.renderer.setSize(this.dimension, this.dimension)
+            this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
         }
     }
 
@@ -133,7 +143,7 @@ class UnknownLines extends React.Component {
         return (
             <Layout>
                 <SEO title="Code Art" />
-                <div className="flex flex-wrap lg:flex-no-wrap mt-8 w-full justify-center items-center">
+                <div className="flex flex-wrap lg:flex-nowrap mt-8 w-full justify-center items-center">
                     {/* The actaual canvas for three.js */}
                     <div
                         className="flex justify-center "
@@ -142,7 +152,7 @@ class UnknownLines extends React.Component {
                     <div className="flex w-full flex-wrap max-w-sm lg:w-1/2 mb-4 lg:mx-6 lg:justify-start">
                         <Header variant="1">Unknown Lines</Header>
                         <div className="flex w-full boxshadow-3d-right mt-4 lg:mt-8 mb-4">
-                            <p className="w-full text-sm md:text-md lg:text-lg font-thin font-manrope m-4">
+                            <p className="w-full text-sm md:text-md lg:text-lg font-extralight font-manrope m-4">
                                 Inspired by Joy Division's Unknown Pleasures album cover, I created this music visualizer using{' '}
                                 <a
                                     href="https://threejs.org/"
@@ -173,7 +183,7 @@ class UnknownLines extends React.Component {
                             </p>
                         </div>
                         <div className="flex w-full boxshadow-3d-right mt-4 lg:mt-8">
-                            <p className="w-full text-sm md:text-md lg:text-lg font-thin font-manrope m-4">
+                            <p className="w-full text-sm md:text-md lg:text-lg font-extralight font-manrope m-4">
                                 Please <b>click</b> on the visualization to start/stop the song.
                             </p>
                         </div>

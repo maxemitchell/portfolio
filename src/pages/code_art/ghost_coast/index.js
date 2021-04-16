@@ -126,7 +126,7 @@ class GhostCoast extends React.Component {
     return (
       <Layout>
         <SEO title="Code Art" />
-        <div className="flex flex-wrap lg:flex-no-wrap mt-12 w-full justify-center items-center">
+        <div className="flex flex-wrap lg:flex-nowrap mt-12 w-full justify-center items-center">
           <div
             className="picture-border-sm-1 flex justify-center"
             ref={this.myRef}
@@ -134,7 +134,7 @@ class GhostCoast extends React.Component {
           <div className="flex w-full flex-wrap max-w-sm lg:w-1/2 mb-4 lg:ml-12 lg:justify-start">
             <Header variant="1">Space Ghost Coast To Coast</Header>
             <div className="flex w-full boxshadow-3d-right mt-4 lg:mt-8 mb-4">
-                <p className="w-full text-sm md:text-md lg:text-lg font-thin font-manrope m-4">
+                <p className="w-full text-sm md:text-md lg:text-lg font-extralight font-manrope m-4">
                 Inspired by{' '}
                 <a
                     href="https://opensource.glassanimals.com/"
@@ -167,7 +167,7 @@ class GhostCoast extends React.Component {
                 </p>
             </div>
             <div className="flex w-full boxshadow-3d-right mt-4 lg:mt-8">
-                <p className="w-full text-sm md:text-md lg:text-lg font-thin font-manrope m-4">
+                <p className="w-full text-sm md:text-md lg:text-lg font-extralight font-manrope m-4">
                     Please <b>click</b> on the visualization to start/stop the song.
                 </p>
             </div>

@@ -17,7 +17,7 @@ const Videos = ({ data }) => {
           {youtubeVideos.map(({ node: youtubeVideo }) => {
             return (
               <div
-                className="flex flex-no-wrap w-full md:w-1/2 justify-center items-center pb-6 px-4"
+                className="flex flex-nowrap w-full md:w-1/2 justify-center items-center pb-6 px-4"
                 key={youtubeVideo.videoId}
               >
                 <div className="w-full">

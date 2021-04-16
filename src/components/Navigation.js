@@ -1,38 +1,26 @@
 import React from 'react'
-import { useStaticQuery, graphql } from 'gatsby'
 import { Link } from 'gatsby'
-import Img from 'gatsby-image'
+import { StaticImage } from "gatsby-plugin-image";
 import NavItem from './NavItem'
 
 const Navigation = () => {
-  const data = useStaticQuery(graphql`
-    query {
-      logoHoriz: file(relativePath: { eq: "logo_horiz_crop_transparent.png" }) {
-        childImageSharp {
-          fluid(
-            traceSVG: { background: "#000000", color: "#0bbcd6" }
-          ) {
-            ...GatsbyImageSharpFluid_tracedSVG
-          }
-        }
-      }
-    }
-  `)
-
   return (
     <nav
       role="navigation"
       className="flex items-start flex-wrap justify-center w-full mb-6 pb-1 nav-border max-w-6xl mx-auto bg-black"
     >
       <Link to="/" className="flex w-1/2 md:hidden mb-3 mt-1">
-        <Img
+        <StaticImage 
+          src="../images/logo_horiz_crop_transparent.png"
           alt="Max Mitchell"
-          fluid={data.logoHoriz.childImageSharp.fluid}
           className="w-full"
+          layout="constrained"
+          placeholder="tracedSVG"
+          tracedSVGOptions={{background: "#000000", color: "#0bbcd6"}}
         />
       </Link>
 
-      <div className="flex w-11/12 flex-no-wrap items-end justify-around mt-2">
+      <div className="flex w-11/12 flex-nowrap items-end justify-around mt-2">
         <NavItem to="/photos/" className="first boxshadow-3d-left">
           photos
         </NavItem>
@@ -41,10 +29,13 @@ const Navigation = () => {
         </NavItem>
 
         <Link to="/" className="hidden md:flex md:w-4/12 md:mr-6">
-          <Img
+          <StaticImage 
+            src="../images/logo_horiz_crop_transparent.png"
             alt="Max Mitchell"
-            fluid={data.logoHoriz.childImageSharp.fluid}
             className="w-full"
+            layout="constrained"
+            placeholder="tracedSVG"
+            tracedSVGOptions={{background: "#000000", color: "#0bbcd6"}}
           />
         </Link>
 
@@ -62,7 +53,7 @@ const Navigation = () => {
         </NavItem>
       </div>
     </nav>
-  )
+  );
 }
 
 export default Navigation

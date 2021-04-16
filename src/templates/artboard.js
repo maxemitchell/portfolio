@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import SEO from '../components/SEO'
-import Img from 'gatsby-image'
+import { GatsbyImage } from "gatsby-plugin-image";
 import Layout from '../components/Layout'
 
 const ArtboardTemplate = ({ data }) => {
@@ -17,16 +17,15 @@ const ArtboardTemplate = ({ data }) => {
           <h1 className="text-3xl sm:text-4xl font-light textshadow-blue">
             {artboard.title}
           </h1>
-          <p className="text-md sm:text-lg font-thin textshadow-red">
+          <p className="text-md sm:text-lg font-extralight textshadow-red">
             ~{artboard.artboardDate}
           </p>
         </div>
 
-        <Img
+        <GatsbyImage
+          image={artboard.artboard.gatsbyImageData}
           className="flex w-full border-themeOffWhite border-2 sm:border-0 sm:picture-border-2 mx-2 sm:mx-4 mt-2"
-          alt={artboard.title}
-          fluid={artboard.artboard.fluid}
-        />
+          alt={artboard.title} />
         <div className="w-11/12 mt-6 text-left max-w-xl lg:max-w-2xl xl:max-w-5xl">
           {descriptionTags.map((item, key) => {
             if (item.type === 'element' && item.tagName === 'h1') {
@@ -41,7 +40,7 @@ const ArtboardTemplate = ({ data }) => {
             } else if (item.type === 'element' && item.tagName === 'p') {
               return (
                 <p
-                  className="mt-3 text-md font-thin lg:text-lg lg:mb-5"
+                  className="mt-3 text-md font-extralight lg:text-lg lg:mb-5"
                   key={key}
                 >
                   {item.children[0].value}
@@ -52,7 +51,7 @@ const ArtboardTemplate = ({ data }) => {
         </div>
       </div>
     </Layout>
-  )
+  );
 }
 
 export default ArtboardTemplate
@@ -62,9 +61,10 @@ export const query = graphql`
     contentfulArtboard(slug: { eq: $slug }) {
       title
       artboard {
-        fluid(maxWidth: 1920) {
-          ...GatsbyContentfulFluid_withWebp
-        }
+        gatsbyImageData(
+          layout: CONSTRAINED,
+          width: 1920
+        )
       }
       description {
         childMarkdownRemark {

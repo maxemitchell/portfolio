@@ -43,11 +43,12 @@ module.exports = {
     'gatsby-plugin-sitemap',
     'gatsby-transformer-remark',
     'gatsby-transformer-sharp',
+    'gatsby-plugin-image',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sharp',
     'gatsby-plugin-postcss',
     {
-        resolve: 'gatsby-source-youtube-v2',
+        resolve: 'gatsby-source-youtube-v3',
         options: {
             channelId: 'UC9HSIRP_CkJJznkRd3E0-ZA',
             apiKey: youtubeAPIKey,

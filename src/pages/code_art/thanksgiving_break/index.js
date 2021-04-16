@@ -2,8 +2,9 @@ import React from 'react'
 import SEO from '../../../components/SEO'
 import Layout from '../../../components/Layout'
 import Header from '../../../components/Header'
-import p5 from 'p5'
-import 'p5/lib/addons/p5.sound'
+import "../../../helpers/p5sound_fix"
+import "p5/lib/addons/p5.sound"
+import * as p5 from "p5"
 import benSong from './Ben Mark Song.mp3'
 
 class ThanksgivingBreak extends React.Component {
@@ -212,7 +213,7 @@ class ThanksgivingBreak extends React.Component {
         return (
             <Layout>
                 <SEO title="Code Art" />
-                <div className="flex flex-wrap lg:flex-no-wrap mt-8 w-full justify-center items-center">
+                <div className="flex flex-wrap lg:flex-nowrap mt-8 w-full justify-center items-center">
                     {/* The actaual canvas for p5.js */}
                     <div
                         className="flex justify-center"
@@ -221,7 +222,7 @@ class ThanksgivingBreak extends React.Component {
                     <div className="flex w-full flex-wrap max-w-sm lg:w-1/2 mb-4 lg:mx-6 lg:justify-start">
                         <Header variant="1">Thanksgiving Break</Header>
                         <div className="flex w-full boxshadow-3d-right mt-4 lg:mt-8 mb-4">
-                            <p className="w-full text-sm md:text-md lg:text-lg font-thin font-manrope m-4">
+                            <p className="w-full text-sm md:text-md lg:text-lg font-extralight font-manrope m-4">
                                 Over Thanksgiving Break 2020, I created this visualizer using{' '}
                                 <a
                                     href="https://p5js.org/"
@@ -252,7 +253,7 @@ class ThanksgivingBreak extends React.Component {
                             </p>
                         </div>
                         <div className="flex w-full boxshadow-3d-right mt-4 lg:mt-8">
-                            <p className="w-full text-sm md:text-md lg:text-lg font-thin font-manrope m-4">
+                            <p className="w-full text-sm md:text-md lg:text-lg font-extralight font-manrope m-4">
                                 Please <b>click</b> on the visualization to start/stop the song. You can cycle the color palettes with <b>space bar</b>.
                             </p>
                         </div>

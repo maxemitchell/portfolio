@@ -3,13 +3,13 @@ import { graphql, Link } from 'gatsby'
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
 import Video from '../components/Video'
-import Img from 'gatsby-image'
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import Header from '../components/Header'
 import ArtboardPreview from '../components/ArtboardPreview'
 import PhotoCollectionPreview from '../components/PhotoCollectionPreview'
 
 const Index = ({ data }) => {
-  const profilePicture = data.contentfulSiteData.featuredImage
+  const profilePicture = getImage(data.contentfulSiteData.featuredImage)
   const artboards = data.allContentfulArtboard.edges
   const photoCollections = data.allContentfulPhotoCollection.edges
   const youtubeVideos = data.allYoutubeVideo.edges
@@ -19,12 +19,12 @@ const Index = ({ data }) => {
     <Layout>
       <SEO title="Home" />
       <div className="w-full max-w-6xl mx-auto">
-        <div className="flex w-full flex-wrap sm:flex-no-wrap mt-6 sm:mt-8 justify-center">
+        <div className="flex w-full flex-wrap sm:flex-nowrap mt-6 sm:mt-8 justify-center">
           <Link
             to="/about/"
             className="picture-border-sm-1 mx-10 mt-2 sm:mt-0 sm:mx-0 w-full sm:w-3/5 max-w-xl hover:picture-border-sm-2 duration-500"
           >
-            <Img alt="Featured Image" fluid={profilePicture.fluid} />
+            <GatsbyImage image={profilePicture} alt="Featured Image" />
           </Link>
 
           <div className="flex flex-wrap w-full sm:w-2/5 font-manrope mt-2 sm:mt-0 px-1 sm:px-6 content-center max-w-lg">
@@ -104,11 +104,13 @@ const Index = ({ data }) => {
 
           {artboards.map(({ node: artboard }) => {
             return (
-              <ArtboardPreview
-                slug={artboard.slug}
-                title={artboard.title}
-                fluid={artboard.artboard.fluid}
-              />
+              <div key={artboard.title}>
+                <ArtboardPreview
+                  slug={artboard.slug}
+                  title={artboard.title}
+                  image={artboard.artboard.gatsbyImageData}
+                  />
+              </div>
             )
           })}
         </div>
@@ -118,11 +120,13 @@ const Index = ({ data }) => {
 
           {photoCollections.map(({ node: photoCollection }) => {
             return (
-              <PhotoCollectionPreview
-                slug={photoCollection.slug}
-                title={photoCollection.title}
-                fluid={photoCollection.featuredImage.fluid}
-              />
+              <div key={photoCollection.title}>
+                <PhotoCollectionPreview
+                  slug={photoCollection.slug}
+                  title={photoCollection.title}
+                  image={photoCollection.featuredImage.gatsbyImageData}
+                />
+              </div>
             )
           })}
         </div>
@@ -132,7 +136,7 @@ const Index = ({ data }) => {
 
           {youtubeVideos.map(({ node: youtubeVideo }) => {
             return (
-              <div className="w-full h-64 md:h-96 lg:h-128 mx-4 mb-5 mt-4 picture-border-sm-1">
+              <div className="w-full h-64 md:h-96 lg:h-128 mx-4 mb-5 mt-4 picture-border-sm-1" key={youtubeVideo.title}>
                 <Video
                   videoID={youtubeVideo.videoId}
                   videoTitle={youtubeVideo.title}
@@ -150,14 +154,14 @@ const Index = ({ data }) => {
             return (
               <a
                 className="flex flex-wrap w-full justify-center items-center mt-2 mb-3 mx-4 hover:code-bg duration-500"
-                key={index}
+                key={repo.name}
                 href={repo.url}
                 target="_blank"
               >
                 <h3 className="w-full text-left text-2xl font-manrope font-light text-themeBlue mb-2">
                   {repo.name}
                 </h3>
-                <p className="w-full text-base font-manrope font-thin">
+                <p className="w-full text-base font-manrope font-extralight">
                   {repo.description}
                 </p>
               </a>
@@ -166,7 +170,7 @@ const Index = ({ data }) => {
         </div>
       </div>
     </Layout>
-  )
+  );
 }
 
 export default Index
@@ -175,9 +179,10 @@ export const query = graphql`
   query Index {
     contentfulSiteData {
       featuredImage {
-        fluid(maxHeight: 620) {
-          ...GatsbyContentfulFluid_withWebp
-        }
+        gatsbyImageData(
+          layout: CONSTRAINED,
+          width: 620
+        )
       }
     }
     allContentfulArtboard(
@@ -189,9 +194,10 @@ export const query = graphql`
           title
           slug
           artboard {
-            fluid(maxWidth: 1100) {
-              ...GatsbyContentfulFluid_withWebp
-            }
+            gatsbyImageData(
+              layout: CONSTRAINED,
+              width: 1100
+            )
           }
         }
       }
@@ -205,9 +211,10 @@ export const query = graphql`
           title
           slug
           featuredImage {
-            fluid(maxHeight: 520) {
-              ...GatsbyContentfulFluid_withWebp
-            }
+            gatsbyImageData(
+              layout: CONSTRAINED,
+              width: 520
+            )
           }
         }
       }

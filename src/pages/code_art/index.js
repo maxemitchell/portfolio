@@ -3,7 +3,7 @@ import { graphql, Link } from 'gatsby'
 import SEO from '../../components/SEO'
 import Layout from '../../components/Layout'
 import Header from '../../components/Header'
-import Img from 'gatsby-image'
+import { GatsbyImage } from "gatsby-plugin-image";
 import CodeArtPreview from '../../components/CodeArtPreview'
 
 const CodeArt = ({data}) => {
@@ -15,10 +15,10 @@ const CodeArt = ({data}) => {
                 <CodeArtPreview
                     slug="/code_art/unknown_lines"
                     title="Unknown Lines"
-                    fluid={data.unknownLines.childImageSharp.fluid}
+                    image={data.unknownLines.childImageSharp.gatsbyImageData}
                     type="left"
                     description={
-                        <p className="w-full text-sm md:text-md lg:text-lg font-thin font-manrope m-4">
+                        <p className="w-full text-sm md:text-md lg:text-lg font-extralight font-manrope m-4">
                             Inspired by Joy Division's Unknown Pleasures album cover, I created this music visualizer using{' '}
                             <a
                                 href="https://threejs.org/"
@@ -53,11 +53,11 @@ const CodeArt = ({data}) => {
                 <CodeArtPreview
                     slug="/code_art/an_average_packing"
                     title="An Average Packing"
-                    fluid={data.averagePacking.childImageSharp.fluid}
+                    image={data.averagePacking.childImageSharp.gatsbyImageData}
                     type="right"
                     className="mt-12"
                     description={
-                        <p className="w-full text-sm md:text-md lg:text-lg font-thin font-manrope m-4">
+                        <p className="w-full text-sm md:text-md lg:text-lg font-extralight font-manrope m-4">
                             Combining my previous two generative works, this is a work with packed circles that take the average color of their neighbors, using the{' '}
                             <a
                                 href="https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm"
@@ -75,11 +75,11 @@ const CodeArt = ({data}) => {
                 <CodeArtPreview
                     slug="/code_art/thanksgiving_break"
                     title="Thanksgiving Break"
-                    fluid={data.thanksgivingBreak.childImageSharp.fluid}
+                    image={data.thanksgivingBreak.childImageSharp.gatsbyImageData}
                     type="left"
                     className="mt-12"
                     description={
-                        <p className="w-full text-sm md:text-md lg:text-lg font-thin font-manrope m-4">
+                        <p className="w-full text-sm md:text-md lg:text-lg font-extralight font-manrope m-4">
                             Over Thanksgiving Break 2020, I created this visualizer using{' '}
                             <a
                                 href="https://p5js.org/"
@@ -114,11 +114,11 @@ const CodeArt = ({data}) => {
                 <CodeArtPreview
                     slug="/code_art/ghost_coast"
                     title="Ghost Coast"
-                    fluid={data.ghostCoast.childImageSharp.fluid}
+                    image={data.ghostCoast.childImageSharp.gatsbyImageData}
                     type="right"
                     className="mt-12"
                     description={
-                        <p className="w-full text-sm md:text-md lg:text-lg font-thin font-manrope m-4">
+                        <p className="w-full text-sm md:text-md lg:text-lg font-extralight font-manrope m-4">
                                 Inspired by{' '}
                                 <a
                                     href="https://opensource.glassanimals.com/"
@@ -155,11 +155,11 @@ const CodeArt = ({data}) => {
                  <CodeArtPreview
                     slug="/code_art/packed_circles"
                     title="PCK MTN"
-                    fluid={data.circlePacking.childImageSharp.fluid}
+                    image={data.circlePacking.childImageSharp.gatsbyImageData}
                     type="left"
                     className="mt-12"
                     description={
-                        <p className="w-full text-sm md:text-md lg:text-lg font-thin font-manrope m-4">
+                        <p className="w-full text-sm md:text-md lg:text-lg font-extralight font-manrope m-4">
                             My first piece of generative art. Inspired by various posts on{' '}
                             <a
                                 href="https://www.reddit.com/r/generative/"
@@ -186,11 +186,11 @@ const CodeArt = ({data}) => {
                 <CodeArtPreview
                     slug="/code_art/color_of_average"
                     title="Color of Average"
-                    fluid={data.colorAverage.childImageSharp.fluid}
+                    image={data.colorAverage.childImageSharp.gatsbyImageData}
                     type="right"
                     className="mt-12"
                     description={
-                        <p className="w-full text-sm md:text-md lg:text-lg font-thin font-manrope m-4">
+                        <p className="w-full text-sm md:text-md lg:text-lg font-extralight font-manrope m-4">
                             My second generative art. Inspired by{' '}
                             <a
                                 href="https://www.reddit.com/r/generative/comments/kbvau2/oc_each_clock_shows_average_time_of_its_neighbors/"
@@ -207,66 +207,65 @@ const CodeArt = ({data}) => {
 
             </div>
         </Layout>
-    )
+    );
 }
 
 export default CodeArt
 
-export const query = graphql`
-    query CodeArtPreviews {
-        ghostCoast: file(
-            relativePath: { eq: "ghost_coast_preview.png" }
-        ) {
-            childImageSharp {
-                fluid(traceSVG: { background: "#000000", color: "#0bbcd6" }) {
-                    ...GatsbyImageSharpFluid_tracedSVG
-                }
-            }
-        }
-        unknownLines: file(
-            relativePath: { eq: "unknown_lines_preview.png" }
-        ) {
-            childImageSharp {
-                fluid(traceSVG: { background: "#000000", color: "#0bbcd6" }) {
-                    ...GatsbyImageSharpFluid_tracedSVG
-                }
-            }
-        }
-        thanksgivingBreak: file(
-            relativePath: { eq: "thanksgiving_break_preview.png" }
-        ) {
-            childImageSharp {
-                fluid(traceSVG: { background: "#000000", color: "#0bbcd6" }) {
-                    ...GatsbyImageSharpFluid_tracedSVG
-                }
-            }
-        }
-        circlePacking: file(
-            relativePath: { eq: "circle_packing_preview.png" }
-        ) {
-            childImageSharp {
-                fluid(traceSVG: { background: "#000000", color: "#0bbcd6" }) {
-                    ...GatsbyImageSharpFluid_tracedSVG
-                }
-            }
-        }
-        colorAverage: file(
-            relativePath: { eq: "color_of_average_preview.png" }
-        ) {
-            childImageSharp {
-                fluid(traceSVG: { background: "#000000", color: "#0bbcd6" }) {
-                    ...GatsbyImageSharpFluid_tracedSVG
-                }
-            }
-        }
-        averagePacking: file(
-            relativePath: { eq: "an_average_packing_preview.png" }
-        ) {
-            childImageSharp {
-                fluid(traceSVG: { background: "#000000", color: "#0bbcd6" }) {
-                    ...GatsbyImageSharpFluid_tracedSVG
-                }
-            }
-        }
+export const query = graphql`query CodeArtPreviews {
+  ghostCoast: file(relativePath: {eq: "ghost_coast_preview.png"}) {
+    childImageSharp {
+      gatsbyImageData(
+        tracedSVGOptions: {background: "#000000", color: "#0bbcd6"}
+        placeholder: TRACED_SVG
+        layout: CONSTRAINED
+      )
     }
+  }
+  unknownLines: file(relativePath: {eq: "unknown_lines_preview.png"}) {
+    childImageSharp {
+      gatsbyImageData(
+        tracedSVGOptions: {background: "#000000", color: "#0bbcd6"}
+        placeholder: TRACED_SVG
+        layout: CONSTRAINED
+      )
+    }
+  }
+  thanksgivingBreak: file(relativePath: {eq: "thanksgiving_break_preview.png"}) {
+    childImageSharp {
+      gatsbyImageData(
+        tracedSVGOptions: {background: "#000000", color: "#0bbcd6"}
+        placeholder: TRACED_SVG
+        layout: CONSTRAINED
+      )
+    }
+  }
+  circlePacking: file(relativePath: {eq: "circle_packing_preview.png"}) {
+    childImageSharp {
+      gatsbyImageData(
+        tracedSVGOptions: {background: "#000000", color: "#0bbcd6"}
+        placeholder: TRACED_SVG
+        layout: CONSTRAINED
+      )
+    }
+  }
+  colorAverage: file(relativePath: {eq: "color_of_average_preview.png"}) {
+    childImageSharp {
+      gatsbyImageData(
+        tracedSVGOptions: {background: "#000000", color: "#0bbcd6"}
+        placeholder: TRACED_SVG
+        layout: CONSTRAINED
+      )
+    }
+  }
+  averagePacking: file(relativePath: {eq: "an_average_packing_preview.png"}) {
+    childImageSharp {
+      gatsbyImageData(
+        tracedSVGOptions: {background: "#000000", color: "#0bbcd6"}
+        placeholder: TRACED_SVG
+        layout: CONSTRAINED
+      )
+    }
+  }
+}
 `

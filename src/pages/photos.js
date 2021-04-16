@@ -23,11 +23,13 @@ const Photos = ({ data }) => {
 
           {photoCollections.map(({ node: photoCollection }) => {
             return (
-              <PhotoCollectionPreview
-                slug={photoCollection.slug}
-                title={photoCollection.title}
-                fluid={photoCollection.featuredImage.fluid}
-              />
+              <div key={photoCollection.title}>
+                <PhotoCollectionPreview
+                  slug={photoCollection.slug}
+                  title={photoCollection.title}
+                  image={photoCollection.featuredImage.gatsbyImageData}
+                />
+              </div>
             )
           })}
         </div>
@@ -40,11 +42,13 @@ const Photos = ({ data }) => {
 
           {artboards.map(({ node: artboard }) => {
             return (
-              <ArtboardPreview
-                slug={artboard.slug}
-                title={artboard.title}
-                fluid={artboard.artboard.fluid}
-              />
+              <div key={artboard.title}>
+                <ArtboardPreview
+                  slug={artboard.slug}
+                  title={artboard.title}
+                  image={artboard.artboard.gatsbyImageData}
+                />
+              </div>
             )
           })}
         </div>
@@ -66,9 +70,10 @@ export const query = graphql`
           title
           slug
           artboard {
-            fluid(maxWidth: 1200, resizingBehavior: SCALE) {
-              ...GatsbyContentfulFluid_withWebp
-            }
+            gatsbyImageData(
+              layout: CONSTRAINED,
+              width: 1200
+            )
           }
 
         }
@@ -82,9 +87,10 @@ export const query = graphql`
           title
           slug
           featuredImage {
-            fluid(maxHeight: 720) {
-              ...GatsbyContentfulFluid_withWebp
-            }
+            gatsbyImageData(
+              layout: CONSTRAINED,
+              width: 720
+            )
           }
         }
       }

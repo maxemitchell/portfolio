@@ -8,7 +8,7 @@ const NotFound = ({}) => {
     <Layout>
       <SEO title="404" />
       <div className="flex flex-wrap w-full max-w-6xl mx-auto justify-between items-center">
-        <div className="w-full font-manrope text-center text-lg sm:text-xl font-thin leading-snug">
+        <div className="w-full font-manrope text-center text-lg sm:text-xl font-extralight leading-snug">
           <p>
             This page does not exist! Maybe it will in the future? Probably not.
           </p>

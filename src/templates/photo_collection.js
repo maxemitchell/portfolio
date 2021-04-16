@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { graphql } from 'gatsby'
 import SEO from '../components/SEO'
-import Img from 'gatsby-image/withIEPolyfill'
+import { GatsbyImage } from "gatsby-plugin-image";
 import Layout from '../components/Layout'
 
 const PhotoCollectionTemplate = ({ data }) => {
@@ -32,86 +32,78 @@ const PhotoCollectionTemplate = ({ data }) => {
           <h1 className="text-3xl sm:text-4xl font-light textshadow-blue">
             {photoCollection.title}
           </h1>
-          <p className="text-md sm:text-lg font-thin textshadow-red">
+          <p className="text-md sm:text-lg font-extralight textshadow-red">
             ~{photoCollection.collectionDate}
           </p>
         </div>
 
-        <div className="w-full px-2 md:px-4 col-count-2 md:pt-1 md:col-count-3 xl:col-count-4 col-gap-md md:col-gap-lg">
+        <div className="w-full px-2 md:px-4 col-count-2 md:pt-1 md:col-count-3 xl:col-count-4 gap-x-md md:gap-x-lg">
           {photoCollection.photos.map((photo, key) => {
             if (key === Math.ceil(photoCollection.photos.length / 2)) {
               return (
-                <>
-                  <div
-                    onClick={e => handleClick(e, photo)}
-                    className="mb-2 md:mb-4 inline-block w-full cursor-pointer border-themeOffWhite border-2 hover:border-themeRed duration-500"
-                  >
-                    <Img
-                      alt={photoCollection.title}
-                      fluid={photo.fluid}
-                      key={photo.id}
-                    />
-                  </div>
+              <div key={key}>
+                <div
+                  onClick={e => handleClick(e, photo)}
+                  className="mb-2 md:mb-4 inline-block w-full cursor-pointer border-themeOffWhite border-2 hover:border-themeRed duration-500"
+                >
+                  <GatsbyImage image={photo.gatsbyImageData} alt={photoCollection.title} key={photo.id} className="-mb-1.5"/>
+                </div>
 
-                  <div className="inline-block w-full">
-                    {collectionTags.map((item, key) => {
-                      if (item.type === 'element' && item.tagName === 'h1') {
-                        return (
-                          <h1
-                            className="text-xl font-light text-center md:text-2xl xl:text-3xl"
-                            key={key}
-                          >
-                            {item.children[0].value}
-                          </h1>
-                        )
-                      } else if (
-                        item.type === 'element' &&
-                        item.tagName === 'p'
-                      ) {
-                        return (
-                          <p
-                            className="mt-3 text-sm font-thin md:text-base md:mb-4 text-center"
-                            key={key}
-                          >
-                            {item.children[0].value}
-                          </p>
-                        )
-                      }
-                    })}
-                  </div>
-                </>
+                <div className="inline-block w-full">
+                  {collectionTags.map((item, key2) => {
+                    if (item.type === 'element' && item.tagName === 'h1') {
+                      return (
+                        <h1
+                          className="text-xl font-light text-center md:text-2xl xl:text-3xl"
+                          key={key2+key}
+                        >
+                          {item.children[0].value}
+                        </h1>
+                      )
+                    } else if (
+                      item.type === 'element' &&
+                      item.tagName === 'p'
+                    ) {
+                      return (
+                        <p
+                          className="mt-3 text-sm font-extralight md:text-base md:mb-4 text-center"
+                          key={key2+key}
+                        >
+                          {item.children[0].value}
+                        </p>
+                      )
+                    }
+                  })}
+                </div>
+              </div>
               )
             } else {
               return (
                 <div
                   onClick={e => handleClick(e, photo)}
                   className="mb-2 md:mb-4 inline-block w-full cursor-pointer border-themeOffWhite border-2 hover:border-themeRed duration-500"
+                  key={key}
                 >
-                  <Img
-                    alt={photoCollection.title}
-                    fluid={photo.fluid}
-                    key={photo.id}
-                  />
+                  <GatsbyImage image={photo.gatsbyImageData} alt={photoCollection.title} key={photo.id} className="-mb-1.5"/>
                 </div>
-              )
+              );
             }
           })}
         </div>
 
         {showModal && (
-          <div className="fixed flex justify-center items-center h-screen w-full top-0 left-0 bg-blurred">
-            <Img
+          <div className="fixed flex justify-center items-center h-screen w-full top-0 left-0 bg-blurred overflow-hidden">
+            <GatsbyImage
+              image={currentImage.gatsbyImageData}
               className="relative flex flex-1 max-w-screen-lg max-h-screen cursor-pointer p-16"
               alt={photoCollection.title}
-              fluid={currentImage.fluid}
               key={currentImage.id}
-              objectFit="contain"
-            />
+              objectFit="contain" />
           </div>
         )}
       </div>
     </Layout>
-  )
+  );
 }
 
 export default PhotoCollectionTemplate
@@ -121,9 +113,10 @@ export const query = graphql`
     contentfulPhotoCollection(slug: { eq: $slug }) {
       title
       photos {
-        fluid(maxHeight: 1200) {
-          ...GatsbyContentfulFluid_withWebp
-        }
+        gatsbyImageData(
+          layout: CONSTRAINED,
+          width: 1200
+        )
         id
       }
       description {

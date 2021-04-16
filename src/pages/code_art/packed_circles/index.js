@@ -170,7 +170,7 @@ class PackedCircles extends React.Component {
         return (
             <Layout>
                 <SEO title="Code Art" />
-                <div className="flex flex-wrap lg:flex-no-wrap mt-12 w-full justify-center items-center">
+                <div className="flex flex-wrap lg:flex-nowrap mt-12 w-full justify-center items-center">
                     {/* The actaual canvas for p5.js */}
                     <div
                         className="flex justify-center picture-border-sm-1"
@@ -179,7 +179,7 @@ class PackedCircles extends React.Component {
                     <div className="flex w-full flex-wrap max-w-sm lg:w-1/2 mb-4 lg:mx-6 lg:justify-start">
                         <Header variant="1">PCK MTN</Header>
                         <div className="flex w-full boxshadow-3d-right mt-4 lg:mt-8 mb-4 ">
-                            <p className="w-full text-sm md:text-md lg:text-lg font-thin font-manrope m-4">
+                            <p className="w-full text-sm md:text-md lg:text-lg font-extralight font-manrope m-4">
                                 My first piece of generative art. Inspired by various posts on{' '}
                                 <a
                                     href="https://www.reddit.com/r/generative/"
@@ -202,7 +202,7 @@ class PackedCircles extends React.Component {
                             </p>
                         </div>
                         <div className="flex w-full boxshadow-3d-right mt-4 lg:mt-8">
-                            <p className="w-full text-sm md:text-md lg:text-lg font-thin font-manrope m-4">
+                            <p className="w-full text-sm md:text-md lg:text-lg font-extralight font-manrope m-4">
                                 This artwork <strong>randomly generates</strong> each time you <strong>click</strong> it. So please click it as much as your heart desires.
                             </p>
                         </div>
