@@ -132,7 +132,9 @@ class UnknownLines extends React.Component {
 
     componentWillUnmount() {
         cancelAnimationFrame(this.frameId)
-        this.sound.stop()
+        if(this.sound && this.sound.isPlaying){
+            this.sound.stop()
+        }
         
         window.removeEventListener('resize', this.onWindowResize.bind(this))
         this.mount.removeEventListener('click', this.onClick.bind(this))
