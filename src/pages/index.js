@@ -39,7 +39,7 @@ const Index = ({ data }) => {
               </Link>
             </p>
             <p className="w-full text-center sm:text-left md:text-center text-lg sm:text-xl lg:text-2xl font-light pt-1 ml-2 sm:ml-0 sm:pt-3">
-              I study
+              I studied
               <a
                 href="https://ece.illinois.edu/"
                 target="_blank"

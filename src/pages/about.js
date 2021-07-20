@@ -25,7 +25,7 @@ const About = ({}) => {
           </p>
           <p className="w-full mt-3 sm:mt-5">
             In my free time I like to <strong>climb</strong> (bouldering), take{' '}
-            <strong>pictures</strong> (currently rocking a Fuji X-T3), and
+            <strong>pictures</strong> (currently rocking a Fuji X-T4), and
             <strong> travel</strong> (currently at 7 countries).
           </p>
           <p className="w-full mt-3 sm:mt-5">
