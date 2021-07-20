@@ -7781,6 +7781,11 @@ ipaddr.js@1.9.1, ipaddr.js@^1.9.0:
   resolved "https://registry.yarnpkg.com/ipaddr.js/-/ipaddr.js-1.9.1.tgz#bff38543eeb8984825079ff3a2a8e6cbd46781b3"
   integrity sha512-0KI/607xoxSToH7GjN1FfSbLoU0+btTicjsQSWQlh/hZykN8KpmMf7uYwPW3R+akZ6R/w18ZlXSHBYXiYUPO3g==
 
+iris-gen@^1.0.1:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/iris-gen/-/iris-gen-1.0.3.tgz#0f674fc769779487cbcf7c043a20518cf634a155"
+  integrity sha512-mYm2yHIge5itHDt3ppEMVCS41Coqblqo761zCqXPXeTMlX8zwzaZoNEwLTcDbXQ8ST3EKYkEmO53RX2NfbA2BA==
+
 is-absolute-url@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/is-absolute-url/-/is-absolute-url-2.1.0.tgz#50530dfb84fcc9aa7dbe7852e83a37b93b9f2aa6"

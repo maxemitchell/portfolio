@@ -67,3 +67,6 @@ public
 .contentful.json
 .env*
 !.env.example
+
+# Mac DS Store
+.DS_Store

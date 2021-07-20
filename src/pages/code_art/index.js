@@ -205,6 +205,28 @@ const CodeArt = ({data}) => {
                     }
                  />
 
+                <CodeArtPreview
+                    slug="/code_art/iris_gen"
+                    title="iris-gen"
+                    image={data.irisGen.childImageSharp.gatsbyImageData}
+                    type="left"
+                    className="mt-12"
+                    description={
+                        <p className="w-full text-sm md:text-md lg:text-lg font-extralight font-manrope m-4">
+                            A color based generative art to test my{' '}
+                            <a
+                                href="https://github.com/maxemitchell/iris-gen"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="inline text-themeRed hover:text-themeBlue duration-500"
+                            >
+                                iris-gen
+                            </a>
+                            {' '}color palette library.
+                        </p>
+                    }
+                />
+
             </div>
         </Layout>
     );
@@ -259,6 +281,15 @@ export const query = graphql`query CodeArtPreviews {
     }
   }
   averagePacking: file(relativePath: {eq: "an_average_packing_preview.png"}) {
+    childImageSharp {
+      gatsbyImageData(
+        tracedSVGOptions: {background: "#000000", color: "#0bbcd6"}
+        placeholder: TRACED_SVG
+        layout: CONSTRAINED
+      )
+    }
+  }
+  irisGen: file(relativePath: {eq: "iris_gen_preview.png"}) {
     childImageSharp {
       gatsbyImageData(
         tracedSVGOptions: {background: "#000000", color: "#0bbcd6"}
