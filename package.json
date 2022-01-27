@@ -33,7 +33,7 @@
     "react-helmet": "^6.0.0",
     "react-player": "^2.2.0",
     "sharp": "^0.28.1",
-    "three": "^0.127.0"
+    "three": "^0.137.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
