@@ -9,7 +9,7 @@ const Header = ({ variant, children }) => {
         </h3>
       )}
       {variant === '2' && (
-        <h3 className="inline font-bold text-2xl px-3 md:px-4 pb-1 text-black gradient-bg border-corners rounded-tr-lg rounded-bl-lg">
+        <h3 className="inline font-bold text-2xl px-3 md:px-4 pb-1 text-black gradient-bg border-corners rounded-tr-lg rounded-bl-lg hover:rounded-tr-none hover:rounded-bl-none hover:rounded-tl-lg hover:rounded-br-lg duration-500">
           {children}
         </h3>
       )}

@@ -88,13 +88,21 @@ const Index = ({ data }) => {
                 {' '}
                 normal code
               </a>
-              , and write
+              ,
               <Link
                 to="/code_art/"
                 className="inline text-themeBlue hover:text-themeRed duration-500"
               >
                 {' '}
                 creative code
+              </Link>
+              , and
+              <Link
+                to="/writings/"
+                className="inline text-themeBlue hover:text-themeRed duration-500"
+              >
+                {' '}
+                blogs
               </Link>
             </p>
           </div>
