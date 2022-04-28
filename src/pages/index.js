@@ -14,6 +14,7 @@ const Index = ({ data }) => {
   const photoCollections = data.allContentfulPhotoCollection.edges
   const youtubeVideos = data.allYoutubeVideo.edges
   const githubRepos = data.githubData.data.viewer.repositories.nodes
+  const writings = data.allContentfulWriting.edges
 
   return (
     <Layout>
@@ -216,6 +217,17 @@ export const query = graphql`
               width: 520
             )
           }
+        }
+      }
+    }
+    allContentfulWriting(
+      limit: 4
+      sort: { fields: writingDate, order: DESC }
+    ) {
+      edges {
+        node {
+          title
+          slug
         }
       }
     }

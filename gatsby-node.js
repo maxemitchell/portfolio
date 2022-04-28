@@ -73,7 +73,42 @@ exports.createPages = ({ graphql, actions }) => {
         })
     })
 
-    return Promise.all([loadArtboards, loadPhotoCollections])
+    const loadWritings = new Promise((resolve, reject) => {
+      graphql(
+        `
+            {
+              allContentfulWriting {
+                edges {
+                  node {
+                    title
+                    slug
+                  }
+                }
+              }
+            }
+          `
+      ).then(result => {
+        if (result.errors) {
+          console.log(result.errors)
+          reject(result.errors)
+        }
+
+        const writings = result.data.allContentfulWriting.edges
+
+        writings.forEach((writing) => {
+          createPage({
+            path: `/writings/${writing.node.slug}/`,
+            component: path.resolve('./src/templates/writing.js'),
+            context: {
+              slug: writing.node.slug
+            },
+          })
+        })
+        resolve()
+      })
+    })
+
+    return Promise.all([loadArtboards, loadPhotoCollections, loadWritings])
 }
 
 exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
