@@ -46,7 +46,7 @@ const PhotoCollectionTemplate = ({ data }) => {
                   onClick={e => handleClick(e, photo)}
                   className="mb-2 md:mb-4 inline-block w-full cursor-pointer border-themeOffWhite border-2 hover:border-themeRed duration-500"
                 >
-                  <GatsbyImage image={photo.gatsbyImageData} alt={photoCollection.title} key={photo.id} className="-mb-1.5"/>
+                  <GatsbyImage image={photo.gatsbyImageData} alt={photoCollection.title} key={photo.id}/>
                 </div>
 
                 <div className="inline-block w-full">
@@ -84,7 +84,7 @@ const PhotoCollectionTemplate = ({ data }) => {
                   className="mb-2 md:mb-4 inline-block w-full cursor-pointer border-themeOffWhite border-2 hover:border-themeRed duration-500"
                   key={key}
                 >
-                  <GatsbyImage image={photo.gatsbyImageData} alt={photoCollection.title} key={photo.id} className="-mb-1.5"/>
+                  <GatsbyImage image={photo.gatsbyImageData} alt={photoCollection.title} key={photo.id}/>
                 </div>
               );
             }
