@@ -50,7 +50,7 @@ const About = ({}) => {
 
         <a
           href="mailto:maxemitchell@gmail.com"
-          className="flex md:hidden flex-nowrap justify-center items-center mt-10 mb-10 hover:text-themeBlue hover:border-corners duration-300"
+          className="flex md:hidden flex-nowrap mx-auto justify-center items-center mt-10 mb-10 hover:text-themeBlue hover:border-corners duration-300"
         >
           <MailLogo className="w-12 h-12" />
           <p className="ml-4 font-manrope text-3xl font-light">
