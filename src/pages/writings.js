@@ -13,20 +13,24 @@ const Writings = ({ data }) => {
       <SEO title="Writings" />
       <div className="w-full max-w-6xl mx-auto">
 
-        <div className="flex w-full flex-wrap justify-around items-end mt-6">
+        <div className="flex w-full flex-wrap mt-6">
 
-          <Header variant="3">
-            writings
-          </Header>
+          <div className="w-full mb-6 mt-1">
+            <Header variant="3">
+              weekly writings
+            </Header>
+          </div>
 
           {writings.map(({ node: writing }) => {
+            const preview = writing.preview.internal.content
             return (
-              <div key={writing.title}>
-                <WritingPreview
-                  slug={writing.slug}
-                  title={writing.title}
-                />
-              </div>
+              <WritingPreview
+                slug={writing.slug}
+                title={writing.title}
+                preview={preview}
+                writingDate={writing.writingDate}
+                key={writing.title}
+              />
             )
           })}
         </div>
@@ -46,6 +50,12 @@ export const query = graphql`
         node {
           title
           slug
+          writingDate
+          preview {
+            internal {
+              content
+            }
+          }
         }
       }
     }

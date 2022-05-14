@@ -109,39 +109,43 @@ const Index = ({ data }) => {
         </div>
 
         <div className="flex w-full flex-wrap justify-center mt-3">
-          <Header variant="3">recent artboards</Header>
+          <div className="w-full">
+            <Header variant="3">recent artboards</Header>
+          </div>
 
           {artboards.map(({ node: artboard }) => {
             return (
-              <div key={artboard.title}>
-                <ArtboardPreview
-                  slug={artboard.slug}
-                  title={artboard.title}
-                  image={artboard.artboard.gatsbyImageData}
-                  />
-              </div>
+              <ArtboardPreview
+                slug={artboard.slug}
+                title={artboard.title}
+                image={artboard.artboard.gatsbyImageData}
+                key={artboard.title}
+              />
             )
           })}
         </div>
 
         <div className="flex w-full flex-wrap justify-around items-end">
-          <Header variant="3">recent photo collections</Header>
+          <div className="w-full mb-2">
+            <Header variant="3">recent photo collections</Header>
+          </div>
 
           {photoCollections.map(({ node: photoCollection }) => {
             return (
-              <div key={photoCollection.title}>
-                <PhotoCollectionPreview
-                  slug={photoCollection.slug}
-                  title={photoCollection.title}
-                  image={photoCollection.featuredImage.gatsbyImageData}
-                />
-              </div>
+              <PhotoCollectionPreview
+                slug={photoCollection.slug}
+                title={photoCollection.title}
+                image={photoCollection.featuredImage.gatsbyImageData}
+                key={photoCollection.title}
+              />
             )
           })}
         </div>
 
         <div className="flex w-full flex-wrap justify-center">
-          <Header variant="3">recent video</Header>
+          <div className="w-full">
+            <Header variant="3">recent video</Header>
+          </div>
 
           {youtubeVideos.map(({ node: youtubeVideo }) => {
             return (
@@ -157,7 +161,9 @@ const Index = ({ data }) => {
         </div>
 
         <div className="flex w-full flex-wrap justify-center">
-          <Header variant="3">recent code repos</Header>
+          <div className="w-full">
+            <Header variant="3">recent code repos</Header>
+          </div>
 
           {githubRepos.slice(0, 3).map((repo, index) => {
             return (
@@ -212,7 +218,7 @@ export const query = graphql`
       }
     }
     allContentfulPhotoCollection(
-      limit: 4
+      limit: 6
       sort: { fields: collectionDate, order: DESC }
     ) {
       edges {

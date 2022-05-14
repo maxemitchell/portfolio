@@ -2,7 +2,7 @@ import React from 'react'
 
 const Header = ({ variant, children }) => {
   return (
-    <div className="w-full text-center mt-5 mb-5">
+    <div className="text-center mt-5 mb-5">
       {variant === '1' && (
         <h3 className="inline font-bold text-2xl px-3 md:px-4 pb-1 text-black gradient-bg border-tl rounded-tr-lg rounded-bl-lg">
           {children}

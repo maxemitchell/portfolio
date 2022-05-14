@@ -17,19 +17,20 @@ const Photos = ({ data }) => {
 
         <div className="flex w-full flex-wrap justify-around items-end mt-6">
 
-          <Header variant="3">
-            photo collections
-          </Header>
+          <div className="w-full">
+            <Header variant="3">
+              photo collections
+            </Header>
+          </div>
 
           {photoCollections.map(({ node: photoCollection }) => {
             return (
-              <div key={photoCollection.title}>
-                <PhotoCollectionPreview
-                  slug={photoCollection.slug}
-                  title={photoCollection.title}
-                  image={photoCollection.featuredImage.gatsbyImageData}
-                />
-              </div>
+              <PhotoCollectionPreview
+                slug={photoCollection.slug}
+                title={photoCollection.title}
+                image={photoCollection.featuredImage.gatsbyImageData}
+                key={photoCollection.title}
+              />
             )
           })}
         </div>
@@ -42,13 +43,12 @@ const Photos = ({ data }) => {
 
           {artboards.map(({ node: artboard }) => {
             return (
-              <div key={artboard.title}>
-                <ArtboardPreview
-                  slug={artboard.slug}
-                  title={artboard.title}
-                  image={artboard.artboard.gatsbyImageData}
-                />
-              </div>
+              <ArtboardPreview
+                slug={artboard.slug}
+                title={artboard.title}
+                image={artboard.artboard.gatsbyImageData}
+                key={artboard.title}
+              />
             )
           })}
         </div>

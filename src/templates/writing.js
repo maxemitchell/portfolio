@@ -29,6 +29,16 @@ const options = {
         </Link>
       )
     },
+    [INLINES.HYPERLINK]: (node, children) => (
+      <a
+        href={node.data.uri}
+        target="_blank"
+        rel="noreferrer"
+        className="text-themeBlue hover:text-themeRed duration-500"
+      >
+        {children}
+      </a>
+    ),
     [BLOCKS.PARAGRAPH]: (node, children) => {
       if (node.content[0].value === '') {
         return <br />
@@ -39,11 +49,14 @@ const options = {
     [BLOCKS.EMBEDDED_ASSET]: (node) => {
       const { gatsbyImageData, description } = node.data.target
       return (
-        <GatsbyImage
-          image={getImage(gatsbyImageData)}
-          alt={description}
-          loading="lazy"
-        />
+        <div className='flex w-full'>
+          <GatsbyImage
+            className='mx-auto'
+            image={getImage(gatsbyImageData)}
+            alt={description}
+            loading="lazy"
+          />
+        </div>
       )
     },
   },
@@ -86,14 +99,8 @@ export const query = graphql`
             contentful_id
             title
             description
-            gatsbyImageData(width: 1000)
+            gatsbyImageData(width: 500)
             __typename
-          }
-          ... on ContentfulWriting {
-            contentful_id
-            __typename
-            title
-            slug
           }
         }
       }
@@ -102,3 +109,10 @@ export const query = graphql`
     }
   }
 `
+// To add if I have a contenful post with a link
+        //   ... on ContentfulWriting {
+        //     contentful_id
+        //     __typename
+        //     title
+        //     slug
+        //   }

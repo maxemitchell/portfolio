@@ -142,7 +142,7 @@ module.exports = {
         },
         '.border-tl': {
           boxShadow:
-            '0 0 0 .3rem #000000, 3rem -1.2rem 0 -.5rem #000000, -3rem 1.2rem 0 -.5rem #000000, -.6rem -.6rem #0bbcd6',
+            '0 0 0 .3rem #000000, 1rem -1.2rem 0 -.5rem #000000, -1rem 1.2rem 0 -.5rem #000000, -.6rem -.6rem #0bbcd6',
         },
         '.border-tr': {
           boxShadow:
