@@ -19,7 +19,7 @@ const About = ({}) => {
             I'm from <strong>Chicago, IL</strong>.
           </p>
           <p className="w-full mt-3 sm:mt-5">
-            I study <strong>Computer Engineering</strong> with a minor in
+            I studied <strong>Computer Engineering</strong> with a minor in
             <strong> Technology and Management</strong> at <strong>UIUC</strong>
             .
           </p>
@@ -31,6 +31,16 @@ const About = ({}) => {
           <p className="w-full mt-3 sm:mt-5">
             Yes, I realize how basic the above interests sound.
           </p>
+
+          <a
+            href="mailto:maxemitchell@gmail.com"
+            className="hidden md:flex flex-nowrap justify-center items-center mt-10 mb-10 hover:text-themeBlue hover:border-corners duration-300"
+          >
+            <MailLogo className="w-12 h-12" />
+            <p className="ml-4 font-manrope text-3xl font-light">
+              Reach out to me!
+            </p>
+          </a>
         </div>
 
         <div className="w-full md:w-1/2">
@@ -40,7 +50,7 @@ const About = ({}) => {
 
         <a
           href="mailto:maxemitchell@gmail.com"
-          className="mx-auto flex flex-nowrap justify-center items-center mt-8 mb-2 hover:text-themeBlue hover:border-corners duration-300"
+          className="flex md:hidden flex-nowrap mx-auto justify-center items-center mt-10 mb-10 hover:text-themeBlue hover:border-corners duration-300"
         >
           <MailLogo className="w-12 h-12" />
           <p className="ml-4 font-manrope text-3xl font-light">

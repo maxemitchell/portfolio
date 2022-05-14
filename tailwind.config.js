@@ -51,7 +51,7 @@ module.exports = {
       height: {
         '96': '24rem',
         '128': '32rem'
-      }
+      },
     },
   },
   variants: {
@@ -68,6 +68,7 @@ module.exports = {
     display: ['responsive', 'hover', 'group-hover'],
     maxHeight: ['responsive', 'hover', 'group-hover'],
     backgroundColor: ['responsive', 'hover', 'group-hover'],
+    borderRadius: ['hover'],
   },
   plugins: [
     require('tailwindcss-multi-column')(),
@@ -78,6 +79,12 @@ module.exports = {
           border: '.1rem solid #d6f8d6',
           boxShadow:
             '.3rem -.3rem 0 -.1rem #000000, .3rem -.3rem #0bbcd6, .6rem -.6rem 0 -.1rem #000000, .6rem -.6rem #e4572e',
+        },
+        '.boxshadow-3d-center': {
+          background: ' #000000',
+          border: '.1rem solid #d6f8d6',
+          boxShadow:
+            '0 -.3rem 0 -.1rem #000000, 0 -.3rem #0bbcd6, 0 -.6rem 0 -.1rem #000000, 0 -.6rem #e4572e',
         },
         '.boxshadow-3d-left': {
           background: ' #000000',
@@ -135,7 +142,7 @@ module.exports = {
         },
         '.border-tl': {
           boxShadow:
-            '0 0 0 .3rem #000000, 3rem -1.2rem 0 -.5rem #000000, -3rem 1.2rem 0 -.5rem #000000, -.6rem -.6rem #0bbcd6',
+            '0 0 0 .3rem #000000, 1rem -1.2rem 0 -.5rem #000000, -1rem 1.2rem 0 -.5rem #000000, -.6rem -.6rem #0bbcd6',
         },
         '.border-tr': {
           boxShadow:

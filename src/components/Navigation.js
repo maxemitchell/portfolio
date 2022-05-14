@@ -21,14 +21,7 @@ const Navigation = () => {
       </Link>
 
       <div className="flex w-11/12 flex-nowrap items-end justify-around mt-2">
-        <NavItem to="/photos/" className="first boxshadow-3d-left">
-          photos
-        </NavItem>
-        <NavItem to="/videos/" className="boxshadow-3d-left">
-          videos
-        </NavItem>
-
-        <Link to="/" className="hidden md:flex md:w-4/12 md:mr-6">
+        <Link to="/" className="hidden first md:flex md:w-4/12 md:mr-6">
           <StaticImage 
             src="../images/logo_horiz_crop_transparent.png"
             alt="Max Mitchell"
@@ -38,13 +31,27 @@ const Navigation = () => {
             tracedSVGOptions={{background: "#000000", color: "#0bbcd6"}}
           />
         </Link>
+        <NavItem to="/photos/" className="boxshadow-3d-right">
+          photos
+        </NavItem>
+        <NavItem to="/videos/" className="boxshadow-3d-right">
+          videos
+        </NavItem>
 
         <NavItem
           to="/code_art/"
-          className="boxshadow-3d-left md:boxshadow-3d-right"
+          className="boxshadow-3d-center md:boxshadow-3d-right"
         >
           code_art
         </NavItem>
+
+        <NavItem
+          to="/writings/"
+          className="boxshadow-3d-left md:boxshadow-3d-right"
+        >
+          writings
+        </NavItem>
+
         <NavItem
           to="/about/"
           className="last boxshadow-3d-left md:boxshadow-3d-right"
