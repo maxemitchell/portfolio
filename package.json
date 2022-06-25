@@ -17,7 +17,7 @@
     "gatsby-plugin-react-svg": "^3.0.0",
     "gatsby-plugin-sharp": "^4.13.0",
     "gatsby-plugin-sitemap": "^5.13.0",
-    "gatsby-source-contentful": "^7.11.0",
+    "gatsby-source-contentful": "^7.12.0",
     "gatsby-source-filesystem": "^4.13.0",
     "gatsby-source-github-api": "^1.0.0",
     "gatsby-source-youtube-v3": "^3.0.1",
@@ -32,7 +32,7 @@
     "react-dom": "^17.0.2",
     "react-helmet": "^6.0.0",
     "react-player": "^2.2.0",
-    "sharp": "^0.28.1",
+    "sharp": "^0.30.1",
     "three": "^0.127.0"
   },
   "devDependencies": {
