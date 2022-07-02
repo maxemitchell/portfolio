@@ -2,6 +2,7 @@ import React from 'react'
 import { graphql, Link } from 'gatsby'
 import SEO from '../components/SEO'
 import Layout from '../components/Layout'
+import Header from '../components/Header'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { INLINES, BLOCKS, MARKS } from "@contentful/rich-text-types"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
@@ -24,6 +25,7 @@ const options = {
       return (
         <Link
           to={`/writings/${slug}`}
+          className="inline text-themeBlue hover:text-themeRed duration-500"
         >
           {children}
         </Link>
@@ -51,13 +53,63 @@ const options = {
       return (
         <div className='flex w-full'>
           <GatsbyImage
-            className='mx-auto'
+            className='mx-auto my-2'
             image={getImage(gatsbyImageData)}
             alt={description}
             loading="lazy"
           />
         </div>
       )
+    },
+    [BLOCKS.HEADING_3]: (node, children) => (
+        <div className="mt-6 mb-2">
+          <h3 className="inline font-extrabold text-xl sm:text-2xl md:text-3xl lg:text-4xl">
+            {children}
+          </h3>
+        </div>
+    ),
+    [BLOCKS.OL_LIST]: (node, children) => (
+      <ol className="list-decimal pl-4">{children}</ol>
+    ),
+    [BLOCKS.UL_LIST]: (node, children) => (
+      <ul className="list-disc pl-4">{children}</ul>
+    ),
+
+    [BLOCKS.LIST_ITEM]: (node, children) => (
+      <li className="mb-1">{children}</li>
+    ),
+    [BLOCKS.PARAGRAPH]: (node, children) => {
+      if (node.content[0].value === '') {
+        return <br />
+      } else {
+        return <p className="leading-loose">{children}</p>
+      }
+    },
+    [BLOCKS.QUOTE]: (children) => (
+      <blockquote className="border-l-4 border-themeBlue bg-themePurple p-3 rounded font-medium my-6">
+        <>{children.content[0].content[0].value}</>
+      </blockquote>
+    ),
+    [BLOCKS.HR]: () => <hr className="mb-6" />,
+    [BLOCKS.TABLE]: (node, children) => (
+      <table className="table-auto mx-auto my-2">
+        <tbody>{children}</tbody>
+      </table>
+    ),
+    [BLOCKS.TABLE_HEADER_CELL]: (node, children) => <td className="px-5">{children}</td>,
+    [BLOCKS.TABLE_CELL]: (node, children) => <td className="px-5">{children}</td>,
+    [BLOCKS.TABLE_ROW]: (node, children) => {
+      if (
+        children.every((node) => node.nodeType === BLOCKS.TABLE_HEADER_CELL)
+      ) {
+        return (
+          <thead>
+            <tr>{children}</tr>
+          </thead>
+        );
+      } else {
+        return <tr>{children}</tr>;
+      }
     },
   },
 }
@@ -102,6 +154,12 @@ export const query = graphql`
             gatsbyImageData(width: 500)
             __typename
           }
+          ... on ContentfulWriting {
+            contentful_id
+            __typename
+            title
+            slug
+          }
         }
       }
       writingDate
@@ -109,10 +167,3 @@ export const query = graphql`
     }
   }
 `
-// To add if I have a contenful post with a link
-        //   ... on ContentfulWriting {
-        //     contentful_id
-        //     __typename
-        //     title
-        //     slug
-        //   }
