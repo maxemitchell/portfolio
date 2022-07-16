@@ -9,6 +9,7 @@ const contentfulConfig = {
 
 const youtubeAPIKey = process.env.YOUTUBE_API_KEY
 const githubAPIKey = process.env.GITHUB_API_KEY
+const googleMeasurementId = process.env.GOOGLE_MEASUREMENT_ID
 const { spaceId, accessToken } = contentfulConfig
 
 if(process.env.gatsby_executing_command != 'serve'){
@@ -31,7 +32,7 @@ module.exports = {
     title: "Max Mitchell",
     titleTemplate: "Max Mitchell | %s",
     description: "Max Mitchell's personal portfolio website showcasing his photography, YouTube videos, coding projects, and work history.",
-    banner: "/images/logo_horiz_crop.png",
+    banner: "/logo_horiz_crop.png",
     headline: "Max Mitchell's Personal Portfolio Website",
     siteLanguage: "en",
     ogLanguage: "en_US",
@@ -130,6 +131,24 @@ module.exports = {
           include: /images/
         }
       }
+    },
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        // You can add multiple tracking ids and a pageview event will be fired for all of them.
+        trackingIds: [
+          googleMeasurementId
+        ],
+        gtagConfig: {
+          anonymize_ip: true,
+          cookie_expires: 0,
+        },
+        pluginConfig: {
+          head: false,
+          respectDNT: true,
+          origin: "https://www.maxemitchell.com",
+        },
+      },
     }
   ],
 }
