@@ -146,7 +146,6 @@ module.exports = {
         pluginConfig: {
           head: false,
           respectDNT: true,
-          origin: "https://www.maxemitchell.com",
         },
       },
     }
