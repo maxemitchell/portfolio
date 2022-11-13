@@ -34,7 +34,7 @@
   dependencies:
     "@babel/highlight" "^7.10.4"
 
-"@babel/code-frame@^7.0.0", "@babel/code-frame@^7.12.13", "@babel/code-frame@^7.14.0", "@babel/code-frame@^7.16.7", "@babel/code-frame@^7.5.5":
+"@babel/code-frame@^7.0.0", "@babel/code-frame@^7.14.0", "@babel/code-frame@^7.16.7", "@babel/code-frame@^7.5.5":
   version "7.16.7"
   resolved "https://registry.npmjs.org/@babel/code-frame/-/code-frame-7.16.7.tgz"
   dependencies:
@@ -72,7 +72,7 @@
     eslint-visitor-keys "^2.1.0"
     semver "^6.3.0"
 
-"@babel/generator@^7.13.9", "@babel/generator@^7.16.8", "@babel/generator@^7.17.9":
+"@babel/generator@^7.16.8", "@babel/generator@^7.17.9":
   version "7.17.9"
   resolved "https://registry.npmjs.org/@babel/generator/-/generator-7.17.9.tgz"
   dependencies:
@@ -146,7 +146,7 @@
   dependencies:
     "@babel/types" "^7.16.7"
 
-"@babel/helper-function-name@^7.12.13", "@babel/helper-function-name@^7.16.7", "@babel/helper-function-name@^7.17.9":
+"@babel/helper-function-name@^7.16.7", "@babel/helper-function-name@^7.17.9":
   version "7.17.9"
   resolved "https://registry.npmjs.org/@babel/helper-function-name/-/helper-function-name-7.17.9.tgz"
   dependencies:
@@ -224,13 +224,13 @@
   dependencies:
     "@babel/types" "^7.16.0"
 
-"@babel/helper-split-export-declaration@^7.12.13", "@babel/helper-split-export-declaration@^7.16.7":
+"@babel/helper-split-export-declaration@^7.16.7":
   version "7.16.7"
   resolved "https://registry.npmjs.org/@babel/helper-split-export-declaration/-/helper-split-export-declaration-7.16.7.tgz"
   dependencies:
     "@babel/types" "^7.16.7"
 
-"@babel/helper-validator-identifier@^7.12.11", "@babel/helper-validator-identifier@^7.16.7":
+"@babel/helper-validator-identifier@^7.16.7":
   version "7.16.7"
   resolved "https://registry.npmjs.org/@babel/helper-validator-identifier/-/helper-validator-identifier-7.16.7.tgz"
 
@@ -263,13 +263,9 @@
     chalk "^2.0.0"
     js-tokens "^4.0.0"
 
-"@babel/parser@^7.13.15", "@babel/parser@^7.15.5", "@babel/parser@^7.16.7", "@babel/parser@^7.17.9":
+"@babel/parser@^7.15.5", "@babel/parser@^7.16.7", "@babel/parser@^7.17.9", "@babel/parser@^7.7.0":
   version "7.17.9"
   resolved "https://registry.npmjs.org/@babel/parser/-/parser-7.17.9.tgz"
-
-"@babel/parser@^7.7.0":
-  version "7.13.15"
-  resolved "https://registry.npmjs.org/@babel/parser/-/parser-7.13.15.tgz"
 
 "@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression@^7.16.7":
   version "7.16.7"
@@ -889,7 +885,7 @@
     "@babel/parser" "^7.16.7"
     "@babel/types" "^7.16.7"
 
-"@babel/traverse@^7.13.0", "@babel/traverse@^7.15.4", "@babel/traverse@^7.16.7", "@babel/traverse@^7.16.8", "@babel/traverse@^7.17.3", "@babel/traverse@^7.17.9":
+"@babel/traverse@^7.13.0", "@babel/traverse@^7.15.4", "@babel/traverse@^7.16.7", "@babel/traverse@^7.16.8", "@babel/traverse@^7.17.3", "@babel/traverse@^7.17.9", "@babel/traverse@^7.7.0":
   version "7.17.9"
   resolved "https://registry.npmjs.org/@babel/traverse/-/traverse-7.17.9.tgz"
   dependencies:
@@ -904,32 +900,11 @@
     debug "^4.1.0"
     globals "^11.1.0"
 
-"@babel/traverse@^7.7.0":
-  version "7.13.15"
-  resolved "https://registry.npmjs.org/@babel/traverse/-/traverse-7.13.15.tgz"
-  dependencies:
-    "@babel/code-frame" "^7.12.13"
-    "@babel/generator" "^7.13.9"
-    "@babel/helper-function-name" "^7.12.13"
-    "@babel/helper-split-export-declaration" "^7.12.13"
-    "@babel/parser" "^7.13.15"
-    "@babel/types" "^7.13.14"
-    debug "^4.1.0"
-    globals "^11.1.0"
-
-"@babel/types@^7.0.0-beta.49", "@babel/types@^7.13.14", "@babel/types@^7.15.4", "@babel/types@^7.16.0", "@babel/types@^7.16.7", "@babel/types@^7.16.8", "@babel/types@^7.17.0", "@babel/types@^7.4.4":
+"@babel/types@^7.0.0-beta.49", "@babel/types@^7.15.4", "@babel/types@^7.16.0", "@babel/types@^7.16.7", "@babel/types@^7.16.8", "@babel/types@^7.17.0", "@babel/types@^7.4.4", "@babel/types@^7.7.0":
   version "7.17.0"
   resolved "https://registry.npmjs.org/@babel/types/-/types-7.17.0.tgz"
   dependencies:
     "@babel/helper-validator-identifier" "^7.16.7"
-    to-fast-properties "^2.0.0"
-
-"@babel/types@^7.7.0":
-  version "7.13.14"
-  resolved "https://registry.npmjs.org/@babel/types/-/types-7.13.14.tgz"
-  dependencies:
-    "@babel/helper-validator-identifier" "^7.12.11"
-    lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
 "@contentful/rich-text-react-renderer@^15.12.1":
@@ -5715,7 +5690,8 @@ gatsby-worker@^1.13.0:
 
 gatsby@^4.13.0:
   version "4.13.0"
-  resolved "https://registry.npmjs.org/gatsby/-/gatsby-4.13.0.tgz"
+  resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-4.13.0.tgz#9bba6de51c538e274f8d771a640eea2de6bc5a98"
+  integrity sha512-chXf5yJfnk6AgzPKikdfW5pHbM5fJJXGFC9Zqy3RQ5Y+Nh1zEBK7VEWYcqUX6YuyV74WR79pWjC8vpU6mU7dkw==
   dependencies:
     "@babel/code-frame" "^7.14.0"
     "@babel/core" "^7.15.5"
