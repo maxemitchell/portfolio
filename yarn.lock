@@ -5649,7 +5649,7 @@ gatsby-source-filesystem@^1.5.27:
     slash "^1.0.0"
     valid-url "^1.0.9"
 
-gatsby-source-filesystem@^4.13.0, gatsby-source-filesystem@^4.17.0:
+gatsby-source-filesystem@^4.17.0:
   version "4.17.0"
   resolved "https://registry.npmjs.org/gatsby-source-filesystem/-/gatsby-source-filesystem-4.17.0.tgz"
   dependencies:
