@@ -4768,8 +4768,9 @@ dlv@^1.1.3:
   resolved "https://registry.npmjs.org/dlv/-/dlv-1.1.3.tgz"
 
 dns-packet@^5.2.4:
-  version "5.3.1"
-  resolved "https://registry.npmjs.org/dns-packet/-/dns-packet-5.3.1.tgz"
+  version "5.5.0"
+  resolved "https://registry.yarnpkg.com/dns-packet/-/dns-packet-5.5.0.tgz#f59cbf3396c130957c56a6ad5fd3959ccdc30065"
+  integrity sha512-USawdAUzRkV6xrqTjiAEp6M9YagZEzWcSUaZTcIFAiyQWW1SoI6KyId8y2+/71wbgHKQAKd+iupLv4YvEwYWvA==
   dependencies:
     "@leichtgewicht/ip-codec" "^2.0.1"
 
