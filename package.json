@@ -22,7 +22,7 @@
     "gatsby-source-filesystem": "^4.17.0",
     "gatsby-source-github-api": "^1.0.0",
     "gatsby-source-youtube-v3": "^3.0.1",
-    "gatsby-transformer-remark": "^5.13.0",
+    "gatsby-transformer-remark": "^5.25.1",
     "gatsby-transformer-sharp": "^4.13.0",
     "iris-gen": "^1.0.1",
     "lodash": "^4.17.11",
