@@ -1,9 +1,7 @@
 import React from 'react'
-import { graphql, Link } from 'gatsby'
+import { graphql } from 'gatsby'
 import SEO from '../../components/SEO'
 import Layout from '../../components/Layout'
-import Header from '../../components/Header'
-import { GatsbyImage } from "gatsby-plugin-image";
 import CodeArtPreview from '../../components/CodeArtPreview'
 
 const CodeArt = ({data}) => {
@@ -11,6 +9,45 @@ const CodeArt = ({data}) => {
         <Layout>
             <SEO title="Code Art" />
             <div className="flex flex-wrap mt-10 justify-center items-center mb-10 max-w-6xl w-full mx-auto">
+
+                <CodeArtPreview
+                    slug="/code_art/little_man_remix"
+                    title="Little Man Remix"
+                    image={data.littleManRemix.childImageSharp.gatsbyImageData}
+                    type="right"
+                    className="mt-12"
+                    description={
+                        <p className="w-full text-sm md:text-md lg:text-lg font-extralight font-manrope m-4">
+                            Inspired by 2001: A Space Odyssey's 'Beyond the Infinite' scene, I created this music visualizer using{' '}
+                            <a
+                                href="https://threejs.org/"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="inline text-themeRed hover:text-themeBlue duration-500"
+                            >
+                                three.js
+                            </a>. The song featured is a remix my friend{' '}
+                            <a
+                                href="https://www.instagram.com/kwillmusic/"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="inline text-themeBlue hover:text-themeRed duration-500"
+                            >
+                                Keiran Willig
+                            </a>
+                            . I also released a{' '}
+                            <a
+                                href="https://www.youtube.com/watch?v=_yXQayoxJOg"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="inline text-themeRed hover:text-themeBlue duration-500"
+                            >
+                                YouTube video{' '}
+                            </a>
+                            documenting my creation process.
+                        </p>
+                    }
+                />
                 
                 <CodeArtPreview
                     slug="/code_art/unknown_lines"
@@ -235,6 +272,15 @@ const CodeArt = ({data}) => {
 export default CodeArt
 
 export const query = graphql`query CodeArtPreviews {
+  littleManRemix: file(relativePath: {eq: "little_man_remix_preview.png"}) {
+    childImageSharp {
+      gatsbyImageData(
+        tracedSVGOptions: {background: "#000000", color: "#0bbcd6"}
+        placeholder: TRACED_SVG
+        layout: CONSTRAINED
+      )
+    }
+  }
   ghostCoast: file(relativePath: {eq: "ghost_coast_preview.png"}) {
     childImageSharp {
       gatsbyImageData(

@@ -21,7 +21,6 @@ const options = {
   renderNode: {
     [INLINES.ENTRY_HYPERLINK]: (node, children) => {
       const { slug } = node.data.target
-      console.log(node)
       return (
         <Link
           to={`/writings/${slug}`}
