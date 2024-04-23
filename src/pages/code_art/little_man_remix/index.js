@@ -4,80 +4,172 @@ import Layout from '../../../components/Layout'
 import Header from '../../../components/Header'
 import * as THREE from 'three'
 import littleMan from './Little Man Remix (final version i swear).wav'
-// import BeatDetector from './beat_detector'
 import StemAnalyzer from './stem_analyzer'
+import vertShader from './base.vert'
+import sideMeshFrag from './side_mesh.frag'
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+import { FontLoader } from 'three/addons/loaders/FontLoader.js';
+import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
+import LyricAnalyzer from './lyric_analyzer'
+import spaceAgeFont from './space_age_font.json'
 
 class LittleManRemix extends React.Component {
     componentDidMount() { 
+        this.setupScene();
+        this.addLights();
+        this.audioSetup();
+        this.setupLyrics();
+
+        this.meshes = new THREE.Group();
+        this.stems = new THREE.Group();
+        this.scene.add(this.meshes);
+        this.scene.add(this.stems);
+
+        this.lastNormalizedAverageVolume = 0;
+
+        this.addMesh();
+        
+        window.addEventListener('resize', this.onWindowResize.bind(this), false);
+        this.mount.addEventListener('click', this.onClick.bind(this), false);
+        
+        this.animate();
+    }
+
+    setupScene() {
         // Basic THREE.js scene and render setup
         this.scene = new THREE.Scene()
-        this.camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000)
-        this.camera.position.set(0,0,300)
-        this.camera.lookAt(0,0,0)
-    
-        // Adding some funky light sources to jazz up the scene
-        const ambientLight = new THREE.AmbientLight(0x404040); // soft white light
+        this.camera = new THREE.PerspectiveCamera(90, 1, 0.1, 1000)
+        this.camera.position.set(0, 0, 300)
+        this.camera.lookAt(0, 0, 0)
+
+        this.dimension = Math.min(window.innerHeight / 1.5, window.innerWidth / 1.5)
+
+        this.renderer = new THREE.WebGLRenderer({ antialias: true });
+        this.renderer.setSize(this.dimension, this.dimension)
+        this.renderer.toneMapping = THREE.ReinhardToneMapping
+        this.mount.appendChild(this.renderer.domElement)
+
+        this.speed = 1.0;
+        this.clock = new THREE.Clock(false);
+        this.elapsedTime = 0;
+
+        const renderScene = new RenderPass(this.scene, this.camera);
+
+        const bloomPass = new UnrealBloomPass(new THREE.Vector2(this.dimension, this.dimension), 1.5, 0.4, 0.85);
+        bloomPass.threshold = 0.2;
+        bloomPass.strength = 0.5;
+        bloomPass.radius = 0.05;
+
+        const outputPass = new OutputPass();
+
+        this.composer = new EffectComposer(this.renderer);
+        this.composer.addPass(renderScene);
+        this.composer.addPass(bloomPass);
+        this.composer.addPass(outputPass);
+    }
+
+    addLights() {
+        // Let's light this scene up like it's a TikTok dance challenge!
+        const ambientLight = new THREE.AmbientLight(0xb9fffc); // A chill aqua vibe
         this.scene.add(ambientLight);
 
-        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
-        directionalLight.position.set(0, 1, 0);
-        this.scene.add(directionalLight);
-
-        const pointLight = new THREE.PointLight(0x00ff00, 1, 100);
-        pointLight.position.set(50, 50, 50);
+        const pointLight = new THREE.PointLight(0x00ff00, 1000.2, 300); // Emerald green for that pop of color
+        pointLight.position.set(0, 0, 290);
         this.scene.add(pointLight);
 
-        const spotLight = new THREE.SpotLight(0xff0000, 1);
-        spotLight.position.set(-100, 100, 100);
-        this.scene.add(spotLight);
-        
-        this.dimension = Math.min(window.innerHeight / 1.5, window.innerWidth / 1.5)
-        
-        this.renderer = new THREE.WebGLRenderer();
-        this.renderer.setSize(this.dimension, this.dimension)
-        this.mount.appendChild(this.renderer.domElement)
-        
+        const pointLight2 = new THREE.PointLight(0xff0000, 1000.2, 300);
+        pointLight2.position.set(0, 10, 290);
+        this.scene.add(pointLight2);
+
+        const pointLight3 = new THREE.PointLight(0x0000ff, 1000.2, 300);
+        pointLight3.position.set(0, -10, 290);
+        this.scene.add(pointLight3);
+    }
+
+    addMesh() {
+        const geometry = new THREE.PlaneGeometry(200, 300);
+
+        // Function to create a material with a unique seed
+        const createMaterialWithSeed = (seed) => new THREE.ShaderMaterial({
+            uniforms: {
+                u_time: { type: "f", value: 0.0 },
+                u_frequency: { type: "f", value: 0.0 },
+                u_color0: { type: "vec3", value: new THREE.Color(0x1A202C) }, // Cosmic Latte
+                u_color1: { type: "vec3", value: new THREE.Color(0x10B981) }, // Vibrant Emerald
+                u_color2: { type: "vec3", value: new THREE.Color(0x7F00FF) }, // Phantom Purple
+                u_color3: { type: "vec3", value: new THREE.Color(0x000000) }, // Cosmic Yellow
+                u_color4: { type: "vec3", value: new THREE.Color(0x000000) }, // Alien Aqua
+                u_seed: { type: "f", value: seed }, // Unique seed for each mesh
+            },
+            vertexShader: vertShader,
+            fragmentShader: sideMeshFrag,
+            side: THREE.DoubleSide,
+            transparent: true
+        });
+
+        // First mesh with a unique seed
+        const planeMaterial1 = createMaterialWithSeed(Math.random()* 100);
+        const plane1 = new THREE.Mesh(geometry, planeMaterial1);
+        plane1.position.set(20, 0, 150);
+        plane1.rotation.set(3 * Math.PI / 2, Math.PI / 2, 0);
+        this.meshes.add(plane1);
+
+        // Second mesh with a different unique seed
+        const planeMaterial2 = createMaterialWithSeed(Math.random()*100);
+        const plane2 = new THREE.Mesh(geometry, planeMaterial2);
+        plane2.position.set(-20, 0, 150);
+        plane2.rotation.set(3 * Math.PI / 2, Math.PI / 2, 0);
+        this.meshes.add(plane2);
+    }
+
+    audioSetup() {
         // THREE.js audio and sound setup
         const listener = new THREE.AudioListener()
         this.camera.add(listener)
         const sound = new THREE.Audio(listener)
         const audioLoader = new THREE.AudioLoader()
-        audioLoader.load(littleMan, function(buffer) {
-            sound.setBuffer( buffer )
+        audioLoader.load(littleMan, function (buffer) {
+            sound.setBuffer(buffer)
             sound.setLoop(true)
             sound.setVolume(0.5)
         })
 
         this.sound = sound;
-        // this.analyser = new THREE.AudioAnalyser(sound, 1024);
-        // this.beatDetector = new BeatDetector(this.analyser, this.sound);
+        this.analyser = new THREE.AudioAnalyser(sound, 256);
         this.stemAnalyzer = new StemAnalyzer();
 
-        // Object setup
-        this.spheres = new THREE.Group();
-        this.stems = new THREE.Group();
-        this.scene.add(this.stems);
-        this.scene.add(this.spheres);
-
-        this.speed = 1.0;
-        this.clock = new THREE.Clock();
-        
-        window.addEventListener('resize', this.onWindowResize.bind(this), false);
-        this.mount.addEventListener('click', this.onClick.bind(this), false);
-        // document.addEventListener('keydown', this.onKeyPress.bind(this), false); // Added keydown event listener
-        
-        this.animate();
+        this.lyricAnalyzer = new LyricAnalyzer();
     }
 
     animate() {
         this.frameId = requestAnimationFrame(this.animate.bind(this));
-        this.renderer.render(this.scene, this.camera);
-        
-        // const beatDetectionResult = this.beatDetector.detectBeats();
-        // this.updateDebugSquaresVisibility(beatDetectionResult);
-
+        this.composer.render();
         const delta = this.clock.getDelta();
-        const timestamp = this.sound.context.currentTime;
+        const timestamp = this.clock.getElapsedTime();
+
+        // Update shader time uniforms
+        this.meshes.children.forEach((mesh) => {
+            if (mesh.material.uniforms) {
+                // Get the volume from the frequency data
+                const frequencyData = this.analyser.getFrequencyData();
+                mesh.material.uniforms.u_time.value += delta;
+    
+                const averageVolume = frequencyData.reduce((acc, val) => acc + val, 0) / frequencyData.length;
+                let normalizedAverageVolume = averageVolume / 255.0;
+                this.lastNormalizedAverageVolume = (normalizedAverageVolume + 9 * this.lastNormalizedAverageVolume) / 10;
+                mesh.material.uniforms.u_frequency.value = this.lastNormalizedAverageVolume;
+            }
+        });
+
+        // Display current lyric based on the timestamp
+        const currentLyric = this.lyricAnalyzer.getNewWord(timestamp);
+
+        if (currentLyric) {
+            this.updateLyric(currentLyric);
+        }
 
         if (this.stemAnalyzer.isNewBeat(timestamp, 'bass')) {
             this.addBass();
@@ -90,106 +182,108 @@ class LittleManRemix extends React.Component {
         if (this.stemAnalyzer.isNewBeat(timestamp, 'snare')) {
             this.addSnare();
         }
-        
-        if (this.stemAnalyzer.isNewBeat(timestamp, 'vocals')) {
-            this.addVocals();
-        }
 
-        // this.addSphere(beatDetectionResult);
         this.moveObjects(delta);
+    }
+
+    setupLyrics() {
+        const loader = new FontLoader();
+        this.font = loader.parse(spaceAgeFont);
+        this.lyrics = new THREE.Group();
+        this.scene.add(this.lyrics);
+    }
+
+    updateLyric(lyric) {
+        if (!this.font) return;
+
+        const geometry = new TextGeometry(lyric, {
+            font: this.font,
+            size: 32,
+            depth: 2,
+        });
+
+        geometry.computeBoundingBox();
+        const xMid = -0.5 * (geometry.boundingBox.max.x - geometry.boundingBox.min.x);
+        geometry.translate(xMid, 0, 0);
+
+        const rainbowMaterial = new THREE.MeshBasicMaterial({
+            color: new THREE.Color(`hsl(${Math.random() * 360}, 100%, 50%)`),
+        });
+        const lyricMesh = new THREE.Mesh(geometry, rainbowMaterial);
+        lyricMesh.position.set(0, (Math.random() - 0.5) * 20, 200);
+        lyricMesh.scale.set(0.1, 0.1, 0.1);
+        lyricMesh.lookAt(lyricMesh.position.x, lyricMesh.position.y, 300);
+
+        this.lyrics.add(lyricMesh);
     }
 
     moveObjects(delta) {
         this.stems.children.forEach(item => {
             item.translateZ(delta * this.speed * 100);
-            // Dynamic scaling based on beat detection could be added here
         });
 
-        // Remove items that are past the camera
+        this.lyrics.children.forEach(item => {
+            item.translateZ(delta * this.speed * 100);
+        });
+
         this.stems.children = this.stems.children.filter(item => {
             return item.position.z < 300;
         });
     }
     
     addBass() { 
-        const bassGeometry = new THREE.TorusKnotGeometry(3, 1, 100, 16);
-        const bassMaterial = new THREE.MeshPhongMaterial({ color: 0x2F855A, shininess: 100 });
-        const bass = new THREE.Mesh(bassGeometry, bassMaterial);
-        bass.position.set(
-            Math.random() > 0.5 ? (Math.random() - 0.5) * 5 + 15 : (Math.random() - 0.5) * 5 - 15,
-            -30 + (Math.random() - 0.5) * 10,
-            0
+        const streakGeometry = new THREE.BoxGeometry(1, 1, 10);
+        const streakMaterial = new THREE.MeshPhongMaterial({ 
+            color: new THREE.Color(`hsl(${Math.random() * 360}, 100%, 50%)`), 
+            emissive: new THREE.Color(`hsl(${Math.random() * 360}, 100%, 50%)`),
+            specular: new THREE.Color(0x333333),
+            shininess: 100,
+            transparent: true, 
+            opacity: 0.8 
+        });
+
+        const streak = new THREE.Mesh(streakGeometry, streakMaterial);
+
+        streak.position.set(
+            (Math.random() - 0.5) * 20,
+            -50 + (Math.random() - 0.5) * 10,
+            100
         );
-        this.stems.add(bass);
+
+        this.stems.add(streak);
     }
 
     addKick() {
-        const kickGeometry = new THREE.CylinderGeometry(2, 2, 10, 32);
-        const kickMaterial = new THREE.MeshBasicMaterial({ color: 0x38B2AC });
+        const kickGeometry = new THREE.SphereGeometry(2, 4, 4);
+        const kickMaterial = new THREE.MeshStandardMaterial({
+            color: 0xFFD700, // Golden color to resemble the sun
+            emissive: 0xFFA500, // Slightly orange glow to give it a fiery look
+        });
         const kick = new THREE.Mesh(kickGeometry, kickMaterial);
-        // Adjust kick position to be slightly off-center to complement the snare
         kick.position.set(
-            -15 +(Math.random() - 0.5) * 10,
-            30 + (Math.random() - 0.5) * 10,
+            (Math.random() - 0.5) * 20,
+            100 + (Math.random() - 0.5) * 10,
             0
         );
+
         this.stems.add(kick);
     }
 
     addSnare() {
-        // Snare hits feel sharp and crisp, so let's use a geometry that reflects that
-        const snareGeometry = new THREE.OctahedronGeometry(1.5, 0);
-        const snareMaterial = new THREE.MeshStandardMaterial({ color: 0x38B2AC, flatShading: true });
+        // Snare hits are sharp, so let's give it a geometry that pops but keep the vibe similar to the kick
+        const snareGeometry = new THREE.SphereGeometry(2, 4, 4);
+        const snareMaterial = new THREE.MeshStandardMaterial({
+            color: 0x4FD1C5, // A different, yet vibrant color to distinguish from the kick
+            emissive: 0x38B2AC, // A cool glow to add some snare-specific flair
+        });
         const snare = new THREE.Mesh(snareGeometry, snareMaterial);
         // Position the snare to visually complement the kick, creating a balanced scene
         snare.position.set(
-            15 + (Math.random() - 0.5) * 10, // Align X position with kick for visual harmony
-            30 + (Math.random() - 0.5) * 10,
+            (Math.random() - 0.5) * 20, // Align X position with kick for visual harmony
+            100 + (Math.random() - 0.5) * 10,
             0
         );
         this.stems.add(snare);
-    }
-
-    addVocals() {
-        // Vocals are often the soul of the track, so let's represent them with something ethereal
-        const vocalsGeometry = new THREE.TetrahedronGeometry(2, 0);
-        const vocalsMaterial = new THREE.MeshStandardMaterial({ color: 0x48BB78, emissive: 0x2F855A, flatShading: true });
-        const vocals = new THREE.Mesh(vocalsGeometry, vocalsMaterial);
-        // Randomly position the vocals to float above the scene, like the echoing of a voice
-        vocals.position.set(
-            (Math.random() - 0.5) * 30, // Spread across the X-axis
-            (Math.random() - 0.5) * 10, // Float above everything else
-            0
-        );
-        this.stems.add(vocals);
-    }
-
-
-    addSphere(beatDetectionResult) {
-        const sphereGeometry = new THREE.SphereGeometry(1, 32, 16);
-        const sphereMaterial = new THREE.MeshBasicMaterial({ color: 0x2F855A });
-
-        // Enhanced sphere creation based on beat detection with categorized positioning
-        const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
-        sphere.position.z = 0; // Keep this constant for all spheres
-
-        // Position spheres based on beat detection category
-        if (beatDetectionResult.lowMidrangeBeat || beatDetectionResult.midrangeBeat) {
-            // Lower area for bass-related beats
-            sphere.position.y = -30 + (Math.random() - 0.5) * 5;
-            sphere.position.x = Math.random() > 0.5 ? (Math.random() - 0.5) * 5 + 10 : (Math.random() - 0.5) * 5 - 10;
-            this.spheres.add(sphere);
-        } else if (beatDetectionResult.upperMidrangeBeat) {
-            // Middle area for midrange beats
-            sphere.position.y = (Math.random() - 0.5) * 5;
-            sphere.position.x = Math.random() > 0.5 ? (Math.random() - 0.5) * 5 + 10 : (Math.random() - 0.5) * 5 - 10;
-            this.spheres.add(sphere);
-        } else if (beatDetectionResult.presenceBeat || beatDetectionResult.brillianceBeat) {
-            // Upper area for higher frequency beats
-            sphere.position.y = 30 + (Math.random() - 0.5) * 5;
-            sphere.position.x = Math.random() > 0.5 ? (Math.random() - 0.5) * 5 + 10 : (Math.random() - 0.5) * 5 - 10;
-            this.spheres.add(sphere);
-        }
     }
 
     onWindowResize() {
@@ -203,14 +297,12 @@ class LittleManRemix extends React.Component {
     onClick() {
         if(this.sound.isPlaying) {
             this.sound.pause()
+            this.elapsedTime = this.clock.elapsedTime
+            this.clock.stop()
         }else{
+            this.clock.start()
+            this.clock.elapsedTime = this.elapsedTime
             this.sound.play()
-        }
-    }
-
-    onKeyPress(event) { // New method to handle key press
-        if (event.key === 'd' || event.key === 'D') {
-            console.log('Current Beat Detector State:', this.beatDetector);
         }
     }
 
@@ -222,7 +314,6 @@ class LittleManRemix extends React.Component {
         
         window.removeEventListener('resize', this.onWindowResize.bind(this))
         this.mount.removeEventListener('click', this.onClick.bind(this))
-        document.removeEventListener('keydown', this.onKeyPress.bind(this)) // Remove keydown event listener
         this.mount.removeChild(this.renderer.domElement)
     }
 
@@ -233,10 +324,10 @@ class LittleManRemix extends React.Component {
                 <div className="flex flex-wrap lg:flex-nowrap mt-8 w-full justify-center items-center">
                     {/* The actual canvas for three.js */}
                     <div
-                        className="flex justify-center "
+                        className="flex justify-center w-full"
                         ref={ref => (this.mount = ref)}
                     />
-                    <div className="flex w-full flex-wrap max-w-sm lg:w-1/2 mb-4 lg:mx-6 lg:justify-start">
+                    {/* <div className="flex w-full flex-wrap max-w-sm lg:w-1/2 mb-4 lg:mx-6 lg:justify-start">
                         <Header variant="1">Little Man Remix</Header>
                         <div className="flex w-full boxshadow-3d-right mt-4 lg:mt-8 mb-4">
                             <p className="w-full text-sm md:text-md lg:text-lg font-extralight font-manrope m-4">
@@ -274,7 +365,7 @@ class LittleManRemix extends React.Component {
                                 Please <b>click</b> on the visualization to start/stop the song.
                             </p>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </Layout>
         )
