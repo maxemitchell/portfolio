@@ -6,7 +6,11 @@ uniform vec3 u_color3;
 uniform vec3 u_color4;
 uniform vec3 u_color5;
 uniform float u_seed; // Added seed for randomness
-uniform float u_frequency;
+uniform float u_frequency0;
+uniform float u_frequency1;
+uniform float u_frequency2;
+uniform float u_frequency3;
+uniform float u_frequency4;
 
 varying vec2 vUv; // Using varying from @base.vert
 
@@ -57,61 +61,53 @@ void main() {
     
     //fBm background
     vec2 q = vec2(0.);
-    q.x = fbm( st*11.0 + 0.33*u_time);
-    q.y = fbm( st*11.0 + vec2(1.0) + 0.31*u_time);
+    q.x = fbm( vec2(st.x*11.0, st.y*11.0 + 0.33*u_time));
+    q.y = fbm( vec2(st.x*11.0 + 1.0, st.y*11.0 + 0.31*u_time));
 
     vec2 r = vec2(0.);
-    r.x = fbm( st*11.0 + 1.0*q + vec2(1.7,9.2)+ 0.45*u_time);
-    r.y = fbm( st*7.0 + 1.0*q + vec2(8.3,2.8)+ 0.226*u_time);
+    r.x = fbm( vec2(st.x*11.0 + 1.0*q.x + 1.7, st.y*11.0 + 1.0*q.y + 9.2 + 0.45*u_time));
+    r.y = fbm( vec2(st.x*7.0 + 1.0*q.x + 8.3, st.y*7.0 + 1.0*q.y + 2.8 + 0.226*u_time));
 
     float f = fbm(st*9.0+r);
 
     vec2 q2 = vec2(0.);
-    q2.x = fbm( st*7.0 + 0.24*u_time);
-    q2.y = fbm( st*7.0 + vec2(1.0) + 0.24*u_time);
+    q2.x = fbm( vec2(st.x*7.0, st.y*7.0 + 0.24*u_time));
+    q2.y = fbm( vec2(st.x*7.0 + 1.0, st.y*7.0 + 0.24*u_time));
 
     vec2 r2 = vec2(0.);
-    r2.x = fbm( st*12.0 + 1.3*q2 + vec2(1.4,3.2)+ 0.42*u_time);
-    r2.y = fbm( st*8.0 + 1.2*q2 + vec2(2.4,1.8)+ 0.123*u_time);
+    r2.x = fbm( vec2(st.x*12.0 + 1.3*q2.x + 1.4, st.y*12.0 + 1.3*q2.y + 3.2 + 0.42*u_time));
+    r2.y = fbm( vec2(st.x*8.0 + 1.2*q2.x + 2.4, st.y*8.0 + 1.2*q2.y + 1.8 + 0.123*u_time));
 
     float f2 = fbm(st*5.4+r2);
 
-    color = mix(u_color0,u_color1,
-                clamp((f*f)*4.0,0.0,1.0));
+    //highlights / brighter
+    color = mix(u_color0, u_color1,
+                clamp((f*f)*7.0*u_frequency1, 0.0, 1.0));
 
-    color = mix(color,u_color2,
-                clamp(length(q.x),0.0,1.0));
+    // Greener
+    color = mix(color, u_color2,
+                clamp(length(q.x - 0.63*u_frequency0), 0.0, 1.0));
 
-    color = mix(color,u_color3,
-                clamp(length(q.y - q.x),0.0,1.0));
+    // Makes things darker
+    color = mix(color, u_color3,
+                clamp(length(q.y*(1.0 + 1.75*u_frequency3) - q.x), 0.0, 1.0));
 
-    color = mix(color,u_color4,
-                clamp(length(r.x),0.0,1.0));
+    // Makes things brighter subtley
+    color = mix(color, u_color4,
+                clamp(length(r.x*(1.0 - 2.13*u_frequency2)), 0.0, 1.0));
 
-    color = mix(color,u_color5,
-                clamp(length(r.y - r.x),0.0,1.0));
+    // oranger
+    color = mix(color, u_color5,
+                clamp(length(r.y*(1.0 + 1.2*u_frequency4) - r.x), 0.0, 1.0));
 
-    vec3 colorfBm = vec3((.37*f*f*f+.67*f*f+.56*f + .17)*color);
+    vec3 colorfBm = vec3((.42*f*f*f + .65*f*f + .55*f + .05)*color);
 
-    vec3 color2 = vec3(1.0);
-    color2 = mix(u_color3,u_color1,
-                clamp((f2*f2*f2)*3.0,0.0,1.0));
-    color2 = mix(color2,u_color1,
-                clamp(length(q2.x),0.0,1.0));
-    color2 = mix(color2,u_color4,
-                clamp(length(q2.y - q2.x),0.0,1.0));
-    color2 = mix(color2,u_color0,
-                clamp(length(r2.x),0.0,1.0));
-    color2 = mix(color2,u_color1,
-                clamp(length(r2.y - r2.x),0.0,1.0));
-
-    vec3 colorPoints = vec3((.732*f2*f2*f2+.71*f2*f2+.53*f2 + .4)*color2);
-
-    color = mix(colorfBm, colorPoints, u_frequency);
+    color = colorfBm;
 
     color = sqrt(color*(color*1.63)); // Helps lighten the colors and makes it a bit more natural
     float transparency = 1.0 - (color.r * .2 + color.g * 0.2 + color.b * 0.2); // Calculate transparency based on closeness to black
     gl_FragColor = vec4(color, transparency);
 }
+
 
 
