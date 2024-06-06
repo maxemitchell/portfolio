@@ -5,12 +5,13 @@ import Header from '../../../components/Header'
 import * as THREE from 'three'
 import littleMan from './Little Man Remix (final version i swear).wav'
 import StemAnalyzer from './stem_analyzer'
-import vertShader from './base.vert'
-import sideMeshFrag from './side_mesh.frag'
-import starsFrag from './stars.frag'
+import StarsShader from './StarsShader' 
+import MeshShader from './MeshShader'
+import GlitchShader from './GlitchShader'
 import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import { FontLoader } from 'three/addons/loaders/FontLoader.js';
 import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
@@ -25,9 +26,11 @@ class LittleManRemix extends React.Component {
         this.setupLyrics();
 
         this.meshes = new THREE.Group();
+        this.rays = new THREE.Group();
         this.kicks = new THREE.Group();
         this.snares = new THREE.Group();
         this.scene.add(this.meshes);
+        this.scene.add(this.rays);
         this.scene.add(this.kicks);
         this.scene.add(this.snares);
 
@@ -48,7 +51,7 @@ class LittleManRemix extends React.Component {
         this.camera.position.set(0, 0, 300)
         this.camera.lookAt(0, 0, 0)
 
-        this.dimension = Math.min(window.innerHeight / 1.1, window.innerWidth / 1.1)
+        this.dimension = Math.min(window.innerHeight, window.innerWidth)
 
         this.renderer = new THREE.WebGLRenderer({ antialias: true });
         this.renderer.setSize(this.dimension, this.dimension)
@@ -66,11 +69,14 @@ class LittleManRemix extends React.Component {
         bloomPass.strength = 0.18;
         bloomPass.radius = 0.05;
 
+        this.glitchPass = new ShaderPass(GlitchShader);
+
         const outputPass = new OutputPass();
 
         this.composer = new EffectComposer(this.renderer);
         this.composer.addPass(renderScene);
         this.composer.addPass(bloomPass);
+        this.composer.addPass(this.glitchPass);
         this.composer.addPass(outputPass);
     }
 
@@ -93,56 +99,24 @@ class LittleManRemix extends React.Component {
     }
 
     addMesh() {
-        // Function to create a material with a unique seed
-        const createMaterialWithSeed = (seed) => new THREE.ShaderMaterial({
-            uniforms: {
-                u_time: { type: "f", value: 0.0 },
-                u_frequency0: { type: "f", value: 0.0 },
-                u_frequency1: { type: "f", value: 0.0 },
-                u_frequency2: { type: "f", value: 0.0 },
-                u_frequency3: { type: "f", value: 0.0 },
-                u_frequency4: { type: "f", value: 0.0 },
-                u_color0: { type: "vec3", value: new THREE.Color(0x1F2B3A) }, // Steel Blue
-                u_color1: { type: "vec3", value: new THREE.Color(0x40E0D0) }, // Turquoise
-                u_color2: { type: "vec3", value: new THREE.Color(0xFFD700) }, // Golden Yellow
-                u_color3: { type: "vec3", value: new THREE.Color(0x00FF7F) }, // Alien Green
-                u_color4: { type: "vec3", value: new THREE.Color(0xFF6347) }, // Terra Cotta Orange
-                u_color5: { type: "vec3", value: new THREE.Color(0x8A2BE2) }, // Pulsar Purple
-                u_seed: { type: "f", value: seed }, // Unique seed for each mesh
-            },
-            vertexShader: vertShader,
-            fragmentShader: sideMeshFrag,
-            side: THREE.DoubleSide,
-            transparent: true
-        });
-
         const geometry = new THREE.PlaneGeometry(600, 300);
 
         // First mesh with a unique seed
-        const planeMaterial1 = createMaterialWithSeed(Math.random()* 100);
+        const planeMaterial1 = new THREE.ShaderMaterial(MeshShader(Math.random() * 100));
         const plane1 = new THREE.Mesh(geometry, planeMaterial1);
         plane1.position.set(0, 3, 150);
         plane1.rotation.set(3 * Math.PI / 2, 0, 0);
         this.meshes.add(plane1);
 
         // Second mesh with a different unique seed
-        const planeMaterial2 = createMaterialWithSeed(Math.random()*100);
+        const planeMaterial2 = new THREE.ShaderMaterial(MeshShader(Math.random() * 100));
         const plane2 = new THREE.Mesh(geometry, planeMaterial2);
         plane2.position.set(0, -3, 150);
         plane2.rotation.set(3 * Math.PI / 2, 4 * Math.PI / 4, 0);
         this.meshes.add(plane2);
 
         const starGeometry = new THREE.PlaneGeometry(600,600);
-        const starMaterial = new THREE.ShaderMaterial({
-            uniforms: {
-                u_seed: { type: "f", value: Math.random() },
-                u_time: { type: "f", value: 0.0 }
-            },
-            vertexShader: vertShader,
-            fragmentShader: starsFrag,
-            side: THREE.DoubleSide,
-            transparent: true
-        });
+        const starMaterial = new THREE.ShaderMaterial(StarsShader);
         const starPlane = new THREE.Mesh(starGeometry, starMaterial);
         starPlane.position.set(0, 0, 0);
         starPlane.rotation.set(0, 0, 0);
@@ -174,6 +148,11 @@ class LittleManRemix extends React.Component {
         const delta = this.clock.getDelta();
         let timestamp = this.clock.getElapsedTime();
 
+        this.glitchPass.uniforms.u_time.value += delta;
+        if (timestamp - (this.lastGlitchTime || 0) > 1.7) {
+            this.glitchPass.uniforms.u_strength.value *= 0.95;
+        }
+
         // Update shader time uniforms
         this.meshes.children.forEach((mesh) => {
             mesh.material.uniforms.u_time.value += delta;
@@ -204,7 +183,7 @@ class LittleManRemix extends React.Component {
             this.updateLyric(currentLyric.toUpperCase());
         };
 
-        ['kick', 'snare'].forEach(beat => {
+        ['kick', 'snare', 'ethereal_noise', 'drum_breakdown_more'].forEach(beat => {
             if (this.stemAnalyzer.isNewBeat(timestamp, beat)) {
                 this[`add${beat.charAt(0).toUpperCase() + beat.slice(1)}`]();
             }
@@ -242,7 +221,7 @@ class LittleManRemix extends React.Component {
         });
         const lyricMesh = new THREE.Mesh(geometry, rainbowMaterial);
         lyricMesh.position.set(
-            (Math.random() - 0.5) * 7,
+            (Math.random() - 0.65) * 7,
             -2,
             290 + (Math.random() - 0.5) * 10
         );
@@ -262,6 +241,9 @@ class LittleManRemix extends React.Component {
                 item.material.opacity = Math.max(item.material.opacity, 0); // Ensure opacity doesn't go below 0
         })});
 
+        // Filter out fully transparent lyrics
+        this.lyrics.children = this.lyrics.children.filter(item => item.material.opacity > 0);
+
         ['kicks', 'snares'].forEach(group => {
             this[group].children.forEach(item => {
                 item.translateZ(delta * this.speed * 200);
@@ -270,59 +252,102 @@ class LittleManRemix extends React.Component {
 
         ['kicks', 'snares'].forEach(groupName => {
             this[groupName].children = this[groupName].children.filter(item => item.position.z < 300);
+        });   
+        
+        this.rays.children.forEach(ray => {
+            ray.translateZ(delta * this.speed * 200);
         });
 
-        // Filter out fully transparent lyrics
-        this.lyrics.children = this.lyrics.children.filter(item => item.material.opacity > 0);
+        this.rays.children = this.rays.children.filter(ray => ray.position.z < 600);
     }
 
-addKick() {
-    const kickGeometry = new THREE.BoxGeometry(10, 4, 0.1);
-    const kickMaterial = new THREE.MeshStandardMaterial({
-        color: 0xFF4500, // OrangeRed for a fiery kick
-        emissive: 0xFFD700, // Gold glow to enhance the kick's visual impact
+    addKick() {
+        const kickGeometry = new THREE.BoxGeometry(10, 4, 0.1);
+        const kickMaterial = new THREE.MeshStandardMaterial({
+            color: 0xFF4500, // OrangeRed for a fiery kick
+            emissive: 0xFFD700, // Gold glow to enhance the kick's visual impact
+        });
+        const kick = new THREE.Mesh(kickGeometry, kickMaterial);
+        kick.position.set(
+            (Math.random() - 0.5) * 5,
+            -3.0,
+            180
+        );
+        kick.rotation.set(Math.PI / 2, 0, 0);
+
+        // Create a group to handle the snare's rotation and translation separately
+        const kickGroup = new THREE.Group();
+        kickGroup.add(kick);
+
+        this.kicks.add(kickGroup);
+    }
+
+    addSnare() {
+        const snareGeometry = new THREE.BoxGeometry(4, 30, 0.1);
+        const snareMaterial = new THREE.MeshStandardMaterial({
+            color: 0x4FD1C5, // A different, yet vibrant color to distinguish from the kick
+            emissive: 0x38B2AC, // A cool glow to add some snare-specific flair
+        });
+        const snare = new THREE.Mesh(snareGeometry, snareMaterial);
+        snare.position.set(
+            (Math.random() - 0.5) * 5,
+            3.0,
+            180
+        );
+        snare.rotation.set(Math.PI / 2, 0, 0);
+
+        // Create a group to handle the snare's rotation and translation separately
+        const snareGroup = new THREE.Group();
+        snareGroup.add(snare);
+
+        this.snares.add(snareGroup);
+    }
+
+addEthereal_noise() {
+    const etherealNoiseGeometry = new THREE.BoxGeometry(10, 300, 0.1);
+    const etherealNoiseMaterial = new THREE.MeshStandardMaterial({
+        color: 0x1E90FF, // DodgerBlue for a cool space ray effect
+        emissive: 0x00BFFF, // DeepSkyBlue glow to enhance the space ray effect
     });
-    const kick = new THREE.Mesh(kickGeometry, kickMaterial);
-    kick.position.set(
-        (Math.random() - 0.5) * 5,
-        -3.0,
-        180
+    const etherealNoise = new THREE.Mesh(etherealNoiseGeometry, etherealNoiseMaterial);
+    const etherealNoise2 = new THREE.Mesh(etherealNoiseGeometry, etherealNoiseMaterial);
+    
+    // Alternating x positions between -10, 0, and 10
+    if (!this.etherealNoiseCounter) {
+        this.etherealNoiseCounter = 0;
+    }
+    const xPositions = [-15, 0, 15];
+    const xPos = xPositions[this.etherealNoiseCounter % xPositions.length];
+    this.etherealNoiseCounter++;
+    
+    etherealNoise.position.set(
+        xPos,
+        -3.3,
+        0
     );
-    kick.rotation.set(Math.PI / 2, 0, 0);
-
-    // Create a group to handle the snare's rotation and translation separately
-    const kickGroup = new THREE.Group();
-    kickGroup.add(kick);
-
-    this.kicks.add(kickGroup);
+    etherealNoise2.position.set(
+        xPos,
+        3.3,
+        0
+    );
+    etherealNoise.rotation.set(Math.PI / 2, 0, 0);
+    etherealNoise2.rotation.set(Math.PI / 2, 0, 0);
+    const etherealNoiseGroup = new THREE.Group();
+    etherealNoiseGroup.add(etherealNoise);
+    etherealNoiseGroup.add(etherealNoise2);
+    this.rays.add(etherealNoiseGroup);
 }
 
-addSnare() {
-    const snareGeometry = new THREE.BoxGeometry(4, 30, 0.1);
-    const snareMaterial = new THREE.MeshStandardMaterial({
-        color: 0x4FD1C5, // A different, yet vibrant color to distinguish from the kick
-        emissive: 0x38B2AC, // A cool glow to add some snare-specific flair
-    });
-    const snare = new THREE.Mesh(snareGeometry, snareMaterial);
-    snare.position.set(
-        (Math.random() - 0.5) * 5,
-        3.0,
-        180
-    );
-    snare.rotation.set(Math.PI / 2, 0, 0);
-
-    // Create a group to handle the snare's rotation and translation separately
-    const snareGroup = new THREE.Group();
-    snareGroup.add(snare);
-
-    this.snares.add(snareGroup);
-}
+    addDrum_breakdown_more() {
+        this.glitchPass.uniforms.u_strength.value = 1.0;
+        this.lastGlitchTime = this.clock.getElapsedTime();
+    }
 
     onWindowResize() {
         if (this.mount) {
-            this.dimension = Math.min(window.innerHeight / 1.5, window.innerWidth / 1.5)
+            this.dimension = Math.min(window.innerHeight, window.innerWidth)
             this.renderer.setSize(this.dimension, this.dimension)
-            this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+            this.renderer.setPixelRatio(Math.min(window.devicePixelRatio))
         }
     }
 

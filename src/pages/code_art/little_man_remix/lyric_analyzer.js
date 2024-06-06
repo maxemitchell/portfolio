@@ -11,7 +11,7 @@ class LyricAnalyzer {
    * @returns {string|null} - The new word if a change is detected, null otherwise.
    */
   getNewWord(timestamp) {
-    timestamp = timestamp - 0.15; // Add a small buffer to the timestamp to account for slight timing differences
+    timestamp = timestamp - 0.1; // Add a small buffer to the timestamp to account for slight timing differences
     const nextWordIndex = this.lastWordIndex + 1;
     const nextWord = lyricsData[nextWordIndex];
 
