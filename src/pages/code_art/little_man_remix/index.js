@@ -5,9 +5,9 @@ import Header from '../../../components/Header'
 import * as THREE from 'three'
 import littleMan from './Little Man Remix (final version i swear).wav'
 import StemAnalyzer from './stem_analyzer'
-import StarsShader from './StarsShader' 
-import MeshShader from './MeshShader'
+import WarpShader from './WarpShader'
 import GlitchShader from './GlitchShader'
+import HyperspaceShader from './HyperspaceShader'
 import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
@@ -34,7 +34,7 @@ class LittleManRemix extends React.Component {
         this.scene.add(this.kicks);
         this.scene.add(this.snares);
 
-        this.lastNormalizedAverageVolume = 0;
+        this.intro_speed_up = 0.0;
 
         this.addMesh();
         
@@ -99,28 +99,17 @@ class LittleManRemix extends React.Component {
     }
 
     addMesh() {
-        const geometry = new THREE.PlaneGeometry(600, 300);
+        const hyperspaceGeometry = new THREE.PlaneGeometry(600, 600);
+        this.hyperspaceMaterial = new THREE.ShaderMaterial(HyperspaceShader);
+        const hyperspaceMesh = new THREE.Mesh(hyperspaceGeometry, this.hyperspaceMaterial);
+        hyperspaceMesh.position.set(0, 0, 0);
+        this.meshes.add(hyperspaceMesh);
 
-        // First mesh with a unique seed
-        const planeMaterial1 = new THREE.ShaderMaterial(MeshShader(Math.random() * 100));
-        const plane1 = new THREE.Mesh(geometry, planeMaterial1);
-        plane1.position.set(0, 3, 150);
-        plane1.rotation.set(3 * Math.PI / 2, 0, 0);
-        this.meshes.add(plane1);
-
-        // Second mesh with a different unique seed
-        const planeMaterial2 = new THREE.ShaderMaterial(MeshShader(Math.random() * 100));
-        const plane2 = new THREE.Mesh(geometry, planeMaterial2);
-        plane2.position.set(0, -3, 150);
-        plane2.rotation.set(3 * Math.PI / 2, 4 * Math.PI / 4, 0);
-        this.meshes.add(plane2);
-
-        const starGeometry = new THREE.PlaneGeometry(600,600);
-        const starMaterial = new THREE.ShaderMaterial(StarsShader);
-        const starPlane = new THREE.Mesh(starGeometry, starMaterial);
-        starPlane.position.set(0, 0, 0);
-        starPlane.rotation.set(0, 0, 0);
-        this.meshes.add(starPlane);
+        const warpGeometry = new THREE.PlaneGeometry(600, 600);
+        this.warpMaterial = new THREE.ShaderMaterial(WarpShader);
+        const warpMesh = new THREE.Mesh(warpGeometry, this.warpMaterial);
+        warpMesh.position.set(0, 0, 0);
+        this.meshes.add(warpMesh);
     }
 
     audioSetup() {
@@ -150,30 +139,20 @@ class LittleManRemix extends React.Component {
 
         this.glitchPass.uniforms.u_time.value += delta;
         if (timestamp - (this.lastGlitchTime || 0) > 1.7) {
-            this.glitchPass.uniforms.u_strength.value *= 0.95;
+            this.glitchPass.uniforms.u_strength.value *= 0.93;
         }
 
         // Update shader time uniforms
         this.meshes.children.forEach((mesh) => {
             mesh.material.uniforms.u_time.value += delta;
 
-            if (mesh.material.uniforms.u_frequency0) {
-                // Get the volume from the frequency data
-                const frequencyData = this.analyser.getFrequencyData();    
-                // Split frequency data into 5 ranges and calculate rolling average volumes for each
-                const rangeSize = Math.floor(frequencyData.length / 5);
-                const smoothingFactors = [0.05, 0.05, 0.1, 0.05, 0.1]; // Smoothing factor for rolling average
-                for (let i = 0; i < 5; i++) {
-                    const rangeStart = i * rangeSize;
-                    const rangeEnd = (i + 1) * rangeSize;
-                    const rangeData = frequencyData.slice(rangeStart, rangeEnd);
-                    const averageVolume = rangeData.reduce((acc, val) => acc + val, 0) / rangeData.length;
-                    const normalizedAverageVolume = averageVolume / 255.0;
-                    // Calculate rolling average
-                    const currentUniformValue = mesh.material.uniforms[`u_frequency${i}`].value;
-                    mesh.material.uniforms[`u_frequency${i}`].value = 
-                        currentUniformValue * (1 - smoothingFactors[i]) + normalizedAverageVolume * smoothingFactors[i];
-                }
+            if (mesh.material.uniforms.u_speed_up) {
+                this.intro_speed_up += this.intro_acceleration || 0.0;
+                mesh.material.uniforms.u_speed_up.value += this.intro_speed_up;
+            }
+
+            if (mesh.material.uniforms.u_activate) {
+                mesh.material.uniforms.u_activate.value *= 0.99;
             }
         });
 
@@ -183,7 +162,7 @@ class LittleManRemix extends React.Component {
             this.updateLyric(currentLyric.toUpperCase());
         };
 
-        ['kick', 'snare', 'ethereal_noise', 'drum_breakdown_more'].forEach(beat => {
+        ['kick', 'snare', 'ethereal_noise', 'drum_breakdown_more', 'intro', 'main_bell'].forEach(beat => {
             if (this.stemAnalyzer.isNewBeat(timestamp, beat)) {
                 this[`add${beat.charAt(0).toUpperCase() + beat.slice(1)}`]();
             }
@@ -303,44 +282,76 @@ class LittleManRemix extends React.Component {
         this.snares.add(snareGroup);
     }
 
-addEthereal_noise() {
-    const etherealNoiseGeometry = new THREE.BoxGeometry(10, 300, 0.1);
-    const etherealNoiseMaterial = new THREE.MeshStandardMaterial({
-        color: 0x1E90FF, // DodgerBlue for a cool space ray effect
-        emissive: 0x00BFFF, // DeepSkyBlue glow to enhance the space ray effect
-    });
-    const etherealNoise = new THREE.Mesh(etherealNoiseGeometry, etherealNoiseMaterial);
-    const etherealNoise2 = new THREE.Mesh(etherealNoiseGeometry, etherealNoiseMaterial);
-    
-    // Alternating x positions between -10, 0, and 10
-    if (!this.etherealNoiseCounter) {
-        this.etherealNoiseCounter = 0;
+    addEthereal_noise() {
+        const etherealNoiseGeometry = new THREE.BoxGeometry(10, 300, 0.1);
+        const etherealNoiseMaterial = new THREE.MeshStandardMaterial({
+            color: 0x1E90FF, // DodgerBlue for a cool space ray effect
+            emissive: 0x00BFFF, // DeepSkyBlue glow to enhance the space ray effect
+        });
+        const etherealNoise = new THREE.Mesh(etherealNoiseGeometry, etherealNoiseMaterial);
+        const etherealNoise2 = new THREE.Mesh(etherealNoiseGeometry, etherealNoiseMaterial);
+        
+        // Alternating x positions between -10, 0, and 10
+        if (!this.etherealNoiseCounter) {
+            this.etherealNoiseCounter = 0;
+        }
+        const xPositions = [-15, 0, 15];
+        const xPos = xPositions[this.etherealNoiseCounter % xPositions.length];
+        this.etherealNoiseCounter++;
+        
+        etherealNoise.position.set(
+            xPos,
+            -3.3,
+            0
+        );
+        etherealNoise2.position.set(
+            xPos,
+            3.3,
+            0
+        );
+        etherealNoise.rotation.set(Math.PI / 2, 0, 0);
+        etherealNoise2.rotation.set(Math.PI / 2, 0, 0);
+        const etherealNoiseGroup = new THREE.Group();
+        etherealNoiseGroup.add(etherealNoise);
+        etherealNoiseGroup.add(etherealNoise2);
+        this.rays.add(etherealNoiseGroup);
     }
-    const xPositions = [-15, 0, 15];
-    const xPos = xPositions[this.etherealNoiseCounter % xPositions.length];
-    this.etherealNoiseCounter++;
-    
-    etherealNoise.position.set(
-        xPos,
-        -3.3,
-        0
-    );
-    etherealNoise2.position.set(
-        xPos,
-        3.3,
-        0
-    );
-    etherealNoise.rotation.set(Math.PI / 2, 0, 0);
-    etherealNoise2.rotation.set(Math.PI / 2, 0, 0);
-    const etherealNoiseGroup = new THREE.Group();
-    etherealNoiseGroup.add(etherealNoise);
-    etherealNoiseGroup.add(etherealNoise2);
-    this.rays.add(etherealNoiseGroup);
-}
+
+    addIntro() {
+        this.intro_acceleration = 0.0007;
+        this.intro_speed_up = 0.0;
+        this.warpMaterial.uniforms.u_active.value = 1.0;
+
+        if (this.intro_started) {
+            this.warpMaterial.uniforms.u_warp.value = 0.0;
+            this.intro_acceleration = 0.0;
+        }
+
+        this.intro_started = true;
+    }
 
     addDrum_breakdown_more() {
+        this.hyperspaceMaterial.uniforms.u_activate.value = 1.0;
+    }
+
+    addGlitch() {
         this.glitchPass.uniforms.u_strength.value = 1.0;
         this.lastGlitchTime = this.clock.getElapsedTime();
+    }
+
+    addMain_bell() {
+        const bellGeometry = new THREE.BoxGeometry(3, 300, 0.1);
+        const bellMaterial = new THREE.MeshStandardMaterial({
+            color: 0xFF6347, // Tomato color for a fiery space ray effect
+            emissive: 0xFF4500, // OrangeRed glow to enhance the fiery space ray effect
+        });
+        const bellNoise = new THREE.Mesh(bellGeometry, bellMaterial);
+
+        bellNoise.position.set((Math.random() - 0.5) * 30, 3.3 * (Math.random() > 0.5 ? 1 : -1), 0);
+        bellNoise.rotation.set(Math.PI / 2, 0, 0);
+        const bellNoiseGroup = new THREE.Group();
+        bellNoiseGroup.add(bellNoise);
+        this.rays.add(bellNoiseGroup);    
     }
 
     onWindowResize() {
@@ -430,3 +441,4 @@ addEthereal_noise() {
 }
 
 export default LittleManRemix
+

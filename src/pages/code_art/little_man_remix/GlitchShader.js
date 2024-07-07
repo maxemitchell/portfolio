@@ -14,6 +14,7 @@ const GlitchShader = {
 			gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
 		}`,
 
+    // From https://www.shadertoy.com/view/XtK3W3
     fragmentShader: /* glsl */`
         // Description : Array and textureless GLSL 2D simplex noise function.
         //      Author : Ian McEwan, Ashima Arts.
