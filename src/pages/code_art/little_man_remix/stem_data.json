@@ -1,5 +1,4 @@
 {
-  "drum_breakdown": { "beat_timestamps": [182.26666666666668] },
   "kick": {
     "beat_timestamps": [
       2.7666666666666666, 3.6, 4.1, 4.933333333333334, 5.433333333333334,
@@ -136,10 +135,17 @@
     ]
   },
   "ethereal_noise": {
-    "beat_timestamps": [19.7, 20.2, 20.5, 106.55, 107.5, 108.35]
+    "beat_timestamps": [19.8, 20.4, 20.9, 105.5, 106.0, 106.5]
   },
-  "drum_breakdown_more": { "beat_timestamps": [22.5, 44.5, 108.5, 189] },
+  "hyperspace": { "beat_timestamps": [22.5, 43.8, 87, 107, 172] },
+  "whirl": {"beat_timestamps": [130.5, 135.5] },
   "intro": {
-    "beat_timestamps": [0.1, 2.55]
+    "beat_timestamps": [0.1, 2.95]
+  },
+  "glitch": {
+    "beat_timestamps": [109, 131, 173, 195]
+  },
+  "minor_glitch": {
+    "beat_timestamps": [66, 88, 152, 172]
   }
 }

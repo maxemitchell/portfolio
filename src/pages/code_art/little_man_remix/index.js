@@ -6,6 +6,7 @@ import * as THREE from 'three'
 import littleMan from './Little Man Remix (final version i swear).wav'
 import StemAnalyzer from './stem_analyzer'
 import WarpShader from './WarpShader'
+import WhirlShader from './WhirlShader'
 import GlitchShader from './GlitchShader'
 import HyperspaceShader from './HyperspaceShader'
 import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
@@ -51,9 +52,9 @@ class LittleManRemix extends React.Component {
         this.camera.position.set(0, 0, 300)
         this.camera.lookAt(0, 0, 0)
 
-        this.dimension = Math.min(window.innerHeight, window.innerWidth)
-
+        
         this.renderer = new THREE.WebGLRenderer({ antialias: true });
+        this.dimension = Math.min(window.innerHeight / 1.3, window.innerWidth / 1.3)
         this.renderer.setSize(this.dimension, this.dimension)
         this.renderer.toneMapping = THREE.ReinhardToneMapping
         this.mount.appendChild(this.renderer.domElement)
@@ -70,12 +71,14 @@ class LittleManRemix extends React.Component {
         bloomPass.radius = 0.05;
 
         this.glitchPass = new ShaderPass(GlitchShader);
+        this.whirlPass = new ShaderPass(WhirlShader);
 
         const outputPass = new OutputPass();
 
         this.composer = new EffectComposer(this.renderer);
         this.composer.addPass(renderScene);
         this.composer.addPass(bloomPass);
+        this.composer.addPass(this.whirlPass);
         this.composer.addPass(this.glitchPass);
         this.composer.addPass(outputPass);
     }
@@ -120,7 +123,7 @@ class LittleManRemix extends React.Component {
         const audioLoader = new THREE.AudioLoader()
         audioLoader.load(littleMan, function (buffer) {
             sound.setBuffer(buffer)
-            sound.setLoop(true)
+            sound.setLoop(false)
             sound.setVolume(0.5)
         })
 
@@ -138,9 +141,7 @@ class LittleManRemix extends React.Component {
         let timestamp = this.clock.getElapsedTime();
 
         this.glitchPass.uniforms.u_time.value += delta;
-        if (timestamp - (this.lastGlitchTime || 0) > 1.7) {
-            this.glitchPass.uniforms.u_strength.value *= 0.93;
-        }
+        this.whirlPass.uniforms.u_time.value += delta;
 
         // Update shader time uniforms
         this.meshes.children.forEach((mesh) => {
@@ -162,7 +163,7 @@ class LittleManRemix extends React.Component {
             this.updateLyric(currentLyric.toUpperCase());
         };
 
-        ['kick', 'snare', 'ethereal_noise', 'drum_breakdown_more', 'intro', 'main_bell'].forEach(beat => {
+        ['kick', 'snare', 'ethereal_noise', 'hyperspace', 'intro', 'main_bell', 'glitch', 'minor_glitch', 'whirl'].forEach(beat => {
             if (this.stemAnalyzer.isNewBeat(timestamp, beat)) {
                 this[`add${beat.charAt(0).toUpperCase() + beat.slice(1)}`]();
             }
@@ -199,15 +200,27 @@ class LittleManRemix extends React.Component {
             opacity: 1.0
         });
         const lyricMesh = new THREE.Mesh(geometry, rainbowMaterial);
+
+        let zPosition;
+        do {
+            zPosition = 290 + (Math.random() - 0.5) * 10;
+        } while (
+            (this.lastLyricZ !== undefined && Math.abs(zPosition - this.lastLyricZ) <= 2.5) ||
+            (this.secondLastLyricZ !== undefined && Math.abs(zPosition - this.secondLastLyricZ) <= 2.5)
+        );
+
         lyricMesh.position.set(
             (Math.random() - 0.65) * 7,
             -2,
-            290 + (Math.random() - 0.5) * 10
+            zPosition
         );
+
         lyricMesh.scale.set(0.015, 0.015, 0.015);
-        // lyricMesh.lookAt(lyricMesh.position.x, lyricMesh.position.y, 300);
         lyricMesh.rotation.set(-Math.PI / 3, 0, 0); // Rotate the mesh 45 degrees on X and Y axes
         this.lyrics.add(lyricMesh);
+
+        this.secondLastLyricZ = this.lastLyricZ;
+        this.lastLyricZ = zPosition;
     }
 
     moveObjects(delta) {
@@ -330,13 +343,32 @@ class LittleManRemix extends React.Component {
         this.intro_started = true;
     }
 
-    addDrum_breakdown_more() {
+    addHyperspace() {
         this.hyperspaceMaterial.uniforms.u_activate.value = 1.0;
     }
 
     addGlitch() {
-        this.glitchPass.uniforms.u_strength.value = 1.0;
-        this.lastGlitchTime = this.clock.getElapsedTime();
+        if(this.glitchPass.uniforms.u_strength.value < 0.1) {
+            this.glitchPass.uniforms.u_strength.value = 1.0;
+        }else{
+            this.glitchPass.uniforms.u_strength.value = 0.0;
+        }
+    }
+
+    addWhirl() {
+        if(this.whirlPass.uniforms.u_strength.value < 0.1) {
+            this.whirlPass.uniforms.u_strength.value = 1.0;
+        }else{
+            this.whirlPass.uniforms.u_strength.value = 0.0;
+        }
+    }
+
+    addMinor_glitch() {
+        if (this.glitchPass.uniforms.u_strength.value < 0.1) {
+            this.glitchPass.uniforms.u_strength.value = 0.2;
+        } else {
+            this.glitchPass.uniforms.u_strength.value = 0.0;
+        }    
     }
 
     addMain_bell() {
@@ -356,7 +388,7 @@ class LittleManRemix extends React.Component {
 
     onWindowResize() {
         if (this.mount) {
-            this.dimension = Math.min(window.innerHeight, window.innerWidth)
+            this.dimension = Math.min(window.innerHeight / 1.3, window.innerWidth / 1.3)
             this.renderer.setSize(this.dimension, this.dimension)
             this.renderer.setPixelRatio(Math.min(window.devicePixelRatio))
         }
@@ -389,13 +421,12 @@ class LittleManRemix extends React.Component {
         return (
             <Layout>
                 <SEO title="Code Art" />
-                {/* <div className="flex flex-wrap lg:flex-nowrap mt-8 w-full justify-center items-center"> */}
-                    {/* The actual canvas for three.js */}
+                <div className="flex flex-wrap lg:flex-nowrap mt-8 w-full justify-center items-center">
                     <div
-                        className="flex justify-center w-full h-full"
+                        className="flex justify-center"
                         ref={ref => (this.mount = ref)}
                     />
-                    {/* <div className="flex w-full flex-wrap max-w-sm lg:w-1/2 mb-4 lg:mx-6 lg:justify-start">
+                    <div className="flex w-full flex-wrap max-w-sm lg:w-1/2 mb-4 lg:mx-6 lg:justify-start">
                         <Header variant="1">Little Man Remix</Header>
                         <div className="flex w-full boxshadow-3d-right mt-4 lg:mt-8 mb-4">
                             <p className="w-full text-sm md:text-md lg:text-lg font-extralight font-manrope m-4">
@@ -416,16 +447,7 @@ class LittleManRemix extends React.Component {
                                 >
                                     Keiran Willig
                                 </a>
-                                . I also released a{' '}
-                                <a
-                                    href="https://www.youtube.com/watch?v=_yXQayoxJOg"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="inline text-themeRed hover:text-themeBlue duration-500"
-                                >
-                                    YouTube video{' '}
-                                </a>
-                                documenting my creation process.
+                                .
                             </p>
                         </div>
                         <div className="flex w-full boxshadow-3d-right mt-4 lg:mt-8">
@@ -433,8 +455,8 @@ class LittleManRemix extends React.Component {
                                 Please <b>click</b> on the visualization to start/stop the song.
                             </p>
                         </div>
-                    </div> */}
-                {/* </div> */}
+                    </div>
+                </div>
             </Layout>
         )
     }
