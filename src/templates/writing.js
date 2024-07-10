@@ -4,8 +4,8 @@ import SEO from '../components/SEO'
 import Layout from '../components/Layout'
 import Header from '../components/Header'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
-import { INLINES, BLOCKS, MARKS } from "@contentful/rich-text-types"
-import { renderRichText } from "gatsby-source-contentful/rich-text"
+import { INLINES, BLOCKS, MARKS } from '@contentful/rich-text-types'
+import { renderRichText } from 'gatsby-source-contentful/rich-text'
 
 const options = {
   renderMark: {
@@ -21,7 +21,6 @@ const options = {
   renderNode: {
     [INLINES.ENTRY_HYPERLINK]: (node, children) => {
       const { slug } = node.data.target
-      console.log(node)
       return (
         <Link
           to={`/writings/${slug}`}
@@ -51,9 +50,9 @@ const options = {
     [BLOCKS.EMBEDDED_ASSET]: (node) => {
       const { gatsbyImageData, description } = node.data.target
       return (
-        <div className='flex w-full'>
+        <div className="flex w-full">
           <GatsbyImage
-            className='mx-auto my-2'
+            className="mx-auto my-2"
             image={getImage(gatsbyImageData)}
             alt={description}
             loading="lazy"
@@ -62,11 +61,11 @@ const options = {
       )
     },
     [BLOCKS.HEADING_3]: (node, children) => (
-        <div className="mt-6 mb-2">
-          <h3 className="inline font-extrabold text-xl sm:text-2xl md:text-3xl lg:text-4xl">
-            {children}
-          </h3>
-        </div>
+      <div className="mt-6 mb-2">
+        <h3 className="inline font-extrabold text-xl sm:text-2xl md:text-3xl lg:text-4xl">
+          {children}
+        </h3>
+      </div>
     ),
     [BLOCKS.OL_LIST]: (node, children) => (
       <ol className="list-decimal pl-4">{children}</ol>
@@ -96,8 +95,12 @@ const options = {
         <tbody>{children}</tbody>
       </table>
     ),
-    [BLOCKS.TABLE_HEADER_CELL]: (node, children) => <td className="px-5">{children}</td>,
-    [BLOCKS.TABLE_CELL]: (node, children) => <td className="px-5">{children}</td>,
+    [BLOCKS.TABLE_HEADER_CELL]: (node, children) => (
+      <td className="px-5">{children}</td>
+    ),
+    [BLOCKS.TABLE_CELL]: (node, children) => (
+      <td className="px-5">{children}</td>
+    ),
     [BLOCKS.TABLE_ROW]: (node, children) => {
       if (
         children.every((node) => node.nodeType === BLOCKS.TABLE_HEADER_CELL)
@@ -106,14 +109,13 @@ const options = {
           <thead>
             <tr>{children}</tr>
           </thead>
-        );
+        )
       } else {
-        return <tr>{children}</tr>;
+        return <tr>{children}</tr>
       }
     },
   },
 }
-
 
 const WritingTemplate = ({ data }) => {
   const writing = data.contentfulWriting
@@ -135,7 +137,7 @@ const WritingTemplate = ({ data }) => {
         </div>
       </div>
     </Layout>
-  );
+  )
 }
 
 export default WritingTemplate

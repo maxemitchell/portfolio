@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
 
-const NavItem = props => {
+const NavItem = (props) => {
   return (
     <Link
       to={props.to}

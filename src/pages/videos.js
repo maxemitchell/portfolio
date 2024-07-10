@@ -11,9 +11,7 @@ const Videos = ({ data }) => {
     <Layout>
       <SEO title="Videos" />
       <div className="w-full max-w-5xl mx-auto">
-
         <div className="flex w-full flex-wrap justify-center items-end mt-8">
-
           {youtubeVideos.map(({ node: youtubeVideo }) => {
             return (
               <div
@@ -36,7 +34,6 @@ const Videos = ({ data }) => {
             )
           })}
         </div>
-
       </div>
     </Layout>
   )

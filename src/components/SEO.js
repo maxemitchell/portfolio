@@ -104,13 +104,13 @@ SEO.propTypes = {
   title: PropTypes.string,
   desc: PropTypes.string,
   banner: PropTypes.string,
-  pathname: PropTypes.string
+  pathname: PropTypes.string,
 }
 SEO.defaultProps = {
   title: null,
   desc: null,
   banner: null,
-  pathname: null
+  pathname: null,
 }
 const query = graphql`
   query SEO {
