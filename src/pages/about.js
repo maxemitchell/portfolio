@@ -3,8 +3,6 @@ import SEO from '../components/SEO'
 import Layout from '../components/Layout'
 import WorkExperiences from '../components/WorkExperiences'
 import Header from '../components/Header'
-import SocialMedia from '../components/SocialMedia'
-import MailLogo from '../images/mail.svg'
 
 const About = ({}) => {
   return (
