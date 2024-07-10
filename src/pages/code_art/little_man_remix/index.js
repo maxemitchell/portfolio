@@ -444,7 +444,7 @@ class LittleManRemix extends React.Component {
     return (
       <Layout>
         <SEO
-          title="Little Man (Kir Remix)"
+          title="Little Man (KiR Remix)"
           desc="A music visualizer inspired by 2001: A Space Odyssey's 'Beyond the Infinite' scene."
         />
         <div className="flex flex-wrap lg:flex-nowrap mt-8 w-full justify-center items-center">
