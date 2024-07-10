@@ -181,7 +181,10 @@ class PackedCircles extends React.Component {
   render() {
     return (
       <Layout>
-        <SEO title="Code Art" />
+        <SEO
+          title="PCK MTN"
+          desc="my first piece of generative art. Color palette comes from Childish Gambino's STN MTN album."
+        />
         <div className="flex flex-wrap lg:flex-nowrap mt-12 w-full justify-center items-center">
           {/* The actaual canvas for p5.js */}
           <div

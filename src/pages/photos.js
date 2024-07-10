@@ -12,7 +12,10 @@ const Photos = ({ data }) => {
 
   return (
     <Layout>
-      <SEO title="Photos" />
+      <SEO
+        title="Photos"
+        desc="A collection of photos I've taken, usually of friends, nature, and views on vacation."
+      />
       <div className="w-full max-w-6xl mx-auto">
         <div className="flex w-full flex-wrap justify-around items-end mt-6">
           <div className="w-full">

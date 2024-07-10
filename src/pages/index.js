@@ -18,7 +18,10 @@ const Index = ({ data }) => {
 
   return (
     <Layout>
-      <SEO title="Home" />
+      <SEO
+        title="Home"
+        desc="Max Mitchell's internet home. Photos, videos, writings, and some code art live here."
+      />
       <div className="w-full max-w-6xl mx-auto">
         <div className="flex w-full flex-wrap sm:flex-nowrap mt-6 sm:mt-8 justify-center">
           <Link

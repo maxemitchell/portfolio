@@ -6,10 +6,10 @@ const WorkExperiences = () => {
     <div className="px-6">
       <Experience
         variant={'top'}
-        header={'tastytrade / Junior Developer'}
+        header={'tastytrade / Junior Developer -> Senior Software Enginner'}
         date={'August 2021 - Present'}
         body={
-          'Starting my full time engineering career at tastytrade in chicago :)'
+          'Started my full time engineering career at tastytrade in chicago as a junior developer and have slowly grown my way up to senior. I work on the backend ruby engineering team, mostly on order routing and asset management.'
         }
       />
 
@@ -18,7 +18,7 @@ const WorkExperiences = () => {
         header={'Synchrony Financial / Emerging Technology Intern'}
         date={'January 2020 - May 2021'}
         body={
-          'Currently working on a React Data Analytics platform built with AWS S3, Lambda, and EMR.'
+          'Worked on a React Data Analytics platform built with AWS S3, Lambda, and EMR.'
         }
       />
 

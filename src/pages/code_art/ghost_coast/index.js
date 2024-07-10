@@ -125,7 +125,10 @@ class GhostCoast extends React.Component {
   render() {
     return (
       <Layout>
-        <SEO title="Code Art" />
+        <SEO
+          title="Space Ghost Coast To Coast"
+          desc="A music visualizer for the song Space Ghost Coast to Coast by Glass Animals."
+        />
         <div className="flex flex-wrap lg:flex-nowrap mt-12 w-full justify-center items-center">
           <div
             className="picture-border-sm-1 flex justify-center"

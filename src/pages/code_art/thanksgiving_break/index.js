@@ -221,7 +221,10 @@ class ThanksgivingBreak extends React.Component {
   render() {
     return (
       <Layout>
-        <SEO title="Code Art" />
+        <SEO
+          title="Thanksgiving Break Music Visualizer"
+          desc="A music visualizer I made in p5.js over thanksgiving break."
+        />
         <div className="flex flex-wrap lg:flex-nowrap mt-8 w-full justify-center items-center">
           {/* The actaual canvas for p5.js */}
           <div className="flex justify-center" ref={this.myRef} />

@@ -10,7 +10,10 @@ const Writings = ({ data }) => {
 
   return (
     <Layout>
-      <SEO title="Writings" />
+      <SEO
+        title="Writings"
+        desc="A collection of writings on various topics, from AI to crohn's to crypto."
+      />
       <div className="w-full max-w-6xl mx-auto">
         <div className="flex w-full flex-wrap mt-6">
           <div className="w-full mb-6 mt-1">
