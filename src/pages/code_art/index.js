@@ -13,7 +13,7 @@ const CodeArt = ({ data }) => {
           slug="/code_art/little_man_remix"
           title="Little Man Remix"
           image={data.littleManRemix.childImageSharp.gatsbyImageData}
-          type="right"
+          type="left"
           className="mt-12"
           description={
             <p className="w-full text-sm md:text-md lg:text-lg font-extralight font-manrope m-4">
@@ -46,6 +46,19 @@ const CodeArt = ({ data }) => {
                 (his soundcloud)
               </a>
               .
+            </p>
+          }
+        />
+
+        <CodeArtPreview
+          slug="/code_art/miss_julia_the_third"
+          title="Miss Julia the Third"
+          image={data.missJuliaTheThird.childImageSharp.gatsbyImageData}
+          type="right"
+          className="mt-12"
+          description={
+            <p className="w-full text-sm md:text-md lg:text-lg font-extralight font-manrope m-4">
+              A little 3D Julia Sets Visualization
             </p>
           }
         />
@@ -274,6 +287,17 @@ export default CodeArt
 export const query = graphql`
   query CodeArtPreviews {
     littleManRemix: file(relativePath: { eq: "little_man_remix_preview.png" }) {
+      childImageSharp {
+        gatsbyImageData(
+          tracedSVGOptions: { background: "#000000", color: "#0bbcd6" }
+          placeholder: TRACED_SVG
+          layout: CONSTRAINED
+        )
+      }
+    }
+    missJuliaTheThird: file(
+      relativePath: { eq: "miss_julia_the_third_preview.png" }
+    ) {
       childImageSharp {
         gatsbyImageData(
           tracedSVGOptions: { background: "#000000", color: "#0bbcd6" }
