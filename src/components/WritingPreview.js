@@ -9,13 +9,11 @@ const WritingPreview = ({ slug, title, preview, writingDate }) => {
       to={`/writings/${slug}/`}
     >
       <div>
-        <div className='flex w-full ml-1 items-start'>
+        <div className="flex w-full ml-1 items-start">
           <Header variant="1">{title}</Header>
         </div>
 
-        <p
-          className="flex w-5/6 ml-4 text-base lg:text-lg font-extralight"
-        >
+        <p className="flex w-5/6 ml-4 text-base lg:text-lg font-extralight">
           {preview}.........
         </p>
       </div>
@@ -24,7 +22,7 @@ const WritingPreview = ({ slug, title, preview, writingDate }) => {
         ~{writingDate}
       </p>
     </Link>
-  );
+  )
 }
 
 export default WritingPreview

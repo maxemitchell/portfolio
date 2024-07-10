@@ -14,13 +14,9 @@ const Photos = ({ data }) => {
     <Layout>
       <SEO title="Photos" />
       <div className="w-full max-w-6xl mx-auto">
-
         <div className="flex w-full flex-wrap justify-around items-end mt-6">
-
           <div className="w-full">
-            <Header variant="3">
-              photo collections
-            </Header>
+            <Header variant="3">photo collections</Header>
           </div>
 
           {photoCollections.map(({ node: photoCollection }) => {
@@ -36,10 +32,7 @@ const Photos = ({ data }) => {
         </div>
 
         <div className="flex w-full flex-wrap justify-center">
-
-          <Header variant="3">
-            artboards
-          </Header>
+          <Header variant="3">artboards</Header>
 
           {artboards.map(({ node: artboard }) => {
             return (
@@ -52,7 +45,6 @@ const Photos = ({ data }) => {
             )
           })}
         </div>
-
       </div>
     </Layout>
   )
@@ -62,20 +54,14 @@ export default Photos
 
 export const query = graphql`
   query Photos {
-    allContentfulArtboard(
-      sort: { fields: [artboardDate], order: DESC }
-    ) {
+    allContentfulArtboard(sort: { fields: [artboardDate], order: DESC }) {
       edges {
         node {
           title
           slug
           artboard {
-            gatsbyImageData(
-              layout: CONSTRAINED,
-              width: 1200
-            )
+            gatsbyImageData(layout: CONSTRAINED, width: 1200)
           }
-
         }
       }
     }
@@ -87,10 +73,7 @@ export const query = graphql`
           title
           slug
           featuredImage {
-            gatsbyImageData(
-              layout: CONSTRAINED,
-              width: 720
-            )
+            gatsbyImageData(layout: CONSTRAINED, width: 720)
           }
         }
       }

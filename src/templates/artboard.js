@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import SEO from '../components/SEO'
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage } from 'gatsby-plugin-image'
 import Layout from '../components/Layout'
 
 const ArtboardTemplate = ({ data }) => {
@@ -25,7 +25,8 @@ const ArtboardTemplate = ({ data }) => {
         <GatsbyImage
           image={artboard.artboard.gatsbyImageData}
           className="flex w-full border-themeOffWhite border-2 sm:border-0 sm:picture-border-2 mx-2 sm:mx-4 mt-2"
-          alt={artboard.title} />
+          alt={artboard.title}
+        />
         <div className="w-11/12 mt-6 text-left max-w-xl lg:max-w-2xl xl:max-w-5xl">
           {descriptionTags.map((item, key) => {
             if (item.type === 'element' && item.tagName === 'h1') {
@@ -51,7 +52,7 @@ const ArtboardTemplate = ({ data }) => {
         </div>
       </div>
     </Layout>
-  );
+  )
 }
 
 export default ArtboardTemplate
@@ -61,10 +62,7 @@ export const query = graphql`
     contentfulArtboard(slug: { eq: $slug }) {
       title
       artboard {
-        gatsbyImageData(
-          layout: CONSTRAINED,
-          width: 1920
-        )
+        gatsbyImageData(layout: CONSTRAINED, width: 1920)
       }
       description {
         childMarkdownRemark {

@@ -12,13 +12,9 @@ const Writings = ({ data }) => {
     <Layout>
       <SEO title="Writings" />
       <div className="w-full max-w-6xl mx-auto">
-
         <div className="flex w-full flex-wrap mt-6">
-
           <div className="w-full mb-6 mt-1">
-            <Header variant="3">
-              weekly writings
-            </Header>
+            <Header variant="3">weekly writings</Header>
           </div>
 
           {writings.map(({ node: writing }) => {
@@ -43,9 +39,7 @@ export default Writings
 
 export const query = graphql`
   query Writings {
-    allContentfulWriting(
-      sort: { fields: writingDate, order: DESC }
-    ) {
+    allContentfulWriting(sort: { fields: writingDate, order: DESC }) {
       edges {
         node {
           title

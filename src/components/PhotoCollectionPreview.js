@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage } from 'gatsby-plugin-image'
 
 const PhotoCollectionPreview = ({ slug, title, image }) => {
   return (
@@ -15,9 +15,10 @@ const PhotoCollectionPreview = ({ slug, title, image }) => {
         image={image}
         className="picture-border-sm-2 w-full max-w-xl group-hover:picture-border-sm-1 duration-500"
         alt="Featured Image"
-        loading="lazy" />
+        loading="lazy"
+      />
     </Link>
-  );
+  )
 }
 
 export default PhotoCollectionPreview

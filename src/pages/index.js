@@ -3,7 +3,7 @@ import { graphql, Link } from 'gatsby'
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
 import Video from '../components/Video'
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import Header from '../components/Header'
 import ArtboardPreview from '../components/ArtboardPreview'
 import PhotoCollectionPreview from '../components/PhotoCollectionPreview'
@@ -149,7 +149,10 @@ const Index = ({ data }) => {
 
           {youtubeVideos.map(({ node: youtubeVideo }) => {
             return (
-              <div className="w-full h-64 md:h-96 lg:h-128 mx-4 mb-5 mt-4 picture-border-sm-1" key={youtubeVideo.title}>
+              <div
+                className="w-full h-64 md:h-96 lg:h-128 mx-4 mb-5 mt-4 picture-border-sm-1"
+                key={youtubeVideo.title}
+              >
                 <Video
                   videoID={youtubeVideo.videoId}
                   videoTitle={youtubeVideo.title}
@@ -185,7 +188,7 @@ const Index = ({ data }) => {
         </div>
       </div>
     </Layout>
-  );
+  )
 }
 
 export default Index
@@ -194,10 +197,7 @@ export const query = graphql`
   query Index {
     contentfulSiteData {
       featuredImage {
-        gatsbyImageData(
-          layout: CONSTRAINED,
-          width: 620
-        )
+        gatsbyImageData(layout: CONSTRAINED, width: 620)
       }
     }
     allContentfulArtboard(
@@ -209,10 +209,7 @@ export const query = graphql`
           title
           slug
           artboard {
-            gatsbyImageData(
-              layout: CONSTRAINED,
-              width: 1100
-            )
+            gatsbyImageData(layout: CONSTRAINED, width: 1100)
           }
         }
       }
@@ -226,18 +223,12 @@ export const query = graphql`
           title
           slug
           featuredImage {
-            gatsbyImageData(
-              layout: CONSTRAINED,
-              width: 520
-            )
+            gatsbyImageData(layout: CONSTRAINED, width: 520)
           }
         }
       }
     }
-    allContentfulWriting(
-      limit: 4
-      sort: { fields: writingDate, order: DESC }
-    ) {
+    allContentfulWriting(limit: 4, sort: { fields: writingDate, order: DESC }) {
       edges {
         node {
           title

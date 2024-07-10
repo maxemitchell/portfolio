@@ -14,7 +14,7 @@ class GhostCoast extends React.Component {
     this.myRef = React.createRef()
   }
 
-  Sketch = (p) => {
+  Sketch(p) {
     let bands = 1024
     let amp, fft, shader, song, canvas
     let time
@@ -134,42 +134,42 @@ class GhostCoast extends React.Component {
           <div className="flex w-full flex-wrap max-w-sm lg:w-1/2 mb-4 lg:ml-12 lg:justify-start">
             <Header variant="1">Space Ghost Coast To Coast</Header>
             <div className="flex w-full boxshadow-3d-right mt-4 lg:mt-8 mb-4">
-                <p className="w-full text-sm md:text-md lg:text-lg font-extralight font-manrope m-4">
+              <p className="w-full text-sm md:text-md lg:text-lg font-extralight font-manrope m-4">
                 Inspired by{' '}
                 <a
-                    href="https://opensource.glassanimals.com/"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline text-themeBlue hover:text-themeRed duration-500"
+                  href="https://opensource.glassanimals.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline text-themeBlue hover:text-themeRed duration-500"
                 >
-                    Glass Animal's
+                  Glass Animal's
                 </a>{' '}
                 latest album{' '}
                 <a
-                    href="https://en.wikipedia.org/wiki/Dreamland_(Glass_Animals_album)"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline text-themeRed hover:text-themeBlue duration-500"
+                  href="https://en.wikipedia.org/wiki/Dreamland_(Glass_Animals_album)"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline text-themeRed hover:text-themeBlue duration-500"
                 >
-                    Dreamland
+                  Dreamland
                 </a>
                 , I decided to create a music visualizer for the song{' '}
                 <a
-                    href="https://www.youtube.com/watch?v=ejirGSd3Hws"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline text-themeBlue hover:text-themeRed duration-500"
+                  href="https://www.youtube.com/watch?v=ejirGSd3Hws"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline text-themeBlue hover:text-themeRed duration-500"
                 >
-                    Space Ghost Coast to Coast{' '}
+                  Space Ghost Coast to Coast{' '}
                 </a>
-                with GLSL and p5.js. This was my first
-                time using both, but I love the end result.
-                </p>
+                with GLSL and p5.js. This was my first time using both, but I
+                love the end result.
+              </p>
             </div>
             <div className="flex w-full boxshadow-3d-right mt-4 lg:mt-8">
-                <p className="w-full text-sm md:text-md lg:text-lg font-extralight font-manrope m-4">
-                    Please <b>click</b> on the visualization to start/stop the song.
-                </p>
+              <p className="w-full text-sm md:text-md lg:text-lg font-extralight font-manrope m-4">
+                Please <b>click</b> on the visualization to start/stop the song.
+              </p>
             </div>
           </div>
         </div>

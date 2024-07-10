@@ -140,7 +140,7 @@
   "hyperspace": { "beat_timestamps": [22.5, 43.8, 87, 107, 172] },
   "whirl": {"beat_timestamps": [130.5, 135.5] },
   "intro": {
-    "beat_timestamps": [0.1, 2.95]
+    "beat_timestamps": [0.1, 2.85]
   },
   "glitch": {
     "beat_timestamps": [109, 131, 173, 195]
