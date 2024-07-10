@@ -199,7 +199,10 @@ class PackedCircles extends React.Component {
   render() {
     return (
       <Layout>
-        <SEO title="Code Art" />
+        <SEO
+          title="Color of Average"
+          desc="A generative art inspired by the reddit post Color of Average."
+        />
         <div className="flex flex-wrap lg:flex-nowrap mt-12 w-full justify-center items-center">
           {/* The actaual canvas for p5.js */}
           <div

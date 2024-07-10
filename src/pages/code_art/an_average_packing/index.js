@@ -251,7 +251,10 @@ class AnAveragePacking extends React.Component {
   render() {
     return (
       <Layout>
-        <SEO title="Code Art" />
+        <SEO
+          title="An Average Packing"
+          desc="A generative artwork with circles that take the average color of their neighbors."
+        />
         <div className="flex flex-wrap lg:flex-nowrap mt-12 w-full justify-center items-center">
           {/* The actaual canvas for p5.js */}
           <div

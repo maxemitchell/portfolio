@@ -7,46 +7,45 @@ import YouTubeLogo from '../images/youtube.svg'
 
 const SocialMedia = () => {
   return (
-    <div className="flex flex-wrap sm:flex-nowrap w-full justify-evenly items-baseline sm:justify-center font-manrope font-medium text-base md:text-lg mb-6 mt-3">
+    <div className="inline sm:flex-nowrap w-full justify-evenly items-baseline sm:justify-center font-manrope font-medium text-base text-themeOffWhite md:text-lg mb-6 mt-3">
       <a
         href="https://www.instagram.com/maxedmitchell"
         target="_blank"
-        className="flex flex-nowrap mt-3 text-themeOffWhite hover:text-themeBlue hover:border-corners rounded-tr-lg rounded-bl-lg duration-300 items-center mr-5"
+        className="text-sm text-themeBlue hover:text-themeRed"
       >
-        <InstagramLogo className="w-6 h-6 md:w-8 md:h-8" />
-        <p className="ml-2">Instagram</p>
+        Instagram
       </a>
+      ,{' '}
       <a
         href="https://twitter.com/maxemitchell"
         target="_blank"
-        className="flex flex-nowrap mt-3 text-themeOffWhite hover:text-themeBlue hover:border-corners rounded-tr-lg rounded-bl-lg duration-300 items-center mr-5"
+        className="text-sm text-themeBlue hover:text-themeRed"
       >
-        <TwitterLogo className="w-6 h-6 md:w-8 md:h-8" />
-        <p className="ml-2">Twitter</p>
+        Twitter
       </a>
+      ,{' '}
       <a
         href="https://github.com/maxemitchell"
         target="_blank"
-        className="flex flex-nowrap mt-3 text-themeOffWhite hover:text-themeBlue hover:border-corners rounded-tr-lg rounded-bl-lg duration-300 items-center mr-5"
+        className="text-sm text-themeBlue hover:text-themeRed"
       >
-        <GithubLogo className="w-6 h-6 md:w-8 md:h-8" />
-        <p className="ml-2">Github</p>
+        Github
       </a>
+      ,{' '}
       <a
         href="https://www.linkedin.com/in/maxemitchell/"
         target="_blank"
-        className="flex flex-nowrap mt-3 text-themeOffWhite hover:text-themeBlue hover:border-corners rounded-tr-lg rounded-bl-lg duration-300 items-center mr-5"
+        className="text-sm text-themeBlue hover:text-themeRed"
       >
-        <LinkedInLogo className="w-6 h-6 md:w-8 md:h-8" />
-        <p className="ml-2">LinkedIn</p>
+        LinkedIn
       </a>
+      ,{' '}
       <a
         href="https://www.youtube.com/c/MaxMitchell"
         target="_blank"
-        className="flex flex-nowrap mt-5 text-themeOffWhite hover:text-themeBlue hover:border-corners rounded-tr-lg rounded-bl-lg duration-300 items-"
+        className="text-sm text-themeBlue hover:text-themeRed"
       >
-        <YouTubeLogo className="w-6 h-6 md:w-8 md:h-8" />
-        <p className="ml-2">YouTube</p>
+        YouTube
       </a>
     </div>
   )

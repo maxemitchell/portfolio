@@ -47,10 +47,8 @@ class MissJulia3D extends React.Component {
       this.renderer.capabilities.isWebGL2
     ) {
       this.RenderTargetClass = THREE.WebGLMultisampleRenderTarget
-      console.log('Using WebGLMultisampleRenderTarget')
     } else {
       this.RenderTargetClass = THREE.WebGLRenderTarget
-      console.log('Using WebGLRenderTarget')
     }
 
     this.renderTarget = new this.RenderTargetClass(800, 600, {
@@ -292,7 +290,10 @@ class MissJulia3D extends React.Component {
   render() {
     return (
       <Layout>
-        <SEO title="Code Art" />
+        <SEO
+          title="Miss Julia the Third"
+          desc="A little 3D Julia Sets Visualization"
+        />
         <div className="flex flex-wrap lg:flex-nowrap mt-8 w-full justify-center items-center">
           <div
             className="flex justify-center "

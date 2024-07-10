@@ -7,7 +7,10 @@ import CodeArtPreview from '../../components/CodeArtPreview'
 const CodeArt = ({ data }) => {
   return (
     <Layout>
-      <SEO title="Code Art" />
+      <SEO
+        title="Code Art"
+        desc="A collection of code art I've made. Some music visualizers, some in processing, some in three.js"
+      />
       <div className="flex flex-wrap mt-10 justify-center items-center mb-10 max-w-6xl w-full mx-auto">
         <CodeArtPreview
           slug="/code_art/little_man_remix"
