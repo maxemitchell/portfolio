@@ -1,4 +1,4 @@
-import stemData from '../pages/code_art/little_man_remix/stem_data.json'
+import stemData from '../pages/code_art/little_man_kir_edit/stem_data.json'
 
 class StemAnalyzer {
   constructor() {

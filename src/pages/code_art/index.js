@@ -13,8 +13,8 @@ const CodeArt = ({ data }) => {
       />
       <div className="flex flex-wrap mt-10 justify-center items-center mb-10 max-w-6xl w-full mx-auto">
         <CodeArtPreview
-          slug="/code_art/little_man_remix"
-          title="Little Man Remix"
+          slug="/code_art/little_man_kir_edit"
+          title="Little Man KiR Edit"
           image={data.littleManRemix.childImageSharp.gatsbyImageData}
           type="left"
           className="mt-12"
@@ -30,7 +30,7 @@ const CodeArt = ({ data }) => {
               >
                 three.js
               </a>
-              . The song featured is a remix of Little Man's Little Dragon by my
+              . The song featured is an edit of Little Man's Little Dragon by my
               friend{' '}
               <a
                 href="https://instagram.com/kirsongs"

@@ -1,4 +1,4 @@
-import lyricsData from '../pages/code_art/little_man_remix/lyrics.json'
+import lyricsData from '../pages/code_art/little_man_kir_edit/lyrics.json'
 
 class LyricAnalyzer {
   constructor() {

@@ -3,7 +3,7 @@ import SEO from '../../../components/SEO'
 import Layout from '../../../components/Layout'
 import Header from '../../../components/Header'
 import * as THREE from 'three'
-import littleMan from './little_man_remix.m4a'
+import littleMan from './little_man_kir_edit.m4a'
 import StemAnalyzer from '../../../helpers/stem_analyzer'
 import WarpShader from '../../../shaders/WarpShader'
 import WhirlShader from '../../../shaders/WhirlShader'
@@ -444,7 +444,7 @@ class LittleManRemix extends React.Component {
     return (
       <Layout>
         <SEO
-          title="Little Man (KiR Remix)"
+          title="Little Man (KiR Edit)"
           desc="A music visualizer inspired by 2001: A Space Odyssey's 'Beyond the Infinite' scene."
         />
         <div className="flex flex-wrap lg:flex-nowrap mt-8 w-full justify-center items-center">
@@ -453,7 +453,7 @@ class LittleManRemix extends React.Component {
             ref={(ref) => (this.mount = ref)}
           />
           <div className="flex w-full flex-wrap max-w-sm lg:w-1/2 mb-4 lg:mx-6 lg:justify-start">
-            <Header variant="1">Little Man (KiR Remix)</Header>
+            <Header variant="1">Little Man (KiR Edit)</Header>
             <div className="flex w-full boxshadow-3d-right mt-4 lg:mt-8 mb-4">
               <p className="w-full text-sm md:text-md lg:text-lg font-extralight font-manrope m-4">
                 Inspired by 2001: A Space Odyssey's 'Beyond the Infinite' scene,
@@ -466,7 +466,7 @@ class LittleManRemix extends React.Component {
                 >
                   three.js
                 </a>
-                . The song featured is a remix of Little Man's Little Dragon by
+                . The song featured is an edit of Little Man's Little Dragon by
                 my friend{' '}
                 <a
                   href="https://instagram.com/kirsongs/"
