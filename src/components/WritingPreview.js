@@ -10,7 +10,7 @@ const WritingPreview = ({ slug, title, preview, writingDate }) => {
     >
       <div>
         <div className="flex w-full ml-1 items-start">
-          <Header variant="1">{title}</Header>
+          <Header variant="clean-multiline">{title}</Header>
         </div>
 
         <p className="flex w-5/6 ml-4 text-base lg:text-lg font-extralight">

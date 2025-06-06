@@ -23,6 +23,11 @@ const Header = ({ variant, children }) => {
           {children}
         </h3>
       )}
+      {variant === 'clean-multiline' && (
+        <h2 className="text-left text-2xl sm:text-3xl md:text-4xl font-semibold text-themeOffWhite bg-black/80 px-4 py-2 rounded-lg whitespace-pre-line inline-block">
+          {children}
+        </h2>
+      )}
     </div>
   )
 }
