@@ -212,7 +212,7 @@ export const query = graphql`
           title
           slug
           artboard {
-            gatsbyImageData(layout: CONSTRAINED, width: 1100)
+            gatsbyImageData(layout: CONSTRAINED, width: 550)
           }
         }
       }

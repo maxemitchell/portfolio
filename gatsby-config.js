@@ -46,7 +46,15 @@ module.exports = {
     'gatsby-transformer-sharp',
     'gatsby-plugin-image',
     'gatsby-plugin-react-helmet',
-    'gatsby-plugin-sharp',
+    {
+      resolve: 'gatsby-plugin-sharp',
+      options: {
+        defaults: {
+          quality: 10,
+          
+        },
+      },
+    },
     'gatsby-plugin-postcss',
     {
         resolve: 'gatsby-source-youtube-v3',
