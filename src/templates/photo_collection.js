@@ -122,7 +122,7 @@ export const query = graphql`
     contentfulPhotoCollection(slug: { eq: $slug }) {
       title
       photos {
-        gatsbyImageData(layout: CONSTRAINED, width: 1200)
+        gatsbyImageData(layout: CONSTRAINED, width: 600)
         id
       }
       description {

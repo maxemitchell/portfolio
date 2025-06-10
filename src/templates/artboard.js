@@ -62,7 +62,7 @@ export const query = graphql`
     contentfulArtboard(slug: { eq: $slug }) {
       title
       artboard {
-        gatsbyImageData(layout: CONSTRAINED, width: 1920)
+        gatsbyImageData(layout: CONSTRAINED, width: 960)
       }
       description {
         childMarkdownRemark {
