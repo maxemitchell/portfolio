@@ -18,32 +18,37 @@ Modify Contentful content types to support R2 image URLs while maintaining exist
   - Writings (embedded images)
 - Note field names and configurations
 
-### 2. Add R2 URL and Color Fields
-For each content type, add new fields:
-- `featuredImageUrl` (Short text)
-- `featuredImageColor` (Short text) - hex color for placeholder
-- `photosUrls` (Array of Short text) for photo collections
-- `photosColors` (Array of Short text) - hex colors for each photo
-- `artboardUrl` (Short text) for artboards
-- `artboardColor` (Short text) - hex color for placeholder
+### 2. Create R2Image Content Type
+Create new content type `R2Image` with fields:
+- `url` (Short text, required) - R2 CDN URL
+- `color` (Short text, required) - hex color for placeholder
+- `alt` (Short text, optional) - alt text for accessibility
+- `title` (Short text, optional) - internal reference name
+
+### 3. Update Existing Content Types
+For each existing content type, add reference fields:
+- Site Data: `featuredImageR2` (Reference to R2Image)
+- Photo Collections: `featuredImageR2` (Reference to R2Image), `photosR2` (References, many)
+- Artboards: `artboardR2` (Reference to R2Image)
 - Keep existing image fields for rollback safety
 
-### 3. Update Content Type Validations
+### 4. Update Content Type Validations
 - Add URL validation patterns
 - Set field as "required" once migration complete
 - Add help text for content editors
 
-### 4. Content Editor Documentation
+### 5. Content Editor Documentation
 - Create guide for editors on new URL fields
 - Document R2 URL format and parameters
 - Explain transition period workflow
 
 ## Acceptance Criteria
-- [ ] All content types have new URL fields
-- [ ] Existing image fields preserved
-- [ ] Field validations configured
-- [ ] Help text added for editors
-- [ ] Documentation created
+- [ ] R2Image content type created with all fields
+- [ ] All existing content types updated with R2 reference fields
+- [ ] Existing image fields preserved for rollback
+- [ ] Field validations configured (URL patterns, hex color format)
+- [ ] Help text added for content editors
+- [ ] Documentation created for new workflow
 
 ## Estimated Time
 2-3 hours

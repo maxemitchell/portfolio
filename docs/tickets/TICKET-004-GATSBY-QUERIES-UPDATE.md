@@ -26,8 +26,11 @@ featuredImage {
 }
 
 # TO:
-featuredImageUrl
-featuredImageColor
+featuredImageR2 {
+  url
+  color
+  alt
+}
 ```
 
 ### 3. Update Photo Collection Queries
@@ -43,10 +46,16 @@ photos {
 }
 
 # TO:
-featuredImageUrl
-featuredImageColor
-photosUrls
-photosColors
+featuredImageR2 {
+  url
+  color
+  alt
+}
+photosR2 {
+  url
+  color
+  alt
+}
 ```
 
 ### 4. Update Artboard Queries
@@ -58,13 +67,16 @@ artboard {
 }
 
 # TO:
-artboardUrl
-artboardColor
+artboardR2 {
+  url
+  color
+  alt
+}
 ```
 
 ### 5. Update Component Props
-Update component prop passing to use URLs instead of image objects:
-- Pass URL strings instead of gatsbyImageData objects
+Update component prop passing to use R2Image objects instead of gatsbyImageData:
+- Pass R2Image objects (`{url, color, alt}`) instead of gatsbyImageData objects
 - Update prop types in component definitions
 - Maintain component interfaces where possible
 

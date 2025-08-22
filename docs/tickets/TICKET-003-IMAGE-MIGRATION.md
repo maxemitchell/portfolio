@@ -31,20 +31,28 @@ Export images from Contentful, upload to R2 bucket, and update Contentful entrie
 - Generate hex color codes for each uploaded image
 - Create mapping: image → {r2_url, dominant_color}
 
-### 4. Update Contentful Entries
-- For each content entry:
-  - Map original image to R2 URL and dominant color
-  - Update new URL and color fields in Contentful
-  - Preserve original image fields (for rollback)
+### 4. Create R2Image Entries
+- For each uploaded image:
+  - Create new R2Image content entry with:
+    - `url`: R2 CDN URL
+    - `color`: extracted dominant color
+    - `alt`: derive from original image metadata
+    - `title`: descriptive name for content management
+- Use Contentful Management API for batch creation
+
+### 5. Update Original Content Entries
+- For each content entry (Site Data, Photo Collections, Artboards):
+  - Link to newly created R2Image entries via reference fields
+  - Preserve original image fields for rollback
 - Batch update via Management API
 
-### 5. Verify Migration
+### 6. Verify Migration
 - Spot-check R2 URLs work correctly
 - Verify all content entries have new URLs populated
 - Test image loading from R2 CDN
 - Compare image quality/performance
 
-### 6. Create Migration Scripts
+### 7. Create Migration Scripts
 - Script to export from Contentful
 - Script to upload to R2  
 - Script to update Contentful with new URLs
@@ -52,7 +60,8 @@ Export images from Contentful, upload to R2 bucket, and update Contentful entrie
 
 ## Acceptance Criteria
 - [ ] All images uploaded to R2 bucket
-- [ ] All Contentful entries updated with R2 URLs
+- [ ] R2Image content entries created for all images
+- [ ] Original content entries linked to R2Image entries
 - [ ] Images accessible via CDN
 - [ ] Migration mapping documented
 - [ ] Rollback capability tested

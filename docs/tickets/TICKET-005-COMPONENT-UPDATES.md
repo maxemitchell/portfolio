@@ -11,32 +11,32 @@ Replace GatsbyImage components with custom responsive image components that work
 
 ### 1. Create R2 Image Component
 Build new `src/components/R2Image.js`:
-- Accept URL, placeholder color, and transformation props (width, height, quality)
-- Implement dominant color placeholder loading
-- Generate R2 URL with query parameters  
+- Accept R2Image object (`{url, color, alt}`) and transformation props (width, height, quality)
+- Implement dominant color placeholder loading using `color` field
+- Generate R2 URL with query parameters from base `url`
 - Handle responsive images with srcset
 - Maintain lazy loading capabilities
-- Support alt text and CSS classes
+- Support alt text from R2Image object and CSS classes
 - Smooth opacity transition from color to image
 - Error handling for failed loads
 
 ### 2. Update Core Pages
 Replace GatsbyImage usage in:
 - `src/pages/index.js`:
-  - Profile image display
-  - Artboard previews
-  - Photo collection previews
-- `src/pages/photos.js` - photo collection grid
+  - Profile image: `<R2Image image={data.contentfulSiteData.featuredImageR2} />`
+  - Artboard previews: pass `artboardR2` objects to components
+  - Photo collection previews: pass `featuredImageR2` objects
+- `src/pages/photos.js` - photo collection grid with `featuredImageR2`
 - `src/pages/writings.js` - any embedded images
 
 ### 3. Update Templates
 Replace GatsbyImage in templates:
 - `src/templates/photo_collection.js`:
-  - Individual photo display
-  - Modal image viewing
-  - Thumbnail generation
-- `src/templates/artboard.js` - full artboard display
-- `src/templates/writing.js` - embedded content images
+  - Individual photo display: loop through `photosR2` array
+  - Modal image viewing: use R2Image objects for modal
+  - Update GraphQL query for `photosR2` data
+- `src/templates/artboard.js` - use `artboardR2` object for full display
+- `src/templates/writing.js` - embedded content images with R2 references
 
 ### 4. Update Preview Components
 Replace GatsbyImage in:
