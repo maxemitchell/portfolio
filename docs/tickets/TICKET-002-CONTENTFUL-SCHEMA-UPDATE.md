@@ -18,11 +18,14 @@ Modify Contentful content types to support R2 image URLs while maintaining exist
   - Writings (embedded images)
 - Note field names and configurations
 
-### 2. Add R2 URL Fields
+### 2. Add R2 URL and Color Fields
 For each content type, add new fields:
 - `featuredImageUrl` (Short text)
+- `featuredImageColor` (Short text) - hex color for placeholder
 - `photosUrls` (Array of Short text) for photo collections
+- `photosColors` (Array of Short text) - hex colors for each photo
 - `artboardUrl` (Short text) for artboards
+- `artboardColor` (Short text) - hex color for placeholder
 - Keep existing image fields for rollback safety
 
 ### 3. Update Content Type Validations

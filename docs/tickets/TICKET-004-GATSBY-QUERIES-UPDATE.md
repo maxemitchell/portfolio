@@ -27,6 +27,7 @@ featuredImage {
 
 # TO:
 featuredImageUrl
+featuredImageColor
 ```
 
 ### 3. Update Photo Collection Queries
@@ -43,7 +44,9 @@ photos {
 
 # TO:
 featuredImageUrl
+featuredImageColor
 photosUrls
+photosColors
 ```
 
 ### 4. Update Artboard Queries
@@ -56,6 +59,7 @@ artboard {
 
 # TO:
 artboardUrl
+artboardColor
 ```
 
 ### 5. Update Component Props

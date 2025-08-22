@@ -11,11 +11,13 @@ Replace GatsbyImage components with custom responsive image components that work
 
 ### 1. Create R2 Image Component
 Build new `src/components/R2Image.js`:
-- Accept URL and transformation props (width, height, quality)
-- Generate R2 URL with query parameters
+- Accept URL, placeholder color, and transformation props (width, height, quality)
+- Implement dominant color placeholder loading
+- Generate R2 URL with query parameters  
 - Handle responsive images with srcset
 - Maintain lazy loading capabilities
 - Support alt text and CSS classes
+- Smooth opacity transition from color to image
 - Error handling for failed loads
 
 ### 2. Update Core Pages
