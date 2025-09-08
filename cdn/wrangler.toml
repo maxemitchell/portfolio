@@ -1,0 +1,17 @@
+name = "portfolio-cdn"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+
+# R2 bucket binding
+[[r2_buckets]]
+binding = "PORTFOLIO_IMAGES"
+bucket_name = "portfolio"
+
+# Custom domain routes
+[env.production]
+routes = [
+  { pattern = "cdn.maxemitchell.com/*", custom_domain = true }
+]
+
+[env.development]
+# For local development
