@@ -74,30 +74,32 @@ exports.createPages = ({ graphql, actions }) => {
     const loadWritings = new Promise((resolve, reject) => {
       graphql(
         `
-            {
-              allContentfulWriting {
-                edges {
-                  node {
+          {
+            allMarkdownRemark(filter: { frontmatter: { type: { eq: "writing" } } }) {
+              edges {
+                node {
+                  frontmatter {
                     title
                     slug
                   }
                 }
               }
             }
-          `
+          }
+        `
       ).then(result => {
         if (result.errors) {
           reject(result.errors)
         }
 
-        const writings = result.data.allContentfulWriting.edges
+        const writings = result.data.allMarkdownRemark.edges
 
         writings.forEach((writing) => {
           createPage({
-            path: `/writings/${writing.node.slug}/`,
+            path: `/writings/${writing.node.frontmatter.slug}/`,
             component: path.resolve('./src/templates/writing.js'),
             context: {
-              slug: writing.node.slug
+              slug: writing.node.frontmatter.slug
             },
           })
         })

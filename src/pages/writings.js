@@ -6,7 +6,7 @@ import Header from '../components/Header'
 import WritingPreview from '../components/WritingPreview'
 
 const Writings = ({ data }) => {
-  const writings = data.allContentfulWriting.edges
+  const writings = data.allMarkdownRemark.edges
 
   return (
     <Layout>
@@ -21,14 +21,14 @@ const Writings = ({ data }) => {
           </div>
 
           {writings.map(({ node: writing }) => {
-            const preview = writing.preview.internal.content
+            const preview = writing.excerpt
             return (
               <WritingPreview
-                slug={writing.slug}
-                title={writing.title}
+                slug={writing.frontmatter.slug}
+                title={writing.frontmatter.title}
                 preview={preview}
-                writingDate={writing.writingDate}
-                key={writing.title}
+                writingDate={writing.frontmatter.writingDate}
+                key={writing.frontmatter.slug}
               />
             )
           })}
@@ -42,16 +42,17 @@ export default Writings
 
 export const query = graphql`
   query Writings {
-    allContentfulWriting(sort: { fields: writingDate, order: DESC }) {
+    allMarkdownRemark(
+      filter: { frontmatter: { type: { eq: "writing" } } }
+      sort: { fields: frontmatter___writingDate, order: DESC }
+    ) {
       edges {
         node {
-          title
-          slug
-          writingDate
-          preview {
-            internal {
-              content
-            }
+          excerpt(pruneLength: 180)
+          frontmatter {
+            title
+            slug
+            writingDate
           }
         }
       }
