@@ -7,7 +7,7 @@ import ArtboardPreview from '../components/ArtboardPreview'
 import PhotoCollectionPreview from '../components/PhotoCollectionPreview'
 
 const Photos = ({ data }) => {
-  const artboards = data.allContentfulArtboard.edges
+  const artboards = data.allMarkdownRemark.edges
   const photoCollections = data.allContentfulPhotoCollection.edges
 
   return (
@@ -35,15 +35,19 @@ const Photos = ({ data }) => {
         </div>
 
         <div className="flex w-full flex-wrap justify-center">
-          <Header variant="3">artboards</Header>
+          <div className="w-full">
+            <Header variant="3">artboards</Header>
+          </div>
 
           {artboards.map(({ node: artboard }) => {
             return (
               <ArtboardPreview
-                slug={artboard.slug}
-                title={artboard.title}
-                image={artboard.artboard.gatsbyImageData}
-                key={artboard.title}
+                slug={artboard.frontmatter.slug}
+                title={artboard.frontmatter.title}
+                image={
+                  artboard.frontmatter.artboard.childImageSharp.gatsbyImageData
+                }
+                key={artboard.frontmatter.title}
               />
             )
           })}
@@ -57,13 +61,20 @@ export default Photos
 
 export const query = graphql`
   query Photos {
-    allContentfulArtboard(sort: { fields: [artboardDate], order: DESC }) {
+    allMarkdownRemark(
+      filter: { frontmatter: { type: { eq: "artboard" } } }
+      sort: { fields: [frontmatter___artboardDate], order: DESC }
+    ) {
       edges {
         node {
-          title
-          slug
-          artboard {
-            gatsbyImageData(layout: CONSTRAINED, width: 600)
+          frontmatter {
+            title
+            slug
+            artboard {
+              childImageSharp {
+                gatsbyImageData(layout: CONSTRAINED, width: 800)
+              }
+            }
           }
         }
       }

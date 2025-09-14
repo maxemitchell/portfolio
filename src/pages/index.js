@@ -9,7 +9,7 @@ import ArtboardPreview from '../components/ArtboardPreview'
 import PhotoCollectionPreview from '../components/PhotoCollectionPreview'
 
 const Index = ({ data }) => {
-  const artboards = data.allContentfulArtboard.edges
+  const artboards = data.allMarkdownRemark.edges
   const photoCollections = data.allContentfulPhotoCollection.edges
   const youtubeVideos = data.allYoutubeVideo.edges
   const githubRepos = data.githubData.data.viewer.repositories.nodes
@@ -121,10 +121,12 @@ const Index = ({ data }) => {
           {artboards.map(({ node: artboard }) => {
             return (
               <ArtboardPreview
-                slug={artboard.slug}
-                title={artboard.title}
-                image={artboard.artboard.gatsbyImageData}
-                key={artboard.title}
+                slug={artboard.frontmatter.slug}
+                title={artboard.frontmatter.title}
+                image={
+                  artboard.frontmatter.artboard.childImageSharp.gatsbyImageData
+                }
+                key={artboard.frontmatter.title}
               />
             )
           })}
@@ -200,16 +202,21 @@ export default Index
 
 export const query = graphql`
   query Index {
-    allContentfulArtboard(
+    allMarkdownRemark(
+      filter: { frontmatter: { type: { eq: "artboard" } } }
       limit: 2
-      sort: { fields: artboardDate, order: DESC }
+      sort: { fields: [frontmatter___artboardDate], order: DESC }
     ) {
       edges {
         node {
-          title
-          slug
-          artboard {
-            gatsbyImageData(layout: CONSTRAINED, width: 550)
+          frontmatter {
+            title
+            slug
+            artboard {
+              childImageSharp {
+                gatsbyImageData(layout: CONSTRAINED, width: 800)
+              }
+            }
           }
         }
       }

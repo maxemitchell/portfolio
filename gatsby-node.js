@@ -7,11 +7,13 @@ exports.createPages = ({ graphql, actions }) => {
         graphql(
         `
           {
-            allContentfulArtboard {
+            allMarkdownRemark(filter: { frontmatter: { type: { eq: "artboard" } } }) {
               edges {
                 node {
-                  title
-                  slug
+                  frontmatter {
+                    title
+                    slug
+                  }
                 }
               }
             }
@@ -22,14 +24,14 @@ exports.createPages = ({ graphql, actions }) => {
               reject(result.errors)
             }
 
-            const artboards = result.data.allContentfulArtboard.edges
+            const artboards = result.data.allMarkdownRemark.edges
 
             artboards.forEach((artboard) => {
               createPage({
-                path: `/artboards/${artboard.node.slug}/`,
+                path: `/artboards/${artboard.node.frontmatter.slug}/`,
                 component: path.resolve('./src/templates/artboard.js'),
                 context: {
-                  slug: artboard.node.slug
+                  slug: artboard.node.frontmatter.slug
                 },
               })
             })
