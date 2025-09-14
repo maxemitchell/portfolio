@@ -8,7 +8,7 @@ type: "writing"
 
 Last March, weeks after my 22nd birthday, I was diagnosed with *Indeterminate IBD*. Which is a fancy way of saying they couldn’t tell if it was Crohn’s or Ulcerative Colitis. The doctors were leaning Crohn’s, and it seems like people are more familiar with Crohn’s thanks to our disease representatives Pete Davidson and Hank Green, so I usually just say I have Crohn’s. I’ll spare the pretty details, but the highlights of my senior year of college included dropping from 135 to 108 pounds in 30 days (I’m 5’8), night sweats, and 10+ mandatory potty breaks a day. This all culminated in an 8 day emergency room trip to the hospital, where I looked my best (and still worked on CS assignments):
 
-![me in the hospital](./images/6f6Wvu5a1xmyT7cQe5z2Ks.jpg)
+![me in the hospital](./images/me_in_hospital.jpg)
 
 Enough about me, as I said I’m grateful that since that hospital trip the meds started and continue to work, and I’m not here to gather pity. Instead, I want to shine some light on the financial cost of a Crohn’s diagnosis like the fintech bro I am. As you might expect, medicine is by far the most costly component, so let’s talk about the various treatments. **Steroids** (typically *Prednisone*) are used for short term treatments during flare-ups. ***Mesalamine*** (sorta like aspirin but for your guts, its an NSAID) is used for milder cases. Then we’ve got the heavy hitting black label boys with all their serious side effects. There’s the **immunomodulators** (literally anti-cancer chemo drugs, the most common being *6-MP*, *azathioprine*, and *methotrexate*) and the **biologics** (newest option with many still undergoing trial, with the most common being *Remicade*, *Humira* and *Stelara*).
 

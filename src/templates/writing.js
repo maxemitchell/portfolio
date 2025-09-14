@@ -6,7 +6,7 @@ import Layout from '../components/Layout'
 const MarkdownWritingTemplate = ({ data }) => {
   const writing = data.markdownRemark
   const { title, writingDate } = writing.frontmatter
-  
+
   return (
     <Layout>
       <SEO title={title} />
@@ -31,7 +31,9 @@ const MarkdownWritingTemplate = ({ data }) => {
 
 export const query = graphql`
   query MarkdownWritingBySlug($slug: String!) {
-    markdownRemark(frontmatter: { slug: { eq: $slug }, type: { eq: "writing" } }) {
+    markdownRemark(
+      frontmatter: { slug: { eq: $slug }, type: { eq: "writing" } }
+    ) {
       html
       excerpt(pruneLength: 160)
       timeToRead

@@ -23,7 +23,7 @@ To isolate "complexity" as the independent variable, the researchers rightly cri
 3. **River Crossing** (linear complexity growth)
 4. **Blocks World** (linear complexity growth)
 
-![Puzzle Environments](./images/1BvP1CZCTiYkC25JQdpvtW.png)
+![Puzzle Environments](./images/puzzle_environments.png)
 
 For each puzzle, Claude 3.7 Sonnet (with and without its "thinking" mode), DeepSeek-V3, and DeepSeek-R1 were tested 25 times per complexity level, with a max token length of 64k. The prompts described the rules, the goal, and provided an example. However, one instruction stands out:
 
@@ -35,7 +35,7 @@ We'll come back to that instruction.
 
 The results consistently revealed "three regimes of complexity." At low complexity, standard models perform just as well as their Chain-of-Thought (CoT) counterparts. At medium complexity, the CoT models pull ahead, showing a clear performance advantage. But at high complexity, both models collapse, and their accuracy approaches zero.
 
-![Illusion of Thought Results](./images/uDLibq7N31GVmyHyBVbbO.png)
+![Illusion of Thought Results](./images/results.png)
 
 In the paper's "open questions" section, the authors note that when the model is explicitly given the solution algorithm for the Tower of Hanoi environment, performance doesn't improve at all. They write:
 

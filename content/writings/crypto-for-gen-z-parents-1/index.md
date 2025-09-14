@@ -1,6 +1,6 @@
 ---
 title: "Crypto for Gen Z’s Parents #1"
-slug: "crypto_for_gen_z_parents_1"
+slug: "crypto-for-gen-z-parents-1"
 writingDate: "2022-06-10"
 metadata: "crypto, education, blog, learning"
 type: "writing"
@@ -8,7 +8,7 @@ type: "writing"
 
 One of my best friends has tasked me with explaining crypto to her mom. I’m not joking:
 
-![Screenshot of Text Convo with Friend About Crypto](./images/10MSx5TP1HE6TCgXppMFOm.png)
+![Screenshot of Text Convo with Friend About Crypto](./images/text_convo.png)
 
 This’ll be fun. Time to explain crypto to a millennials’ mom.
 

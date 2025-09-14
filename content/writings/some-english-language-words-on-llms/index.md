@@ -22,11 +22,11 @@ I think it’s dangerous to discount LLM’s as “just predicting the next char
 
 I saw a great [twitter thread](https://twitter.com/amasad/status/1640212601958432770) the other day:
 
-![original tweet](./images/4Wp8rAsMOU6DvEFTKyeiiC.png)
+![original tweet](./images/origina_tweet.png)
 
-![LLM Response without reasoning](./images/2ls9m61XnahG0IJ9feWDS4.png)
+![LLM Response without reasoning](./images/llm_response_without_reasoning.png)
 
-![LLM Response with reasoning](./images/4lZRqhGx8cDkLcbtaICnZr.png)
+![LLM Response with reasoning](./images/llm_response_with_reasoning.png)
 
 Personally, I can’t do that arithmetic in my head instantly. The little voice in my head thinks out the solution step by step just like GPT4 does. By treating LLMs more like an analog to our inner voice, I think we’ll find that we can prompt it to complete more complicated tasks with better reasoning. Instead of just saying “do this for me” we’ll want to nudge it to respond with the thoughts we would have if we were solving it ourselves.
 
