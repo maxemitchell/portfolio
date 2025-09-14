@@ -1,8 +1,11 @@
 # Data Structure Mapping: Contentful → Markdown
 
-## Current Contentful Structure → Proposed Markdown Structure
+## ✅ BLOG POSTS MIGRATION COMPLETED
+**Blog posts (writings) have been successfully migrated from Contentful to markdown.**
 
-### 1. Writings (contentfulWriting)
+## Contentful Structure → Markdown Structure (Status Update)
+
+### 1. ✅ Writings (contentfulWriting) - COMPLETED
 
 **Current Contentful Fields:**
 ```graphql
@@ -53,7 +56,7 @@ This is the body content converted from Contentful rich text to markdown.
 
 ---
 
-### 2. Artboards (contentfulArtboard)
+### 2. ❌ Artboards (contentfulArtboard) - NOT MIGRATED
 
 **Current Contentful Fields:**
 ```graphql
@@ -92,7 +95,7 @@ Description of the artwork in markdown format.
 
 ---
 
-### 3. Photo Collections (contentfulPhotoCollection) - FUTURE R2 READY
+### 3. ❌ Photo Collections (contentfulPhotoCollection) - NOT MIGRATED
 
 **Current Contentful Fields:**
 ```graphql
@@ -129,7 +132,7 @@ Description of the photo collection.
 
 ---
 
-### 4. Site Data (contentfulSiteData)
+### 4. ❌ Site Data (contentfulSiteData) - NOT MIGRATED
 
 **Current Contentful Fields:**
 ```graphql

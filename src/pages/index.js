@@ -3,18 +3,16 @@ import { graphql, Link } from 'gatsby'
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
 import Video from '../components/Video'
-import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import { StaticImage } from 'gatsby-plugin-image'
 import Header from '../components/Header'
 import ArtboardPreview from '../components/ArtboardPreview'
 import PhotoCollectionPreview from '../components/PhotoCollectionPreview'
 
 const Index = ({ data }) => {
-  const profilePicture = getImage(data.contentfulSiteData.featuredImage)
   const artboards = data.allContentfulArtboard.edges
   const photoCollections = data.allContentfulPhotoCollection.edges
   const youtubeVideos = data.allYoutubeVideo.edges
   const githubRepos = data.githubData.data.viewer.repositories.nodes
-  const writings = data.allContentfulWriting.edges
 
   return (
     <Layout>
@@ -26,9 +24,13 @@ const Index = ({ data }) => {
         <div className="flex w-full flex-wrap sm:flex-nowrap mt-6 sm:mt-8 justify-center">
           <Link
             to="/about/"
-            className="picture-border-sm-1 mx-10 mt-2 sm:mt-0 sm:mx-0 w-full sm:w-3/5 max-w-xl hover:picture-border-sm-2 duration-500"
+            className="picture-border-sm-1 mx-10 mt-2 sm:mt-0 sm:mx-0 w-full sm:w-3/5 max-w-md hover:picture-border-sm-2 duration-500"
           >
-            <GatsbyImage image={profilePicture} alt="Featured Image" />
+            <StaticImage
+              src="../images/featured_image.jpg"
+              alt="Featured Image"
+              quality={100}
+            />
           </Link>
 
           <div className="flex flex-wrap w-full sm:w-2/5 font-manrope mt-2 sm:mt-0 px-1 sm:px-6 content-center max-w-lg">
@@ -198,11 +200,6 @@ export default Index
 
 export const query = graphql`
   query Index {
-    contentfulSiteData {
-      featuredImage {
-        gatsbyImageData(layout: CONSTRAINED, width: 620)
-      }
-    }
     allContentfulArtboard(
       limit: 2
       sort: { fields: artboardDate, order: DESC }
