@@ -12,10 +12,10 @@
     "@babel/preset-env": "^7.22.0",
     "@babel/preset-react": "^7.22.0",
     "@babel/runtime": "^7.22.0",
-    "babel-plugin-macros": "^3.1.0",
     "@loadable/component": "^5.13.1",
     "@types/react-helmet": "^6.0.0",
     "autoprefixer": "^10.4.14",
+    "babel-plugin-macros": "^3.1.0",
     "core-js": "^3.8.2",
     "gatsby-plugin-google-fonts": "^1.0.1",
     "gatsby-plugin-google-gtag": "^4.18.0",
@@ -70,5 +70,6 @@
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js' 'cdn/**/*.js'",
     "fix-semi": "eslint --quiet --ignore-pattern node_modules --ignore-pattern public --parser babel-eslint --no-eslintrc --rule '{\"semi\": [2, \"never\"], \"no-extra-semi\": [2]}' --fix *.js",
     "serve": "gatsby serve"
-  }
+  },
+  "packageManager": "yarn@4.9.4"
 }
