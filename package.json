@@ -5,10 +5,8 @@
   "repository": "https://github.com/maxemitchell/portfolio",
   "author": "Max Mitchell <maxemitchell@gmail.com>",
   "dependencies": {
-    "@babel/core": "^7.22.0",
     "@loadable/component": "^5.13.1",
     "@types/react-helmet": "^6.0.0",
-    "autoprefixer": "^10.4.14",
     "core-js": "^3.8.2",
     "gatsby-plugin-google-fonts": "^1.0.1",
     "gatsby-plugin-google-gtag": "^4.18.0",
@@ -32,13 +30,12 @@
     "p5": "1.3.1",
     "postcss": "^8.2.10",
     "raw-loader": "^4.0.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "react-helmet": "^6.0.0",
     "react-player": "^2.2.0",
-    "sharp": "~0.30.1",
-    "three": "^0.163.0",
-    "webpack": "^5.88.0"
+    "sharp": "^0.34.2",
+    "three": "^0.163.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
