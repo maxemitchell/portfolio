@@ -1,7 +1,7 @@
 /**
  * Cloudflare Worker for Portfolio CDN
  *
- * This worker handles image requests from the R2 bucket and applies
+ * This worker handles image requests, serving them from the R2 bucket and applying
  * on-the-fly transformations using Cloudflare's image optimization.
  *
  * Features:
