@@ -10,7 +10,7 @@ SKIP_DEPENDENCY_INSTALL = "true"
 
 [[r2_buckets]]
 binding = "R2_BUCKET"
-bucket_name = "portfolio-artboards"
+bucket_name = "portfolio-cdn"
 
 [[kv_namespaces]]
 binding = "KV"
