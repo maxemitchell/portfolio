@@ -20,7 +20,7 @@
     "gatsby-plugin-sitemap": "^5.13.0",
     "gatsby-remark-images": "^6.25.0",
     "gatsby-source-contentful": "^7.22.0",
-    "gatsby-source-filesystem": "^4.17.0",
+    "gatsby-source-filesystem": "^4.25.0",
     "gatsby-source-github-api": "^1.0.0",
     "gatsby-source-youtube-v3": "^3.0.1",
     "gatsby-transformer-remark": "^5.25.1",
