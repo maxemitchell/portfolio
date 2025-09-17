@@ -16,9 +16,6 @@ const CONFIG = {
     MAX_REQUESTS: 100,
     WINDOW_SECONDS: 60,
   },
-  CACHE: {
-    MAX_AGE: 31536000, // 1 year in seconds
-  },
   IMAGE: {
     DEFAULT_QUALITY: 85,
     MIN_QUALITY: 1,

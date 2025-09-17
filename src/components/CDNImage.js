@@ -1,11 +1,9 @@
 import React from 'react'
 import { GatsbyImage } from 'gatsby-plugin-image'
 
-const CDN_BASE_URL = process.env.CDN_BASE_URL
+const CDN_BASE_URL = process.env.GATSBY_CDN_BASE_URL
 
 const buildCDNUrl = (assetPath, options = {}) => {
-  console.log('CDN_BASE_URL', CDN_BASE_URL)
-  console.log('assetPath', assetPath)
   const url = new URL(`${CDN_BASE_URL}${assetPath}`)
 
   if (options.width) url.searchParams.set('w', options.width)
@@ -47,6 +45,14 @@ const createCDNImageData = (src, options = {}) => {
               ? `${width}px`
               : '(max-width: 800px) 100vw, 800px',
           type: 'image/webp',
+        },
+        {
+          srcSet: generateSrcSet(src, widths, { quality, format: 'jpeg' }),
+          sizes:
+            layout === 'fixed'
+              ? `${width}px`
+              : '(max-width: 800px) 100vw, 800px',
+          type: 'image/jpeg',
         },
       ],
     },
