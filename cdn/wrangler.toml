@@ -1,4 +1,4 @@
-name = "portfolio-cdn"
+name = "cdn"
 main = "cloudflare-worker.js"
 compatibility_date = "2025-09-16"
 
@@ -7,7 +7,7 @@ command = ""
 
 [vars]
 SKIP_DEPENDENCY_INSTALL = "true"
-R2_BUCKET_PUBLIC_URL = "assets.maxemitchell.com"
+ASSETS_PUBLIC_URL = "assets.maxemitchell.com"
 
 [[kv_namespaces]]
 binding = "KV"
