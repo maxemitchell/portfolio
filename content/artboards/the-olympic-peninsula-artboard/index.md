@@ -4,7 +4,7 @@ slug: "the-olympic-peninsula-artboard"
 artboardDate: "2021-06-23"
 
 type: "artboard"
-artboard: "./artboard.png"
+artboard: "artboards/the-olympic-peninsula-artboard.png"
 ---
 
 # {breathtaking}

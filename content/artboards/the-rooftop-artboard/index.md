@@ -2,10 +2,10 @@
 title: "the rooftop artboard"
 slug: "the-rooftop-artboard"
 artboardDate: "2020-06-26"
-
+metadata: "rooftop, college, nostalgia, senior year"
 type: "artboard"
-artboard: "./artboard.png"
----
+artboard: "artboards/the-rooftop-artboard.png"
+--- 
 
 # {nostalgia}
 

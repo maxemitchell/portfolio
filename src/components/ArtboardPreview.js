@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import { GatsbyImage } from 'gatsby-plugin-image'
+import CDNImage from './CDNImage'
 
 const ArtboardPreview = ({ slug, title, image }) => {
   return (
@@ -8,11 +8,14 @@ const ArtboardPreview = ({ slug, title, image }) => {
       <h3 className="w-full text-lg sm:text-xl md:text-2xl mb-2 font-medium text-themeBlue group-hover:text-themeRed duration-500">
         {title}
       </h3>
-      <GatsbyImage
-        image={image}
+      <CDNImage
+        src={image}
         className="picture-border-sm-2 group-hover:picture-border-sm-1 duration-500"
         alt="Featured Image"
         loading="lazy"
+        width={800}
+        quality={80}
+        layout="constrained"
       />
     </Link>
   )

@@ -123,9 +123,7 @@ const Index = ({ data }) => {
               <ArtboardPreview
                 slug={artboard.frontmatter.slug}
                 title={artboard.frontmatter.title}
-                image={
-                  artboard.frontmatter.artboard.childImageSharp.gatsbyImageData
-                }
+                image={artboard.frontmatter.artboard}
                 key={artboard.frontmatter.title}
               />
             )
@@ -212,11 +210,7 @@ export const query = graphql`
           frontmatter {
             title
             slug
-            artboard {
-              childImageSharp {
-                gatsbyImageData(layout: CONSTRAINED, width: 800)
-              }
-            }
+            artboard
           }
         }
       }

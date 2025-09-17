@@ -4,7 +4,7 @@ slug: "the-lorne-artboard"
 artboardDate: "2019-06-28"
 metadata: "lorne, artboard, photography, moodboard, travel, friends"
 type: "artboard"
-artboard: "./artboard.png"
+artboard: "artboards/the-lorne-artboard.png"
 ---
 
 # {reminiscence}

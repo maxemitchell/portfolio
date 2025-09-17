@@ -4,7 +4,7 @@ slug: "the-queenstown-artboard"
 artboardDate: "2019-06-21"
 metadata: "new zealand, queenstown, artboard, art, adventure"
 type: "artboard"
-artboard: "./artboard.png"
+artboard: "artboards/the-queenstown-artboard.png"
 ---
 
 # {spontaneity}

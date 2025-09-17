@@ -4,7 +4,7 @@ slug: "the-bali-artboard"
 artboardDate: "2019-04-26"
 metadata: "bali, indonesia, monkeys, temples, artboard, collage, art, nature"
 type: "artboard"
-artboard: "./artboard.png"
+artboard: "artboards/the-bali-artboard.png"
 ---
 
 # {culture_shock}

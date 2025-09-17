@@ -4,7 +4,7 @@ slug: "the-bendigo-artboard"
 artboardDate: "2019-04-12"
 metadata: "bendigo, australia, artboard, birthday"
 type: "artboard"
-artboard: "./artboard.png"
+artboard: "artboards/the-bendigo-artboard.png"
 ---
 
 # {light_streaks}

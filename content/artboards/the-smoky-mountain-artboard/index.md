@@ -2,9 +2,9 @@
 title: "the smoky mountain artboard"
 slug: "the-smoky-mountain-artboard"
 artboardDate: "2020-03-14"
-
+metadata: "smoky mountain, artboard, photography, moodboard, travel, friends"
 type: "artboard"
-artboard: "./artboard.jpg"
+artboard: "artboards/the-smoky-mountain-artboard.jpg"
 ---
 
 # {serene}

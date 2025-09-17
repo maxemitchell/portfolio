@@ -4,7 +4,7 @@ slug: "the-gili-artboard"
 artboardDate: "2019-04-23"
 metadata: "bali, indonesia, gili trawangan, artboard, sunset, collage, ocean, beach"
 type: "artboard"
-artboard: "./artboard.png"
+artboard: "artboards/the-gili-artboard.png"
 ---
 
 # {allure}

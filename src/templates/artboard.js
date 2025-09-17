@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import SEO from '../components/SEO'
-import { GatsbyImage } from 'gatsby-plugin-image'
+import CDNImage from '../components/CDNImage'
 import Layout from '../components/Layout'
 
 const ArtboardTemplate = ({ data }) => {
@@ -21,10 +21,13 @@ const ArtboardTemplate = ({ data }) => {
           </p>
         </div>
 
-        <GatsbyImage
-          image={artboard.frontmatter.artboard.childImageSharp.gatsbyImageData}
+        <CDNImage
+          src={artboard.frontmatter.artboard}
           className="border-themeOffWhite border-2 sm:border-0 sm:picture-border-2 mx-2 sm:mx-4 mt-2"
           alt={artboard.frontmatter.title}
+          width={1920}
+          quality={80}
+          layout="constrained"
         />
         <div className="w-11/12 mt-6 text-left max-w-xl lg:max-w-2xl xl:max-w-5xl">
           {descriptionTags.map((item, key) => {
@@ -65,11 +68,7 @@ export const query = graphql`
         title
         artboardDate
         metadata
-        artboard {
-          childImageSharp {
-            gatsbyImageData(layout: CONSTRAINED, width: 1920)
-          }
-        }
+        artboard
       }
       htmlAst
     }

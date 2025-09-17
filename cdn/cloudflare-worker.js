@@ -23,8 +23,8 @@ const CONFIG = {
     DEFAULT_QUALITY: 85,
     MIN_QUALITY: 1,
     MAX_QUALITY: 100,
-    SUPPORTED_FORMATS: ['webp', 'avif', 'jpeg', 'png', 'auto'],
-    DEFAULT_FORMAT: 'auto',
+    SUPPORTED_FORMATS: ['webp', 'avif'],
+    DEFAULT_FORMAT: 'webp',
   },
 }
 
@@ -59,7 +59,7 @@ export default {
       }
 
       const imagePath = pathname.slice(1)
-      const options = parseOptions(url)
+      const options = parseOptions(url, request)
 
       const imageRequest = new Request(
         `https://${env.ASSETS_PUBLIC_URL}/${imagePath}`,
@@ -99,12 +99,27 @@ async function checkRateLimit(env, clientIP) {
   return null
 }
 
-function parseOptions(url) {
-  const width = url.searchParams.get('w')
-  const height = url.searchParams.get('h')
+function parseOptions(url, request) {
+  const width = url.searchParams.get('width') || url.searchParams.get('w')
+  const height = url.searchParams.get('height') || url.searchParams.get('h')
   const quality =
-    parseInt(url.searchParams.get('q')) || CONFIG.IMAGE.DEFAULT_QUALITY
-  const format = url.searchParams.get('fm') || CONFIG.IMAGE.DEFAULT_FORMAT
+    parseInt(url.searchParams.get('quality') || url.searchParams.get('q')) ||
+    CONFIG.IMAGE.DEFAULT_QUALITY
+  let format = url.searchParams.get('format') || url.searchParams.get('f')
+
+  if (!format || format === 'auto') {
+    const accept = request.headers.get('Accept') || ''
+
+    if (/image\/avif/.test(accept)) {
+      format = 'avif'
+    } else if (/image\/webp/.test(accept)) {
+      format = 'webp'
+    } else {
+      format = undefined
+    }
+  } else if (!CONFIG.IMAGE.SUPPORTED_FORMATS.includes(format)) {
+    format = CONFIG.IMAGE.DEFAULT_FORMAT
+  }
 
   return {
     cf: {
@@ -116,9 +131,7 @@ function parseOptions(url) {
           Math.max(quality, CONFIG.IMAGE.MIN_QUALITY),
           CONFIG.IMAGE.MAX_QUALITY
         ),
-        format: CONFIG.IMAGE.SUPPORTED_FORMATS.includes(format)
-          ? format
-          : CONFIG.IMAGE.DEFAULT_FORMAT,
+        format,
       },
     },
   }
