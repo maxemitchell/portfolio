@@ -59,28 +59,16 @@ export default {
       }
 
       const imagePath = pathname.slice(1)
-      const imageParams = parseImageParams(url)
+      const options = parseOptions(url)
 
-      const object = await env.R2_BUCKET.get(imagePath)
-      if (!object) {
-        return createErrorResponse('Image not found', 404)
-      }
+      const imageRequest = new Request(
+        `https://${env.ASSETS_PUBLIC_URL}/${imagePath}`,
+        {
+          headers: request.headers,
+        }
+      )
 
-      return new Response(object.body, {
-        headers: {
-          'Content-Type': object.httpMetadata.contentType || 'image/jpeg',
-          'Cache-Control': `public, max-age=${CONFIG.CACHE.MAX_AGE}`,
-          ...CORS_HEADERS,
-          Vary: 'Accept',
-          'X-Content-Source': 'cloudflare-r2',
-        },
-        cf: {
-          image: {
-            fit: 'scale-down',
-            ...imageParams,
-          },
-        },
-      })
+      return fetch(imageRequest, options)
     } catch (error) {
       console.error('Error serving image:', {
         error: error.message,
@@ -111,23 +99,28 @@ async function checkRateLimit(env, clientIP) {
   return null
 }
 
-function parseImageParams(url) {
+function parseOptions(url) {
   const width = url.searchParams.get('w')
   const height = url.searchParams.get('h')
   const quality =
     parseInt(url.searchParams.get('q')) || CONFIG.IMAGE.DEFAULT_QUALITY
-  const format = url.searchParams.get('f') || CONFIG.IMAGE.DEFAULT_FORMAT
+  const format = url.searchParams.get('fm') || CONFIG.IMAGE.DEFAULT_FORMAT
 
   return {
-    width: width ? parseInt(width) : undefined,
-    height: height ? parseInt(height) : undefined,
-    quality: Math.min(
-      Math.max(quality, CONFIG.IMAGE.MIN_QUALITY),
-      CONFIG.IMAGE.MAX_QUALITY
-    ),
-    format: CONFIG.IMAGE.SUPPORTED_FORMATS.includes(format)
-      ? format
-      : CONFIG.IMAGE.DEFAULT_FORMAT,
+    cf: {
+      image: {
+        fit: 'scale-down',
+        width: width ? parseInt(width) : undefined,
+        height: height ? parseInt(height) : undefined,
+        quality: Math.min(
+          Math.max(quality, CONFIG.IMAGE.MIN_QUALITY),
+          CONFIG.IMAGE.MAX_QUALITY
+        ),
+        format: CONFIG.IMAGE.SUPPORTED_FORMATS.includes(format)
+          ? format
+          : CONFIG.IMAGE.DEFAULT_FORMAT,
+      },
+    },
   }
 }
 
