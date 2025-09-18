@@ -5,17 +5,12 @@
  * on-the-fly transformations using Cloudflare's image optimization.
  *
  * Features:
- * - Rate limiting to prevent abuse
  * - CORS support for web usage
  * - Parameter validation
  * - Error handling
  */
 
 const CONFIG = {
-  RATE_LIMIT: {
-    MAX_REQUESTS: 100,
-    WINDOW_SECONDS: 60,
-  },
   IMAGE: {
     DEFAULT_QUALITY: 85,
     MIN_QUALITY: 1,
@@ -49,12 +44,6 @@ export default {
         return createErrorResponse('Method not allowed', 405)
       }
 
-      const clientIP = request.headers.get('cf-connecting-ip')
-      const rateLimitResult = await checkRateLimit(env, clientIP)
-      if (rateLimitResult) {
-        return rateLimitResult
-      }
-
       const imagePath = pathname.slice(1)
       const options = parseOptions(url, request)
 
@@ -79,21 +68,6 @@ export default {
       })
     }
   },
-}
-
-async function checkRateLimit(env, clientIP) {
-  const rateLimitKey = `ratelimit:${clientIP}`
-  const currentRequests = parseInt((await env.KV.get(rateLimitKey)) || '0')
-
-  if (currentRequests > CONFIG.RATE_LIMIT.MAX_REQUESTS) {
-    return createErrorResponse('Rate limit exceeded', 429)
-  }
-
-  await env.KV.put(rateLimitKey, (currentRequests + 1).toString(), {
-    expirationTtl: CONFIG.RATE_LIMIT.WINDOW_SECONDS,
-  })
-
-  return null
 }
 
 function parseOptions(url, request) {

@@ -9,10 +9,6 @@ command = ""
 SKIP_DEPENDENCY_INSTALL = "true"
 ASSETS_PUBLIC_URL = "assets.maxemitchell.com"
 
-[[kv_namespaces]]
-binding = "KV"
-id = "e0f69c917c914d5ea809ee717f4a4942"
-
 [[routes]]
 pattern = "cdn.maxemitchell.com"
 custom_domain = true
