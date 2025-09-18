@@ -123,7 +123,7 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
           use: ['raw-loader'],
         },
       ],
-    },
+    }
   })
 
   if (stage === 'build-html') {

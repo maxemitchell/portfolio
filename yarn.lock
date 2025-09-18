@@ -10223,10 +10223,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"iris-gen@npm:^1.0.1":
-  version: 1.0.5
-  resolution: "iris-gen@npm:1.0.5"
-  checksum: 10c0/c2974e74d03a993a197de341ac00b50e60b52a63cb958ab61cac1746caab1023b2d8a8fc6fac23756860a67232fbfac192bbb934ced97ee6617665cb78aaf4a3
+"iris-gen@npm:^1.0.6":
+  version: 1.0.6
+  resolution: "iris-gen@npm:1.0.6"
+  checksum: 10c0/396592fded2ab30643c9106fe0c0b94d9bfa19ecc49f0c18444a99c252c6ea3bfe383954d33767ce127464967c555883327875721e21bab4dc94ebe2c8ffab68
   languageName: node
   linkType: hard
 
@@ -11820,7 +11820,7 @@ __metadata:
     gatsby-source-youtube-v3: "npm:^3.0.1"
     gatsby-transformer-remark: "npm:^5.25.1"
     gatsby-transformer-sharp: "npm:^4.13.0"
-    iris-gen: "npm:^1.0.1"
+    iris-gen: "npm:^1.0.6"
     js-yaml: "npm:^4.1.0"
     lodash: "npm:^4.17.11"
     p5: "npm:1.3.1"
