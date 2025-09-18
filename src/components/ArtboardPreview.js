@@ -4,7 +4,7 @@ import CDNImage from './CDNImage'
 
 const ArtboardPreview = ({ slug, title, image }) => {
   return (
-    <Link className="mx-4 mb-3 group mx-auto" to={`/artboards/${slug}/`}>
+    <Link className="mx-4 mb-3 group sm:mx-auto" to={`/artboards/${slug}/`}>
       <h3 className="w-full text-lg sm:text-xl md:text-2xl mb-2 font-medium text-themeBlue group-hover:text-themeRed duration-500">
         {title}
       </h3>

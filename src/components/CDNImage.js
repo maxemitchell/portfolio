@@ -23,26 +23,62 @@ const generateSrcSet = (assetPath, widths, options = {}) => {
 }
 
 const createCDNImageData = (src, options = {}) => {
-  const { width = 800, quality = 80, layout = 'constrained' } = options
+  const { width, height, quality = 80, layout = 'constrained', aspectRatio } = options
 
-  const widths = [400, 800, 1200, 1600, 1920].filter((w) => w <= width * 2)
+  // If no width specified for constrained layout, create a flexible structure
+  // that doesn't force container dimensions
+  if (!width && layout === 'constrained') {
+    const baseUrl = buildCDNUrl(src, { quality, format: 'webp' })
+    
+    return {
+      images: {
+        fallback: {
+          src: baseUrl,
+          srcSet: generateSrcSet(src, [400, 800, 1200], { quality, format: 'webp' }),
+          sizes: '100vw',
+        },
+        sources: [
+          {
+            srcSet: generateSrcSet(src, [400, 800, 1200], { quality, format: 'webp' }),
+            sizes: '100vw',
+            type: 'image/webp',
+          },
+        ],
+      },
+      layout,
+      placeholder: {
+        fallback: baseUrl,
+      },
+    }
+  }
+
+  // For cases with specific dimensions
+  const imageWidth = width || 800
+  
+  // Calculate height based on aspect ratio or use provided height
+  let imageHeight = height
+  if (!imageHeight && aspectRatio) {
+    imageHeight = Math.round(imageWidth / aspectRatio)
+  }
+
+  const widths = [400, 800, 1200, 1600, 1920].filter((w) => w <= imageWidth * 2)
   const srcSet = generateSrcSet(src, widths, { quality, format: 'webp' })
-  const baseUrl = buildCDNUrl(src, { width, quality, format: 'webp' })
+  const baseUrl = buildCDNUrl(src, { width: imageWidth, quality, format: 'webp' })
 
-  return {
+  const gatsbyImageData = {
     images: {
       fallback: {
         src: baseUrl,
         srcSet,
         sizes:
-          layout === 'fixed' ? `${width}px` : '(max-width: 800px) 100vw, 800px',
+          layout === 'fixed' ? `${imageWidth}px` : '(max-width: 800px) 100vw, 800px',
       },
       sources: [
         {
           srcSet: generateSrcSet(src, widths, { quality, format: 'webp' }),
           sizes:
             layout === 'fixed'
-              ? `${width}px`
+              ? `${imageWidth}px`
               : '(max-width: 800px) 100vw, 800px',
           type: 'image/webp',
         },
@@ -50,18 +86,25 @@ const createCDNImageData = (src, options = {}) => {
           srcSet: generateSrcSet(src, widths, { quality, format: 'jpeg' }),
           sizes:
             layout === 'fixed'
-              ? `${width}px`
+              ? `${imageWidth}px`
               : '(max-width: 800px) 100vw, 800px',
           type: 'image/jpeg',
         },
       ],
     },
     layout,
-    width,
+    width: imageWidth,
     placeholder: {
       fallback: baseUrl,
     },
   }
+
+  // Add height if we have it
+  if (imageHeight) {
+    gatsbyImageData.height = imageHeight
+  }
+
+  return gatsbyImageData
 }
 
 const CDNImage = ({
@@ -69,25 +112,54 @@ const CDNImage = ({
   alt,
   className = '',
   width,
+  height,
   quality = 80,
   layout = 'constrained',
   loading = 'lazy',
+  objectFit,
+  objectPosition,
+  aspectRatio,
   ...props
 }) => {
-  const gatsbyImageData = createCDNImageData(src, {
-    width,
-    quality,
-    layout,
-  })
+  // Create responsive picture element with WebP support and proper lazy loading
+  // Use larger breakpoints if a large width is specified (like for artboards)
+  const maxWidth = width || 1200
+  const breakpoints = maxWidth > 1200 ? [400, 800, 1200, 1600, 1920] : [400, 800, 1200, 1600]
+  
+  const webpSrcSet = generateSrcSet(src, breakpoints, { quality, format: 'webp' })
+  const jpegSrcSet = generateSrcSet(src, breakpoints, { quality, format: 'jpeg' })
+  const fallbackSrc = buildCDNUrl(src, { width: maxWidth, quality, format: 'jpeg' })
+
+  // Adjust sizes based on intended width - larger widths suggest full-width usage
+  const sizes = maxWidth > 1200 
+    ? "(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw"  // Larger for artboards
+    : "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"  // Smaller for photo collections
 
   return (
-    <GatsbyImage
-      image={gatsbyImageData}
-      alt={alt}
-      className={className}
-      loading={loading}
-      {...props}
-    />
+    <picture {...props}>
+      <source
+        srcSet={webpSrcSet}
+        sizes={sizes}
+        type="image/webp"
+      />
+      <source
+        srcSet={jpegSrcSet}
+        sizes={sizes}
+        type="image/jpeg"
+      />
+      <img
+        src={fallbackSrc}
+        alt={alt}
+        className={className}
+        loading={loading}
+        style={{ 
+          width: '100%', 
+          height: 'auto', 
+          display: 'block'
+        }}
+        decoding="async"
+      />
+    </picture>
   )
 }
 

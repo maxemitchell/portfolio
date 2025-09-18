@@ -43,11 +43,13 @@ exports.createPages = ({ graphql, actions }) => {
         graphql(
         `
           {
-            allContentfulPhotoCollection {
+            allMarkdownRemark(filter: { frontmatter: { type: { eq: "photo-collection" } } }) {
               edges {
                 node {
-                  title
-                  slug
+                  frontmatter {
+                    title
+                    slug
+                  }
                 }
               }
             }
@@ -58,14 +60,14 @@ exports.createPages = ({ graphql, actions }) => {
               reject(result.errors)
             }
 
-            const photoCollections = result.data.allContentfulPhotoCollection.edges
+            const photoCollections = result.data.allMarkdownRemark.edges
 
             photoCollections.forEach((photoCollection) => {
               createPage({
-                path: `/photo_collections/${photoCollection.node.slug}/`,
+                path: `/photo_collections/${photoCollection.node.frontmatter.slug}/`,
                 component: path.resolve('./src/templates/photo_collection.js'),
                 context: {
-                  slug: photoCollection.node.slug
+                  slug: photoCollection.node.frontmatter.slug
                 },
               })
             })

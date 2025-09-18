@@ -1,20 +1,26 @@
 import React, { useState } from 'react'
 import { graphql } from 'gatsby'
 import SEO from '../components/SEO'
-import { GatsbyImage } from 'gatsby-plugin-image'
+import CDNImage from '../components/CDNImage'
 import Layout from '../components/Layout'
 
 const PhotoCollectionTemplate = ({ data }) => {
-  const photoCollection = data.contentfulPhotoCollection
-  const collectionTags =
-    photoCollection.description.childMarkdownRemark.htmlAst.children
+  const photoCollection = data.markdownRemark
+  const collectionTags = photoCollection.htmlAst.children
+  const { title, slug, collectionDate, imageCount, featuredImage } = photoCollection.frontmatter
   const [showModal, setShowModal] = useState(false)
-  const [currentImage, setCurrentImage] = useState()
+  const [currentImageSrc, setCurrentImageSrc] = useState('')
 
-  const handleClick = (e, photo) => {
+  // Generate array of image paths
+  const photos = Array.from({ length: imageCount }, (_, i) => {
+    const imageNumber = i + 1
+    return `photo_collections/${slug}/${imageNumber}.jpg`
+  })
+
+  const handleClick = (e, imageSrc) => {
     e.stopPropagation()
     setShowModal((showModal) => !showModal)
-    setCurrentImage(photo)
+    setCurrentImageSrc(imageSrc)
   }
 
   const handleClose = () => {
@@ -23,33 +29,33 @@ const PhotoCollectionTemplate = ({ data }) => {
 
   return (
     <Layout>
-      <SEO title={photoCollection.title} />
+      <SEO title={title} />
       <div
         className="flex flex-wrap w-full font-manrope text-themeOffWhite mx-auto justify-center xl:w-5/6"
         onClick={handleClose}
       >
         <div className="flex w-full justify-start ml-2 md:ml-4 items-baseline mt-1">
           <h1 className="text-3xl sm:text-4xl font-light textshadow-blue">
-            {photoCollection.title}
+            {title}
           </h1>
           <p className="text-md sm:text-lg font-extralight textshadow-red">
-            ~{photoCollection.collectionDate}
+            ~{collectionDate}
           </p>
         </div>
 
         <div className="w-full px-2 md:px-4 col-count-2 md:pt-1 md:col-count-3 xl:col-count-4 gap-x-md md:gap-x-lg">
-          {photoCollection.photos.map((photo, key) => {
-            if (key === Math.ceil(photoCollection.photos.length / 2)) {
+          {photos.map((imageSrc, key) => {
+            if (key === Math.ceil(photos.length / 2)) {
               return (
                 <div key={key}>
                   <div
-                    onClick={(e) => handleClick(e, photo)}
+                    onClick={(e) => handleClick(e, imageSrc)}
                     className="mb-2 md:mb-4 inline-block w-full cursor-pointer border-themeOffWhite border-2 hover:border-themeRed duration-500"
                   >
-                    <GatsbyImage
-                      image={photo.gatsbyImageData}
-                      alt={photoCollection.title}
-                      key={photo.id}
+                    <CDNImage
+                    src={imageSrc}
+                    alt={title}
+                    quality={80}
                     />
                   </div>
 
@@ -84,14 +90,14 @@ const PhotoCollectionTemplate = ({ data }) => {
             } else {
               return (
                 <div
-                  onClick={(e) => handleClick(e, photo)}
+                  onClick={(e) => handleClick(e, imageSrc)}
                   className="mb-2 md:mb-4 inline-block w-full cursor-pointer border-themeOffWhite border-2 hover:border-themeRed duration-500"
                   key={key}
                 >
-                  <GatsbyImage
-                    image={photo.gatsbyImageData}
-                    alt={photoCollection.title}
-                    key={photo.id}
+                  <CDNImage
+                    src={imageSrc}
+                    alt={title}
+                    quality={80}
                   />
                 </div>
               )
@@ -101,12 +107,11 @@ const PhotoCollectionTemplate = ({ data }) => {
 
         {showModal && (
           <div className="fixed flex justify-center items-center h-screen w-full top-0 left-0 bg-blurred overflow-hidden">
-            <GatsbyImage
-              image={currentImage.gatsbyImageData}
+            <CDNImage
+              src={currentImageSrc}
               className="relative flex flex-1 max-w-screen-lg max-h-screen cursor-pointer p-16"
-              alt={photoCollection.title}
-              key={currentImage.id}
-              objectFit="contain"
+              alt={title}
+              quality={90}
             />
           </div>
         )}
@@ -118,19 +123,18 @@ const PhotoCollectionTemplate = ({ data }) => {
 export default PhotoCollectionTemplate
 
 export const query = graphql`
-  query PhotoCollectiondBySlug($slug: String!) {
-    contentfulPhotoCollection(slug: { eq: $slug }) {
-      title
-      photos {
-        gatsbyImageData(layout: CONSTRAINED, width: 600)
-        id
+  query PhotoCollectionBySlug($slug: String!) {
+    markdownRemark(
+      frontmatter: { slug: { eq: $slug }, type: { eq: "photo-collection" } }
+    ) {
+      frontmatter {
+        title
+        slug
+        collectionDate
+        imageCount
+        featuredImage
       }
-      description {
-        childMarkdownRemark {
-          htmlAst
-        }
-      }
-      collectionDate
+      htmlAst
     }
   }
 `
