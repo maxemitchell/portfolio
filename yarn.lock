@@ -72,7 +72,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/core@npm:^7.14.0, @babel/core@npm:^7.15.5":
+"@babel/core@npm:^7.14.0, @babel/core@npm:^7.15.5, @babel/core@npm:^7.24.0":
   version: 7.28.4
   resolution: "@babel/core@npm:7.28.4"
   dependencies:
@@ -4804,13 +4804,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"big.js@npm:^3.1.3":
-  version: 3.2.0
-  resolution: "big.js@npm:3.2.0"
-  checksum: 10c0/de0b8e275171060a37846b521e8ebfe077c650532306c2470474da6720feb04351cc8588ef26088756b224923782946ae67e817b90122cc85692bbda7ccd2d0d
-  languageName: node
-  linkType: hard
-
 "big.js@npm:^5.2.2":
   version: 5.2.2
   resolution: "big.js@npm:5.2.2"
@@ -6114,18 +6107,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"css@npm:2.2.4":
-  version: 2.2.4
-  resolution: "css@npm:2.2.4"
-  dependencies:
-    inherits: "npm:^2.0.3"
-    source-map: "npm:^0.6.1"
-    source-map-resolve: "npm:^0.5.2"
-    urix: "npm:^0.1.0"
-  checksum: 10c0/496fa66568ebd9e51b3153817dd36ec004a45780da6f818e13117e3c4e50b774af41fff70a6ff2fa03777b239c4028ff655fe571b20964b90e886441cd141569
-  languageName: node
-  linkType: hard
-
 "cssesc@npm:^3.0.0":
   version: 3.0.0
   resolution: "cssesc@npm:3.0.0"
@@ -6815,13 +6796,6 @@ __metadata:
   version: 9.2.2
   resolution: "emoji-regex@npm:9.2.2"
   checksum: 10c0/af014e759a72064cf66e6e694a7fc6b0ed3d8db680427b021a89727689671cefe9d04151b2cad51dbaf85d5ba790d061cd167f1cf32eb7b281f6368b3c181639
-  languageName: node
-  linkType: hard
-
-"emojis-list@npm:^2.0.0":
-  version: 2.1.0
-  resolution: "emojis-list@npm:2.1.0"
-  checksum: 10c0/bbb941223bfb3e38054cb52ed1b3098a8dac0a90fdd2699eb8a3af3b2172cdc4af0932e05c3edd52e814997c8f45cf1d7f5e86e9ecdcd4e2390a0f27e6914db5
   languageName: node
   linkType: hard
 
@@ -8693,17 +8667,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-plugin-react-svg@npm:^3.0.0":
-  version: 3.3.0
-  resolution: "gatsby-plugin-react-svg@npm:3.3.0"
-  dependencies:
-    svg-react-loader: "npm:^0.4.6"
-  peerDependencies:
-    gatsby: ^5.0.0 || ^4.0.0 || ^3.0.0 || ^2.0.0
-  checksum: 10c0/f5cdef6850d7fa6f4fb47563280f031197532aaff051e8f37e51e91ae333cb02b4136db225feca4d76fdee3e1ca0f1a648834417cefc7557ef21bc2e834c3889
-  languageName: node
-  linkType: hard
-
 "gatsby-plugin-sharp@npm:^4.25.1":
   version: 4.25.1
   resolution: "gatsby-plugin-sharp@npm:4.25.1"
@@ -8887,7 +8850,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-source-youtube-v3@npm:^3.0.1":
+"gatsby-source-youtube-v3@npm:^3.0.2":
   version: 3.0.2
   resolution: "gatsby-source-youtube-v3@npm:3.0.2"
   dependencies:
@@ -11189,7 +11152,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"json5@npm:^0.5.0, json5@npm:^0.5.1":
+"json5@npm:^0.5.1":
   version: 0.5.1
   resolution: "json5@npm:0.5.1"
   bin:
@@ -11450,17 +11413,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"loader-utils@npm:1.1.0":
-  version: 1.1.0
-  resolution: "loader-utils@npm:1.1.0"
-  dependencies:
-    big.js: "npm:^3.1.3"
-    emojis-list: "npm:^2.0.0"
-    json5: "npm:^0.5.0"
-  checksum: 10c0/6743bf79fa7691388bc9611128b94b7e43341bbe2dcc0e52dd942477b7c3213ae739af0d42c21f9ea5cb0f818ac33db4920944de74ccf30131bfd97379e9e28a
-  languageName: node
-  linkType: hard
-
 "loader-utils@npm:^2.0.0, loader-utils@npm:^2.0.4":
   version: 2.0.4
   resolution: "loader-utils@npm:2.0.4"
@@ -11605,7 +11557,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:^4.0.0, lodash@npm:^4.17.10, lodash@npm:^4.17.11, lodash@npm:^4.17.15, lodash@npm:^4.17.19, lodash@npm:^4.17.20, lodash@npm:^4.17.21, lodash@npm:^4.17.4, lodash@npm:^4.17.5, lodash@npm:~4.17.0":
+"lodash@npm:^4.17.10, lodash@npm:^4.17.11, lodash@npm:^4.17.15, lodash@npm:^4.17.19, lodash@npm:^4.17.20, lodash@npm:^4.17.21, lodash@npm:^4.17.4, lodash@npm:^4.17.5, lodash@npm:~4.17.0":
   version: 4.17.21
   resolution: "lodash@npm:4.17.21"
   checksum: 10c0/d8cbea072bb08655bb4c989da418994b073a608dffa608b09ac04b43a791b12aeae7cd7ad919aa4c925f33b48490b5cfe6c1f71d827956071dae2e7bb3a6b74c
@@ -11796,6 +11748,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "maxemitchell-portfolio@workspace:."
   dependencies:
+    "@babel/core": "npm:^7.24.0"
     "@loadable/component": "npm:^5.13.1"
     "@types/react-helmet": "npm:^6.0.0"
     babel-eslint: "npm:^10.1.0"
@@ -11811,13 +11764,12 @@ __metadata:
     gatsby-plugin-postcss: "npm:^5.13.0 "
     gatsby-plugin-purgecss: "npm:^6.0.1"
     gatsby-plugin-react-helmet: "npm:5.13.0"
-    gatsby-plugin-react-svg: "npm:^3.0.0"
     gatsby-plugin-sharp: "npm:^4.25.1"
     gatsby-plugin-sitemap: "npm:^5.13.0"
     gatsby-remark-images: "npm:^6.25.0"
     gatsby-source-filesystem: "npm:^4.17.0"
     gatsby-source-github-api: "npm:^1.0.0"
-    gatsby-source-youtube-v3: "npm:^3.0.1"
+    gatsby-source-youtube-v3: "npm:^3.0.2"
     gatsby-transformer-remark: "npm:^5.25.1"
     gatsby-transformer-sharp: "npm:^4.13.0"
     iris-gen: "npm:^1.0.6"
@@ -14427,13 +14379,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ramda@npm:0.21.0":
-  version: 0.21.0
-  resolution: "ramda@npm:0.21.0"
-  checksum: 10c0/a5d28ef8f09f7fd024b2a92477f5356e6323c26be29992c87139757e39b20f9006b6a4c69002b952b2ddb88d983823b26ed68020257660617e3a395b7ea2d6da
-  languageName: node
-  linkType: hard
-
 "randomatic@npm:^3.0.0":
   version: 3.1.1
   resolution: "randomatic@npm:3.1.1"
@@ -15238,13 +15183,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rx@npm:4.1.0":
-  version: 4.1.0
-  resolution: "rx@npm:4.1.0"
-  checksum: 10c0/c2a2cf8cb350f38b5396f8ee6af1bc359c5ed5a409d710111a2da215bfb3fe77f75b5f0a0dd6fe6b57c5bdadf3b128ad1f8ad99de27da2c13ae9ba908a642cee
-  languageName: node
-  linkType: hard
-
 "rxjs@npm:^6.6.0":
   version: 6.6.7
   resolution: "rxjs@npm:6.6.7"
@@ -15330,7 +15268,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sax@npm:>=0.6.0, sax@npm:^1.2.4":
+"sax@npm:^1.2.4":
   version: 1.4.1
   resolution: "sax@npm:1.4.1"
   checksum: 10c0/6bf86318a254c5d898ede6bd3ded15daf68ae08a5495a2739564eb265cd13bcc64a07ab466fb204f67ce472bb534eb8612dac587435515169593f4fffa11de7c
@@ -15974,7 +15912,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"source-map-resolve@npm:^0.5.0, source-map-resolve@npm:^0.5.2":
+"source-map-resolve@npm:^0.5.0":
   version: 0.5.3
   resolution: "source-map-resolve@npm:0.5.3"
   dependencies:
@@ -16515,20 +16453,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"svg-react-loader@npm:^0.4.6":
-  version: 0.4.6
-  resolution: "svg-react-loader@npm:0.4.6"
-  dependencies:
-    css: "npm:2.2.4"
-    loader-utils: "npm:1.1.0"
-    ramda: "npm:0.21.0"
-    rx: "npm:4.1.0"
-    traverse: "npm:0.6.6"
-    xml2js: "npm:0.4.17"
-  checksum: 10c0/4c5b9717f892824fd567d0fe06b82898324fe0cdb02894f7e61160e1eb67c3b3e6f72557a91824c22e49d3c3318d5777b245197864c3a4c7c0e870767ec15bcd
-  languageName: node
-  linkType: hard
-
 "svgo@npm:^2.7.0":
   version: 2.8.0
   resolution: "svgo@npm:2.8.0"
@@ -16850,13 +16774,6 @@ __metadata:
   version: 0.0.3
   resolution: "tr46@npm:0.0.3"
   checksum: 10c0/047cb209a6b60c742f05c9d3ace8fa510bff609995c129a37ace03476a9b12db4dbf975e74600830ef0796e18882b2381fb5fb1f6b4f96b832c374de3ab91a11
-  languageName: node
-  linkType: hard
-
-"traverse@npm:0.6.6":
-  version: 0.6.6
-  resolution: "traverse@npm:0.6.6"
-  checksum: 10c0/72b2c95463e991063cfa3603dc80e8ca35cae4bf1a736e5b6df3a50226dca341777699f702b55f61b9a329e7be0a76fb77d994f4981f49de98bb02065ca1e7d9
   languageName: node
   linkType: hard
 
@@ -17952,25 +17869,6 @@ __metadata:
   version: 4.0.0
   resolution: "xdg-basedir@npm:4.0.0"
   checksum: 10c0/1b5d70d58355af90363a4e0a51c992e77fc5a1d8de5822699c7d6e96a6afea9a1e048cb93312be6870f338ca45ebe97f000425028fa149c1e87d1b5b8b212a06
-  languageName: node
-  linkType: hard
-
-"xml2js@npm:0.4.17":
-  version: 0.4.17
-  resolution: "xml2js@npm:0.4.17"
-  dependencies:
-    sax: "npm:>=0.6.0"
-    xmlbuilder: "npm:^4.1.0"
-  checksum: 10c0/406905238e7d578da435ccb2add9de5d6e100bd4a9d510ecc23c038fe713c4f4d6a58b18848129c14ae2b4ad657d40a9a43c6eba8f8ce6c5beeb84599fbb6f61
-  languageName: node
-  linkType: hard
-
-"xmlbuilder@npm:^4.1.0":
-  version: 4.2.1
-  resolution: "xmlbuilder@npm:4.2.1"
-  dependencies:
-    lodash: "npm:^4.0.0"
-  checksum: 10c0/7862fe90e285c33f37481f49a71346fd332dd7162c3bbcf8a3093e44fb549e87175bfb675c5bab90939d5bb2cd285b2c08ba3cecdbd5bf4122d57eeafaa38930
   languageName: node
   linkType: hard
 

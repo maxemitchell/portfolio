@@ -292,7 +292,6 @@ export const query = graphql`
     littleManRemix: file(relativePath: { eq: "little_man_remix_preview.png" }) {
       childImageSharp {
         gatsbyImageData(
-          tracedSVGOptions: { background: "#000000", color: "#0bbcd6" }
           placeholder: DOMINANT_COLOR
           layout: CONSTRAINED
         )
@@ -303,7 +302,6 @@ export const query = graphql`
     ) {
       childImageSharp {
         gatsbyImageData(
-          tracedSVGOptions: { background: "#000000", color: "#0bbcd6" }
           placeholder: DOMINANT_COLOR
           layout: CONSTRAINED
         )
@@ -312,7 +310,6 @@ export const query = graphql`
     ghostCoast: file(relativePath: { eq: "ghost_coast_preview.png" }) {
       childImageSharp {
         gatsbyImageData(
-          tracedSVGOptions: { background: "#000000", color: "#0bbcd6" }
           placeholder: DOMINANT_COLOR
           layout: CONSTRAINED
         )
@@ -321,7 +318,6 @@ export const query = graphql`
     unknownLines: file(relativePath: { eq: "unknown_lines_preview.png" }) {
       childImageSharp {
         gatsbyImageData(
-          tracedSVGOptions: { background: "#000000", color: "#0bbcd6" }
           placeholder: DOMINANT_COLOR
           layout: CONSTRAINED
         )
@@ -332,7 +328,6 @@ export const query = graphql`
     ) {
       childImageSharp {
         gatsbyImageData(
-          tracedSVGOptions: { background: "#000000", color: "#0bbcd6" }
           placeholder: DOMINANT_COLOR
           layout: CONSTRAINED
         )
@@ -341,7 +336,6 @@ export const query = graphql`
     circlePacking: file(relativePath: { eq: "circle_packing_preview.png" }) {
       childImageSharp {
         gatsbyImageData(
-          tracedSVGOptions: { background: "#000000", color: "#0bbcd6" }
           placeholder: DOMINANT_COLOR
           layout: CONSTRAINED
         )
@@ -350,7 +344,6 @@ export const query = graphql`
     colorAverage: file(relativePath: { eq: "color_of_average_preview.png" }) {
       childImageSharp {
         gatsbyImageData(
-          tracedSVGOptions: { background: "#000000", color: "#0bbcd6" }
           placeholder: DOMINANT_COLOR
           layout: CONSTRAINED
         )
@@ -361,7 +354,6 @@ export const query = graphql`
     ) {
       childImageSharp {
         gatsbyImageData(
-          tracedSVGOptions: { background: "#000000", color: "#0bbcd6" }
           placeholder: DOMINANT_COLOR
           layout: CONSTRAINED
         )
@@ -370,7 +362,6 @@ export const query = graphql`
     irisGen: file(relativePath: { eq: "iris_gen_preview.png" }) {
       childImageSharp {
         gatsbyImageData(
-          tracedSVGOptions: { background: "#000000", color: "#0bbcd6" }
           placeholder: DOMINANT_COLOR
           layout: CONSTRAINED
         )
