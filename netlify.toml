@@ -1,2 +1,7 @@
+[build.environment]
+  # Force Sharp to use prebuilt binaries
+  SHARP_IGNORE_GLOBAL_LIBVIPS = "1"
+  SHARP_DOWNLOAD_HOST = "https://github.com/lovell/sharp-libvips/releases/download/"
+
 [[plugins]]
   package = "netlify-plugin-gatsby-cache"
