@@ -25,6 +25,11 @@ const About = ({}) => {
             .
           </p>
           <p className="w-full mt-3 sm:mt-5">
+            At the end of this month, I'm joining <strong>krea.ai</strong> as a{' '}
+            <strong>Software Engineer</strong> to help create new creative
+            tools.
+          </p>
+          <p className="w-full mt-3 sm:mt-5">
             In my free time I workout (currently enjoying yoga + running), take
             photos, work on whatever visual thing has my attention at the moment
             (currently projection mapping), go to concerts, meditate, and scroll

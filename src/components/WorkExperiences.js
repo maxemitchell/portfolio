@@ -5,11 +5,18 @@ const WorkExperiences = () => {
   return (
     <div className="px-6">
       <Experience
-        variant={'top'}
-        header={'tastytrade / Junior Developer -> Senior Software Enginner'}
-        date={'August 2021 - Present'}
+        variant={'right'}
+        header={'krea.ai / Software Engineer'}
+        date={'September 2025 - Present'}
+        body={'Joining krea.ai to help create new creative tools.'}
+      />
+
+      <Experience
+        variant={'left'}
+        header={'tastytrade / Junior Developer -> Senior Software Engineer'}
+        date={'August 2021 - September 2025'}
         body={
-          'Started my full time engineering career at tastytrade in chicago as a junior developer and have slowly grown my way up to senior. I work on the backend ruby engineering team, mostly on order routing and asset management.'
+          'Started my full time engineering career at tastytrade in chicago as a junior developer and grew to senior. Led backend Ruby development of crypto features, order routing, and profit-loss systems handling 200k+ trades/day. Functioned as tech lead for crypto products and led incident response for business-critical systems.'
         }
       />
 

@@ -291,80 +291,53 @@ export const query = graphql`
   query CodeArtPreviews {
     littleManRemix: file(relativePath: { eq: "little_man_remix_preview.png" }) {
       childImageSharp {
-        gatsbyImageData(
-          placeholder: DOMINANT_COLOR
-          layout: CONSTRAINED
-        )
+        gatsbyImageData(placeholder: DOMINANT_COLOR, layout: CONSTRAINED)
       }
     }
     missJuliaTheThird: file(
       relativePath: { eq: "miss_julia_the_third_preview.png" }
     ) {
       childImageSharp {
-        gatsbyImageData(
-          placeholder: DOMINANT_COLOR
-          layout: CONSTRAINED
-        )
+        gatsbyImageData(placeholder: DOMINANT_COLOR, layout: CONSTRAINED)
       }
     }
     ghostCoast: file(relativePath: { eq: "ghost_coast_preview.png" }) {
       childImageSharp {
-        gatsbyImageData(
-          placeholder: DOMINANT_COLOR
-          layout: CONSTRAINED
-        )
+        gatsbyImageData(placeholder: DOMINANT_COLOR, layout: CONSTRAINED)
       }
     }
     unknownLines: file(relativePath: { eq: "unknown_lines_preview.png" }) {
       childImageSharp {
-        gatsbyImageData(
-          placeholder: DOMINANT_COLOR
-          layout: CONSTRAINED
-        )
+        gatsbyImageData(placeholder: DOMINANT_COLOR, layout: CONSTRAINED)
       }
     }
     thanksgivingBreak: file(
       relativePath: { eq: "thanksgiving_break_preview.png" }
     ) {
       childImageSharp {
-        gatsbyImageData(
-          placeholder: DOMINANT_COLOR
-          layout: CONSTRAINED
-        )
+        gatsbyImageData(placeholder: DOMINANT_COLOR, layout: CONSTRAINED)
       }
     }
     circlePacking: file(relativePath: { eq: "circle_packing_preview.png" }) {
       childImageSharp {
-        gatsbyImageData(
-          placeholder: DOMINANT_COLOR
-          layout: CONSTRAINED
-        )
+        gatsbyImageData(placeholder: DOMINANT_COLOR, layout: CONSTRAINED)
       }
     }
     colorAverage: file(relativePath: { eq: "color_of_average_preview.png" }) {
       childImageSharp {
-        gatsbyImageData(
-          placeholder: DOMINANT_COLOR
-          layout: CONSTRAINED
-        )
+        gatsbyImageData(placeholder: DOMINANT_COLOR, layout: CONSTRAINED)
       }
     }
     averagePacking: file(
       relativePath: { eq: "an_average_packing_preview.png" }
     ) {
       childImageSharp {
-        gatsbyImageData(
-          placeholder: DOMINANT_COLOR
-          layout: CONSTRAINED
-        )
+        gatsbyImageData(placeholder: DOMINANT_COLOR, layout: CONSTRAINED)
       }
     }
     irisGen: file(relativePath: { eq: "iris_gen_preview.png" }) {
       childImageSharp {
-        gatsbyImageData(
-          placeholder: DOMINANT_COLOR
-          layout: CONSTRAINED
-        )
+        gatsbyImageData(placeholder: DOMINANT_COLOR, layout: CONSTRAINED)
       }
     }
   }
