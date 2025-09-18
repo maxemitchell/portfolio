@@ -124,6 +124,7 @@ const Index = ({ data }) => {
                 slug={artboard.frontmatter.slug}
                 title={artboard.frontmatter.title}
                 image={artboard.frontmatter.artboard}
+                artboardMetadata={artboard.frontmatter.artboardMetadata}
                 key={artboard.frontmatter.title}
               />
             )
@@ -136,14 +137,16 @@ const Index = ({ data }) => {
           </div>
 
           {photoCollections.map(({ node: photoCollection }) => {
-            const { title, slug, featuredImage } = photoCollection.frontmatter
-            const featuredImageSrc = `photo_collections/${slug}/${featuredImage}.jpg`
-            
+            const { title, slug, featuredImage, featuredImageMetadata } =
+              photoCollection.frontmatter
+            const image = `photo_collections/${slug}/${featuredImage}.jpg`
+
             return (
               <PhotoCollectionPreview
                 slug={slug}
                 title={title}
-                image={featuredImageSrc}
+                image={image}
+                imageMetadata={featuredImageMetadata}
                 key={title}
               />
             )
@@ -214,6 +217,10 @@ export const query = graphql`
             title
             slug
             artboard
+            artboardMetadata {
+              aspectRatio
+              dominantColor
+            }
           }
         }
       }
@@ -229,6 +236,10 @@ export const query = graphql`
             title
             slug
             featuredImage
+            featuredImageMetadata {
+              aspectRatio
+              dominantColor
+            }
           }
         }
       }

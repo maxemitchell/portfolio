@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'gatsby'
 import CDNImage from './CDNImage'
 
-const PhotoCollectionPreview = ({ slug, title, image }) => {
+const PhotoCollectionPreview = ({ slug, title, image, imageMetadata }) => {
   return (
     <Link
       className="w-1/2 sm:w-5/12 md:w-5/12 lg:w-1/3 px-4 mb-3 group"
@@ -17,6 +17,8 @@ const PhotoCollectionPreview = ({ slug, title, image }) => {
         alt="Featured Image"
         quality={80}
         loading="lazy"
+        aspectRatio={imageMetadata?.aspectRatio}
+        dominantColor={imageMetadata?.dominantColor}
       />
     </Link>
   )

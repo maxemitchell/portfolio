@@ -1,10 +1,15 @@
 ---
-title: "the lorne artboard"
-slug: "the-lorne-artboard"
+title: the lorne artboard
+slug: the-lorne-artboard
 artboardDate: "2019-06-28"
-metadata: "lorne, artboard, photography, moodboard, travel, friends"
-type: "artboard"
-artboard: "artboards/the-lorne-artboard.png"
+metadata: lorne, artboard, photography, moodboard, travel, friends
+type: artboard
+artboard: artboards/the-lorne-artboard.png
+artboardMetadata:
+  aspectRatio: 3
+  dominantColor: "#5a514c"
+  width: 3240
+  height: 1080
 ---
 
 # {reminiscence}

@@ -28,6 +28,14 @@ const ArtboardTemplate = ({ data }) => {
           width={1920}
           quality={80}
           layout="constrained"
+          aspectRatio={
+            artboard.frontmatter.artboardMetadata &&
+            artboard.frontmatter.artboardMetadata.aspectRatio
+          }
+          dominantColor={
+            artboard.frontmatter.artboardMetadata &&
+            artboard.frontmatter.artboardMetadata.dominantColor
+          }
         />
         <div className="w-11/12 mt-6 text-left max-w-xl lg:max-w-2xl xl:max-w-5xl">
           {descriptionTags.map((item, key) => {
@@ -69,6 +77,10 @@ export const query = graphql`
         artboardDate
         metadata
         artboard
+        artboardMetadata {
+          aspectRatio
+          dominantColor
+        }
       }
       htmlAst
     }

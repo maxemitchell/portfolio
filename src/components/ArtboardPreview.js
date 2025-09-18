@@ -2,9 +2,12 @@ import React from 'react'
 import { Link } from 'gatsby'
 import CDNImage from './CDNImage'
 
-const ArtboardPreview = ({ slug, title, image }) => {
+const ArtboardPreview = ({ slug, title, image, artboardMetadata }) => {
   return (
-    <Link className="mx-4 mb-3 group sm:mx-auto" to={`/artboards/${slug}/`}>
+    <Link
+      className="flex w-full flex-col mx-4 mb-3 group sm:mx-auto"
+      to={`/artboards/${slug}/`}
+    >
       <h3 className="w-full text-lg sm:text-xl md:text-2xl mb-2 font-medium text-themeBlue group-hover:text-themeRed duration-500">
         {title}
       </h3>
@@ -16,6 +19,8 @@ const ArtboardPreview = ({ slug, title, image }) => {
         width={800}
         quality={80}
         layout="constrained"
+        aspectRatio={artboardMetadata?.aspectRatio}
+        dominantColor={artboardMetadata?.dominantColor}
       />
     </Link>
   )

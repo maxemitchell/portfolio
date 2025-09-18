@@ -1,11 +1,17 @@
 ---
-title: "the rooftop artboard"
-slug: "the-rooftop-artboard"
+title: the rooftop artboard
+slug: the-rooftop-artboard
 artboardDate: "2020-06-26"
-metadata: "rooftop, college, nostalgia, senior year"
-type: "artboard"
-artboard: "artboards/the-rooftop-artboard.png"
---- 
+metadata: rooftop, college, nostalgia, senior year
+type: artboard
+artboard: artboards/the-rooftop-artboard.png
+artboardMetadata:
+  aspectRatio: 3
+  dominantColor: "#8c938e"
+  width: 6000
+  height: 2000
+---
+
 
 # {nostalgia}
 

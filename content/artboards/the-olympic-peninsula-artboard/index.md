@@ -1,10 +1,14 @@
 ---
-title: "the olympic peninsula artboard"
-slug: "the-olympic-peninsula-artboard"
+title: the olympic peninsula artboard
+slug: the-olympic-peninsula-artboard
 artboardDate: "2021-06-23"
-
-type: "artboard"
-artboard: "artboards/the-olympic-peninsula-artboard.png"
+type: artboard
+artboard: artboards/the-olympic-peninsula-artboard.png
+artboardMetadata:
+  aspectRatio: 3
+  dominantColor: "#546159"
+  width: 5400
+  height: 1800
 ---
 
 # {breathtaking}

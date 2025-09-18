@@ -1,10 +1,13 @@
 ---
-title: "the bali artboard"
-slug: "the-bali-artboard"
+title: the bali artboard
+slug: the-bali-artboard
 artboardDate: "2019-04-26"
-metadata: "bali, indonesia, monkeys, temples, artboard, collage, art, nature"
-type: "artboard"
-artboard: "artboards/the-bali-artboard.png"
+metadata: bali, indonesia, monkeys, temples, artboard, collage, art, nature
+type: artboard
+artboard: artboards/the-bali-artboard.png
+artboardMetadata:
+  aspectRatio: 3
+  dominantColor: "#667273"
 ---
 
 # {culture_shock}

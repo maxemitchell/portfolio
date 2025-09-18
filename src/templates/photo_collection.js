@@ -7,20 +7,24 @@ import Layout from '../components/Layout'
 const PhotoCollectionTemplate = ({ data }) => {
   const photoCollection = data.markdownRemark
   const collectionTags = photoCollection.htmlAst.children
-  const { title, slug, collectionDate, imageCount, featuredImage } = photoCollection.frontmatter
+  const { title, slug, collectionDate, images } = photoCollection.frontmatter
   const [showModal, setShowModal] = useState(false)
   const [currentImageSrc, setCurrentImageSrc] = useState('')
+  const [currentImageMetadata, setCurrentImageMetadata] = useState({})
 
-  // Generate array of image paths
-  const photos = Array.from({ length: imageCount }, (_, i) => {
-    const imageNumber = i + 1
-    return `photo_collections/${slug}/${imageNumber}.jpg`
-  })
+  const photos = images.map((img) => ({
+    src: `photo_collections/${slug}/${img.name}.jpg`,
+    metadata: {
+      aspectRatio: img.aspectRatio,
+      dominantColor: img.dominantColor,
+    },
+  }))
 
-  const handleClick = (e, imageSrc) => {
+  const handleClick = (e, photo) => {
     e.stopPropagation()
     setShowModal((showModal) => !showModal)
-    setCurrentImageSrc(imageSrc)
+    setCurrentImageSrc(photo.src)
+    setCurrentImageMetadata(photo.metadata)
   }
 
   const handleClose = () => {
@@ -44,18 +48,20 @@ const PhotoCollectionTemplate = ({ data }) => {
         </div>
 
         <div className="w-full px-2 md:px-4 col-count-2 md:pt-1 md:col-count-3 xl:col-count-4 gap-x-md md:gap-x-lg">
-          {photos.map((imageSrc, key) => {
+          {photos.map((photo, key) => {
             if (key === Math.ceil(photos.length / 2)) {
               return (
                 <div key={key}>
                   <div
-                    onClick={(e) => handleClick(e, imageSrc)}
+                    onClick={(e) => handleClick(e, photo)}
                     className="mb-2 md:mb-4 inline-block w-full cursor-pointer border-themeOffWhite border-2 hover:border-themeRed duration-500"
                   >
                     <CDNImage
-                    src={imageSrc}
-                    alt={title}
-                    quality={80}
+                      src={photo.src}
+                      alt={title}
+                      quality={80}
+                      aspectRatio={photo.metadata.aspectRatio}
+                      dominantColor={photo.metadata.dominantColor}
                     />
                   </div>
 
@@ -90,14 +96,16 @@ const PhotoCollectionTemplate = ({ data }) => {
             } else {
               return (
                 <div
-                  onClick={(e) => handleClick(e, imageSrc)}
+                  onClick={(e) => handleClick(e, photo)}
                   className="mb-2 md:mb-4 inline-block w-full cursor-pointer border-themeOffWhite border-2 hover:border-themeRed duration-500"
                   key={key}
                 >
                   <CDNImage
-                    src={imageSrc}
+                    src={photo.src}
                     alt={title}
                     quality={80}
+                    aspectRatio={photo.metadata.aspectRatio}
+                    dominantColor={photo.metadata.dominantColor}
                   />
                 </div>
               )
@@ -109,9 +117,11 @@ const PhotoCollectionTemplate = ({ data }) => {
           <div className="fixed flex justify-center items-center h-screen w-full top-0 left-0 bg-blurred overflow-hidden">
             <CDNImage
               src={currentImageSrc}
-              className="relative flex flex-1 max-w-screen-lg max-h-screen cursor-pointer p-16"
+              className="relative flex flex-1 max-w-screen-lg max-h-screen cursor-pointer"
               alt={title}
-              quality={90}
+              quality={80}
+              objectFit="contain"
+              aspectRatio={currentImageMetadata.aspectRatio}
             />
           </div>
         )}
@@ -131,8 +141,12 @@ export const query = graphql`
         title
         slug
         collectionDate
-        imageCount
         featuredImage
+        images {
+          name
+          aspectRatio
+          dominantColor
+        }
       }
       htmlAst
     }

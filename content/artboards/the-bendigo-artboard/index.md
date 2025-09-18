@@ -1,10 +1,15 @@
 ---
-title: "the bendigo artboard"
-slug: "the-bendigo-artboard"
+title: the bendigo artboard
+slug: the-bendigo-artboard
 artboardDate: "2019-04-12"
-metadata: "bendigo, australia, artboard, birthday"
-type: "artboard"
-artboard: "artboards/the-bendigo-artboard.png"
+metadata: bendigo, australia, artboard, birthday
+type: artboard
+artboard: artboards/the-bendigo-artboard.png
+artboardMetadata:
+  aspectRatio: 3
+  dominantColor: "#302f2d"
+  width: 3240
+  height: 1080
 ---
 
 # {light_streaks}

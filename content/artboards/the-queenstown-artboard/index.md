@@ -1,10 +1,15 @@
 ---
-title: "the queenstown artboard"
-slug: "the-queenstown-artboard"
+title: the queenstown artboard
+slug: the-queenstown-artboard
 artboardDate: "2019-06-21"
-metadata: "new zealand, queenstown, artboard, art, adventure"
-type: "artboard"
-artboard: "artboards/the-queenstown-artboard.png"
+metadata: new zealand, queenstown, artboard, art, adventure
+type: artboard
+artboard: artboards/the-queenstown-artboard.png
+artboardMetadata:
+  aspectRatio: 3
+  dominantColor: "#747676"
+  width: 3240
+  height: 1080
 ---
 
 # {spontaneity}

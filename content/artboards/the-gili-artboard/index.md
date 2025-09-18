@@ -1,10 +1,15 @@
 ---
-title: "the gili artboard"
-slug: "the-gili-artboard"
+title: the gili artboard
+slug: the-gili-artboard
 artboardDate: "2019-04-23"
-metadata: "bali, indonesia, gili trawangan, artboard, sunset, collage, ocean, beach"
-type: "artboard"
-artboard: "artboards/the-gili-artboard.png"
+metadata: bali, indonesia, gili trawangan, artboard, sunset, collage, ocean, beach
+type: artboard
+artboard: artboards/the-gili-artboard.png
+artboardMetadata:
+  aspectRatio: 3
+  dominantColor: "#66655b"
+  width: 3240
+  height: 1080
 ---
 
 # {allure}
