@@ -3,10 +3,10 @@
 
 A personal portfolio website for my projects and photography. You can check it out [here.](https://www.maxemitchell.com)
 
-The front end was created using [Gatsby](https://www.gatsbyjs.org/) and [TailwindCSS](https://tailwindcss.com/). The images are hosted on [Contentful](https://www.contentful.com/), and the site itself is hosted on [Netlify](https://www.netlify.com/). This was the long way of saying it's a GCN stack website.
+The front end was created using [Gatsby](https://www.gatsbyjs.org/) and [TailwindCSS](https://tailwindcss.com/). Content is managed with static markdown files in the `content/` folder, and images are hosted on [Cloudflare R2](https://developers.cloudflare.com/r2/) with a Worker CDN for optimized delivery. The site itself is hosted on [Netlify](https://www.netlify.com/).
 
 ## Resources Used
--   [Ryan Wiemer's gatsby-stareter-gcn](https://github.com/ryanwiemer/gatsby-starter-gcn)
+-   [Ryan Wiemer's gatsby-starter-gcn](https://github.com/ryanwiemer/gatsby-starter-gcn)
 -   [iammatthias's personal photography page](https://github.com/iammatthias/.com)
 -   Way too much Google searching
 
@@ -15,8 +15,12 @@ The front end was created using [Gatsby](https://www.gatsbyjs.org/) and [Tailwin
 2.  Install yarn (or npm) if you don't already have it.
 3.  In the top level directory, run `yarn install`
 4.  Look at the `.env.example` file, and create local `.env.production` and `.env.development` files with your API Keys.
-5.  To run locally, run `yarn dev`
-6.  To test the production version, run `yarn build` followed by `yarn serve`
+5.  Generate image metadata for lazy loading: `node scripts/generate-image-metadata.js`
+    - This script processes images in `content/photo_collections/` and `content/artboards/`
+    - Extracts dominant colors for smooth lazy loading placeholders
+    - Updates markdown frontmatter with aspect ratios and metadata
+6.  To run locally, run `yarn dev`
+7.  To test the production version, run `yarn build` followed by `yarn serve`
 
 ## Future Development
 -   Add a light mode and ability to toggle between
