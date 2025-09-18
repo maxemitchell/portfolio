@@ -19,7 +19,6 @@
     "gatsby-plugin-sharp": "^4.25.1",
     "gatsby-plugin-sitemap": "^5.13.0",
     "gatsby-remark-images": "^6.25.0",
-    "gatsby-source-contentful": "^7.22.0",
     "gatsby-source-filesystem": "^4.17.0",
     "gatsby-source-github-api": "^1.0.0",
     "gatsby-source-youtube-v3": "^3.0.1",
@@ -34,7 +33,7 @@
     "react-dom": "^17.0.2",
     "react-helmet": "^6.0.0",
     "react-player": "^2.2.0",
-    "sharp": "^0.34.2",
+    "sharp": "^0.34.4",
     "three": "^0.163.0"
   },
   "devDependencies": {
@@ -55,10 +54,12 @@
   "scripts": {
     "dev": "gatsby develop",
     "develop": "gatsby develop",
+    "prebuild": "node scripts/generate-image-metadata.js",
     "build": "gatsby info && GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build --log-pages",
     "lint": "eslint --ext .js,.jsx --ignore-pattern public .",
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js' 'cdn/**/*.js'",
     "fix-semi": "eslint --quiet --ignore-pattern node_modules --ignore-pattern public --parser babel-eslint --no-eslintrc --rule '{\"semi\": [2, \"never\"], \"no-extra-semi\": [2]}' --fix *.js",
-    "serve": "gatsby serve"
+    "serve": "gatsby serve",
+    "generate-metadata": "node scripts/generate-image-metadata.js"
   }
 }

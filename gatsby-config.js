@@ -2,23 +2,12 @@ require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`
 })
 
-const contentfulConfig = {
-  spaceId: process.env.CONTENTFUL_SPACE_ID,
-  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-}
 
 const youtubeAPIKey = process.env.YOUTUBE_API_KEY
 const githubAPIKey = process.env.GITHUB_API_KEY
 const googleMeasurementId = process.env.GOOGLE_MEASUREMENT_ID
-const { spaceId, accessToken } = contentfulConfig
 
-if(process.env.gatsby_executing_command != 'serve'){
-  if (!spaceId || !accessToken) {
-    throw new Error(
-      'Contentful spaceId and the access token need to be provided.'
-    )
-  }
-  
+if(process.env.gatsby_executing_command != 'serve'){  
   if (!youtubeAPIKey) {
     throw new Error(
       'YouTube API key needs to be provided.'
@@ -77,10 +66,6 @@ module.exports = {
             apiKey: youtubeAPIKey,
             maxVideos: 10
         },
-    },
-    {
-      resolve: 'gatsby-source-contentful',
-      options: contentfulConfig,
     },
     {
       resolve: `gatsby-source-filesystem`,

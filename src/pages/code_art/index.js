@@ -293,7 +293,7 @@ export const query = graphql`
       childImageSharp {
         gatsbyImageData(
           tracedSVGOptions: { background: "#000000", color: "#0bbcd6" }
-          placeholder: TRACED_SVG
+          placeholder: DOMINANT_COLOR
           layout: CONSTRAINED
         )
       }
@@ -304,7 +304,7 @@ export const query = graphql`
       childImageSharp {
         gatsbyImageData(
           tracedSVGOptions: { background: "#000000", color: "#0bbcd6" }
-          placeholder: TRACED_SVG
+          placeholder: DOMINANT_COLOR
           layout: CONSTRAINED
         )
       }
@@ -313,7 +313,7 @@ export const query = graphql`
       childImageSharp {
         gatsbyImageData(
           tracedSVGOptions: { background: "#000000", color: "#0bbcd6" }
-          placeholder: TRACED_SVG
+          placeholder: DOMINANT_COLOR
           layout: CONSTRAINED
         )
       }
@@ -322,7 +322,7 @@ export const query = graphql`
       childImageSharp {
         gatsbyImageData(
           tracedSVGOptions: { background: "#000000", color: "#0bbcd6" }
-          placeholder: TRACED_SVG
+          placeholder: DOMINANT_COLOR
           layout: CONSTRAINED
         )
       }
@@ -333,7 +333,7 @@ export const query = graphql`
       childImageSharp {
         gatsbyImageData(
           tracedSVGOptions: { background: "#000000", color: "#0bbcd6" }
-          placeholder: TRACED_SVG
+          placeholder: DOMINANT_COLOR
           layout: CONSTRAINED
         )
       }
@@ -342,7 +342,7 @@ export const query = graphql`
       childImageSharp {
         gatsbyImageData(
           tracedSVGOptions: { background: "#000000", color: "#0bbcd6" }
-          placeholder: TRACED_SVG
+          placeholder: DOMINANT_COLOR
           layout: CONSTRAINED
         )
       }
@@ -351,7 +351,7 @@ export const query = graphql`
       childImageSharp {
         gatsbyImageData(
           tracedSVGOptions: { background: "#000000", color: "#0bbcd6" }
-          placeholder: TRACED_SVG
+          placeholder: DOMINANT_COLOR
           layout: CONSTRAINED
         )
       }
@@ -362,7 +362,7 @@ export const query = graphql`
       childImageSharp {
         gatsbyImageData(
           tracedSVGOptions: { background: "#000000", color: "#0bbcd6" }
-          placeholder: TRACED_SVG
+          placeholder: DOMINANT_COLOR
           layout: CONSTRAINED
         )
       }
@@ -371,7 +371,7 @@ export const query = graphql`
       childImageSharp {
         gatsbyImageData(
           tracedSVGOptions: { background: "#000000", color: "#0bbcd6" }
-          placeholder: TRACED_SVG
+          placeholder: DOMINANT_COLOR
           layout: CONSTRAINED
         )
       }

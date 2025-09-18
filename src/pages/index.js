@@ -233,14 +233,6 @@ export const query = graphql`
         }
       }
     }
-    allContentfulWriting(limit: 4, sort: { fields: writingDate, order: DESC }) {
-      edges {
-        node {
-          title
-          slug
-        }
-      }
-    }
     allYoutubeVideo(limit: 1) {
       edges {
         node {
