@@ -19,8 +19,8 @@ const ArtboardPreview = ({ slug, title, image, artboardMetadata }) => {
         width={800}
         quality={80}
         layout="constrained"
-        aspectRatio={artboardMetadata?.aspectRatio}
-        dominantColor={artboardMetadata?.dominantColor}
+        aspectRatio={artboardMetadata && artboardMetadata.aspectRatio}
+        dominantColor={artboardMetadata && artboardMetadata.dominantColor}
       />
     </Link>
   )

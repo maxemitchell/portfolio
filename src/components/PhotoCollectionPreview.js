@@ -17,8 +17,8 @@ const PhotoCollectionPreview = ({ slug, title, image, imageMetadata }) => {
         alt="Featured Image"
         quality={80}
         loading="lazy"
-        aspectRatio={imageMetadata?.aspectRatio}
-        dominantColor={imageMetadata?.dominantColor}
+        aspectRatio={imageMetadata && imageMetadata.aspectRatio}
+        dominantColor={imageMetadata && imageMetadata.dominantColor}
       />
     </Link>
   )

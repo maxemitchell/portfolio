@@ -113,7 +113,31 @@ const Index = ({ data }) => {
           </div>
         </div>
 
-        <div className="flex w-full flex-wrap justify-center mt-3">
+        <div className="flex w-full flex-wrap justify-around items-end mt-3">
+          <div className="w-full mb-2">
+            <Header variant="3">recent photo collections</Header>
+          </div>
+
+          {photoCollections.map(({ node: photoCollection }) => {
+            const { title, slug, featuredImage, featuredImageMetadata } =
+              photoCollection.frontmatter
+            const r2FolderName =
+              photoCollection.frontmatter.r2FolderName || slug
+            const image = `photo_collections/${r2FolderName}/${featuredImage}.jpg`
+
+            return (
+              <PhotoCollectionPreview
+                slug={slug}
+                title={title}
+                image={image}
+                imageMetadata={featuredImageMetadata}
+                key={title}
+              />
+            )
+          })}
+        </div>
+
+        <div className="flex w-full flex-wrap justify-center">
           <div className="w-full">
             <Header variant="3">recent artboards</Header>
           </div>
@@ -126,28 +150,6 @@ const Index = ({ data }) => {
                 image={artboard.frontmatter.artboard}
                 artboardMetadata={artboard.frontmatter.artboardMetadata}
                 key={artboard.frontmatter.title}
-              />
-            )
-          })}
-        </div>
-
-        <div className="flex w-full flex-wrap justify-around items-end">
-          <div className="w-full mb-2">
-            <Header variant="3">recent photo collections</Header>
-          </div>
-
-          {photoCollections.map(({ node: photoCollection }) => {
-            const { title, slug, featuredImage, featuredImageMetadata } =
-              photoCollection.frontmatter
-            const image = `photo_collections/${slug}/${featuredImage}.jpg`
-
-            return (
-              <PhotoCollectionPreview
-                slug={slug}
-                title={title}
-                image={image}
-                imageMetadata={featuredImageMetadata}
-                key={title}
               />
             )
           })}
@@ -235,6 +237,7 @@ export const query = graphql`
           frontmatter {
             title
             slug
+            r2FolderName
             featuredImage
             featuredImageMetadata {
               aspectRatio

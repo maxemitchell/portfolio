@@ -81,14 +81,15 @@ async function getImageMetadata(imagePath) {
   })
 }
 
-async function getPhotoCollectionImages(slug) {
+async function getPhotoCollectionImages(slug, r2FolderName) {
+  const folderName = r2FolderName || slug
   const images = []
   let imageNumber = 1
   let consecutiveFailures = 0
   
   while (consecutiveFailures < MAX_CONSECUTIVE_FAILURES && imageNumber <= MAX_IMAGE_NUMBER) {
     try {
-      await getImageMetadata(`photo_collections/${slug}/${imageNumber}.jpg`)
+      await getImageMetadata(`photo_collections/${folderName}/${imageNumber}.jpg`)
       images.push({ name: imageNumber.toString() })
       consecutiveFailures = 0
     } catch {
@@ -119,23 +120,24 @@ async function processPhotoCollection(collectionPath) {
       return
     }
 
-    let { images } = frontmatter
-    const hasExistingMetadata = images?.length > 0 && 
-                               images.every(img => img.aspectRatio && img.dominantColor)
-    
+    let images = frontmatter.images
+    const hasExistingMetadata = Array.isArray(images) && images.length > 0 &&
+      images.every(img => img && typeof img.aspectRatio !== 'undefined' && typeof img.dominantColor !== 'undefined')
+
     if (hasExistingMetadata) {
       console.log(`  ✅ Metadata already exists, skipping...`)
       return
     }
 
-    images = await getPhotoCollectionImages(frontmatter.slug)
+    images = await getPhotoCollectionImages(frontmatter.slug, frontmatter.r2FolderName)
+    const folderName = frontmatter.r2FolderName || frontmatter.slug
     if (!images.length) {
-      console.error(`  ❌ No images found for collection ${frontmatter.slug}`)
+      console.error(`  ❌ No images found for collection ${folderName}`)
       return
     }
     console.log(`  📊 Detected ${images.length} images`)
     
-    const processedImages = await processImagesWithConcurrency(images, frontmatter.slug)
+    const processedImages = await processImagesWithConcurrency(images, folderName)
     processedImages.sort((a, b) => parseInt(a.name) - parseInt(b.name))
 
     const featuredImageMetadata = frontmatter.featuredImage ? 
@@ -161,7 +163,7 @@ async function processPhotoCollection(collectionPath) {
   }
 }
 
-async function processImagesWithConcurrency(images, slug) {
+async function processImagesWithConcurrency(images, folderName) {
   const processedImages = []
   
   for (let i = 0; i < images.length; i += CONCURRENCY_LIMIT) {
@@ -173,7 +175,7 @@ async function processImagesWithConcurrency(images, slug) {
       const imageName = imageInfo.name || (imageIndex + 1).toString()
       
       batch.push(
-        processSingleImage(slug, imageName, imageIndex + 1, images.length)
+        processSingleImage(folderName, imageName, imageIndex + 1, images.length)
       )
     }
 
@@ -184,10 +186,10 @@ async function processImagesWithConcurrency(images, slug) {
   return processedImages
 }
 
-async function processSingleImage(slug, imageName, currentIndex, totalImages) {
+async function processSingleImage(folderName, imageName, currentIndex, totalImages) {
   try {
     console.log(`  📥 Analyzing image ${imageName} (${currentIndex}/${totalImages})...`)
-    const metadata = await getImageMetadata(`photo_collections/${slug}/${imageName}.jpg`)
+    const metadata = await getImageMetadata(`photo_collections/${folderName}/${imageName}.jpg`)
     
     return {
       name: imageName,
@@ -223,7 +225,7 @@ async function processArtboard(artboardPath) {
       return
     }
 
-    if (frontmatter.artboardMetadata?.aspectRatio && frontmatter.artboardMetadata?.dominantColor) {
+    if (frontmatter.artboardMetadata && frontmatter.artboardMetadata.aspectRatio && frontmatter.artboardMetadata.dominantColor) {
       console.log(`  ✅ Metadata already exists, skipping...`)
       return
     }

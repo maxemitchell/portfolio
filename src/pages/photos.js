@@ -25,7 +25,9 @@ const Photos = ({ data }) => {
           {photoCollections.map(({ node: photoCollection }) => {
             const { title, slug, featuredImage, featuredImageMetadata } =
               photoCollection.frontmatter
-            const image = `photo_collections/${slug}/${featuredImage}.jpg`
+            const r2FolderName =
+              photoCollection.frontmatter.r2FolderName || slug
+            const image = `photo_collections/${r2FolderName}/${featuredImage}.jpg`
 
             return (
               <PhotoCollectionPreview
@@ -92,6 +94,7 @@ export const query = graphql`
           frontmatter {
             title
             slug
+            r2FolderName
             featuredImage
             featuredImageMetadata {
               aspectRatio

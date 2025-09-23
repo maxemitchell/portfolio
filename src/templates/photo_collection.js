@@ -1,24 +1,77 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { graphql } from 'gatsby'
 import SEO from '../components/SEO'
 import CDNImage from '../components/CDNImage'
 import Layout from '../components/Layout'
 
+const BREAKPOINTS = {
+  sm: { width: 0, columns: 2 },
+  md: { width: 768, columns: 3 },
+  xl: { width: 1280, columns: 4 },
+}
+
+const useBreakpoint = () => {
+  const [breakpoint, setBreakpoint] = useState('md')
+
+  useEffect(() => {
+    const updateBreakpoint = () => {
+      const width = window.innerWidth
+
+      if (width >= BREAKPOINTS.xl.width) {
+        setBreakpoint('xl')
+      } else if (width >= BREAKPOINTS.md.width) {
+        setBreakpoint('md')
+      } else {
+        setBreakpoint('sm')
+      }
+    }
+
+    updateBreakpoint()
+    window.addEventListener('resize', updateBreakpoint)
+    return () => window.removeEventListener('resize', updateBreakpoint)
+  }, [])
+
+  return breakpoint
+}
+
 const PhotoCollectionTemplate = ({ data }) => {
   const photoCollection = data.markdownRemark
   const collectionTags = photoCollection.htmlAst.children
-  const { title, slug, collectionDate, images } = photoCollection.frontmatter
+  const { title, slug, collectionDate, images, r2FolderName } =
+    photoCollection.frontmatter
   const [showModal, setShowModal] = useState(false)
   const [currentImageSrc, setCurrentImageSrc] = useState('')
   const [currentImageMetadata, setCurrentImageMetadata] = useState({})
+  const breakpoint = useBreakpoint()
 
   const photos = images.map((img) => ({
-    src: `photo_collections/${slug}/${img.name}.jpg`,
+    src: `photo_collections/${r2FolderName || slug}/${img.name}.jpg`,
     metadata: {
       aspectRatio: img.aspectRatio,
       dominantColor: img.dominantColor,
     },
   }))
+
+  const getKeyPosition = () => {
+    const columnCount = BREAKPOINTS[breakpoint].columns
+    return Math.floor(photos.length / columnCount) + 2
+  }
+
+  const renderPhoto = (photo, key) => (
+    <div
+      onClick={(e) => handleClick(e, photo)}
+      className="mb-2 md:mb-4 inline-block w-full cursor-pointer border-themeOffWhite border-2 hover:border-themeRed duration-500"
+      key={key}
+    >
+      <CDNImage
+        src={photo.src}
+        alt={title}
+        quality={80}
+        aspectRatio={photo.metadata.aspectRatio}
+        dominantColor={photo.metadata.dominantColor}
+      />
+    </div>
+  )
 
   const handleClick = (e, photo) => {
     e.stopPropagation()
@@ -49,21 +102,13 @@ const PhotoCollectionTemplate = ({ data }) => {
 
         <div className="w-full px-2 md:px-4 col-count-2 md:pt-1 md:col-count-3 xl:col-count-4 gap-x-md md:gap-x-lg">
           {photos.map((photo, key) => {
-            if (key === Math.ceil(photos.length / 2)) {
+            const keyPosition = getKeyPosition()
+            const isKeyPosition = key === keyPosition
+
+            if (isKeyPosition) {
               return (
                 <div key={key}>
-                  <div
-                    onClick={(e) => handleClick(e, photo)}
-                    className="mb-2 md:mb-4 inline-block w-full cursor-pointer border-themeOffWhite border-2 hover:border-themeRed duration-500"
-                  >
-                    <CDNImage
-                      src={photo.src}
-                      alt={title}
-                      quality={80}
-                      aspectRatio={photo.metadata.aspectRatio}
-                      dominantColor={photo.metadata.dominantColor}
-                    />
-                  </div>
+                  {renderPhoto(photo, key)}
 
                   <div className="inline-block w-full">
                     {collectionTags.map((item, key2) => {
@@ -94,21 +139,7 @@ const PhotoCollectionTemplate = ({ data }) => {
                 </div>
               )
             } else {
-              return (
-                <div
-                  onClick={(e) => handleClick(e, photo)}
-                  className="mb-2 md:mb-4 inline-block w-full cursor-pointer border-themeOffWhite border-2 hover:border-themeRed duration-500"
-                  key={key}
-                >
-                  <CDNImage
-                    src={photo.src}
-                    alt={title}
-                    quality={80}
-                    aspectRatio={photo.metadata.aspectRatio}
-                    dominantColor={photo.metadata.dominantColor}
-                  />
-                </div>
-              )
+              return renderPhoto(photo, key)
             }
           })}
         </div>
@@ -140,6 +171,7 @@ export const query = graphql`
       frontmatter {
         title
         slug
+        r2FolderName
         collectionDate
         featuredImage
         images {
